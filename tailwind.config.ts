@@ -22,6 +22,13 @@ const config: Config = {
           900: "#0b3f6d",
           950: "#072849",
         },
+        navy: {
+          DEFAULT: "#0D1B2A",
+          950: "#0a1420",
+        },
+        emerald: {
+          accent: "#10B981",
+        },
       },
       fontFamily: {
         sans: ["var(--font-geist-sans)", "system-ui", "sans-serif"],
