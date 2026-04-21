@@ -76,10 +76,10 @@ export function DigitalSignaturePanel() {
       }
 
       setStatus("success");
-      setMessage("OK");
+      setMessage(t("success"));
     } catch (err) {
       setStatus("error");
-      setMessage(err instanceof Error ? err.message : "Error");
+      setMessage(err instanceof Error ? err.message : t("errors.generic"));
     }
   }
 

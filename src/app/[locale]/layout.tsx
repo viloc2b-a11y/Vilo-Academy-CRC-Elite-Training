@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
+import { getTranslations } from "next-intl/server";
 import { getMessages, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import type { ReactNode } from "react";
@@ -29,14 +30,15 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
+  setRequestLocale(locale);
+  const t = await getTranslations("meta");
   const titles: Record<string, string> = {
     en: "Vilo Academy — CRC Elite Training",
     es: "Vilo Academy — Entrenamiento CRC Elite",
   };
   return {
     title: titles[locale] ?? titles.en,
-    description:
-      "Bilingual, audit-ready training for Clinical Research Coordinators (FDA / ICH-GCP).",
+    description: t("description"),
   };
 }
 

@@ -10,6 +10,7 @@ type Props = {
 
 export async function AppShell({ children, locale }: Props) {
   const t = await getTranslations("nav");
+  const tFooter = await getTranslations("footer");
 
   const links = [
     { href: "/", label: t("home") },
@@ -50,7 +51,7 @@ export async function AppShell({ children, locale }: Props) {
         {children}
       </main>
       <footer className="border-t border-slate-200 bg-white py-6 text-center text-xs text-slate-500">
-        CRC Elite Training — FDA / ICH-GCP audit-ready learning shell
+        {tFooter("tagline")}
       </footer>
     </div>
   );

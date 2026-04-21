@@ -14,7 +14,7 @@ export function LocaleSwitcher({ currentLocale }: Props) {
 
   return (
     <label className="flex items-center gap-2 text-sm text-slate-600">
-      <span className="sr-only">Language</span>
+      <span className="sr-only">{t("label")}</span>
       <select
         className="rounded-lg border border-slate-200 bg-white px-2 py-1.5 font-medium text-slate-800 shadow-sm focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-200"
         value={currentLocale}

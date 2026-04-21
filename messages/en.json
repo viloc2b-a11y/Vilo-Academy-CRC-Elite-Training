@@ -1,6 +1,7 @@
 {
   "meta": {
-    "title": "Vilo Academy — CRC Elite Training"
+    "title": "Vilo Academy — CRC Elite Training",
+    "description": "Bilingual, audit-ready training for Clinical Research Coordinators (FDA / ICH-GCP)."
   },
   "nav": {
     "home": "Home",
@@ -30,8 +31,8 @@
     "heroSubtitle": "Practical, GCP-aligned training built around TransCelerate standards, IATA logistics, and real site workflows.",
     "statHours": "60–80 Hours",
     "statHoursSub": "Self-paced",
-    "statModules": "6 Modules",
-    "statModulesSub": "Hands-on",
+    "statModules": "15 + capstone",
+    "statModulesSub": "Pre-capstone + OSCE",
     "statCert": "Certificate",
     "statCertSub": "On completion",
     "ctaPrimary": "Enroll now — $249 USD",
@@ -49,9 +50,9 @@
     "whyTitle": "Why this program",
     "why1": "Aligned to how sponsors frame training — TransCelerate criteria.",
     "why2": "Logistics literacy — IATA and specimen handling.",
-    "why3": "One arc, six modules — from foundations to monitoring readiness.",
+    "why3": "One arc — fifteen pre-capstone modules (M4 = ALCOA+ / logs anchor; M9 = IP & cold chain) plus a multi-station OSCE capstone (ALCOA+ repair at OSCE.S5).",
     "curriculumTitle": "Curriculum",
-    "curriculumSubtitle": "Six modules • roughly 60–80 hours • learn in order or revisit sections as needed.",
+    "curriculumSubtitle": "Roughly 60–80 hours • fifteen pre-capstone modules + integrated OSCE capstone • M4 anchors ALCOA+ / master logs; M9 covers investigational product & cold chain; OSCE.S5 stresses source & ALCOA+ repair • learn in order or revisit.",
     "mod1": "01 Foundations & CRC role",
     "mod2": "02 GCP & ICH E6(R3)",
     "mod3": "03 Start-up & operations",
@@ -64,6 +65,34 @@
     "enrollIncludes": "Full access, practice activities, certificate, and ongoing access to materials.",
     "enrolledCta": "Already enrolled? Access your course on the learning platform.",
     "enrolledButton": "Go to your student dashboard"
+  },
+  "studentDashboard": {
+    "brandMark": "Vilo Research Group",
+    "crcTagline": "CRC Elite Training",
+    "navCourses": "My courses",
+    "navCerts": "Certifications",
+    "navActivity": "Activity & logs",
+    "trustBadge": "Audit-ready",
+    "trustBody": "Sessions and progress align with GCP, ICH E6(R3), and TransCelerate-style training expectations.",
+    "kicker": "Learning platform",
+    "title": "Training dashboard",
+    "subtitle": "Welcome back to Vilo Academy — CRC Elite Training.",
+    "studentId": "Student ID: 2026-X",
+    "sessionLabel": "Audit-ready session",
+    "cardProgress": "Overall progress",
+    "modulesWord": "modules",
+    "cardMilestone": "Next milestone",
+    "milestoneTitle": "IATA / DOT exam",
+    "milestoneHint": "Required for laboratory shipping competency.",
+    "cardCerts": "Certificates issued",
+    "planTitle": "CRC Elite curriculum",
+    "planSubtitle": "Fifteen SOP-versioned modules — complete in order or revisit as needed.",
+    "versionLabel": "Version:",
+    "btnReview": "Review",
+    "btnContinue": "Continue",
+    "a11yCompleted": "Module completed",
+    "a11yCurrent": "Module in progress",
+    "a11yLocked": "Module locked"
   },
   "dashboard": {
     "welcome": "Welcome back",
@@ -105,12 +134,17 @@
     "errors": {
       "phrase": "Confirmation phrase must match exactly.",
       "checks": "Both attestations are required.",
-      "name": "Legal name is required."
+      "name": "Legal name is required.",
+      "generic": "Something went wrong. Try again."
     }
   },
   "locale": {
     "en": "English",
-    "es": "Español"
+    "es": "Español",
+    "label": "Language"
+  },
+  "footer": {
+    "tagline": "CRC Elite Training — FDA / ICH-GCP audit-ready learning shell"
   },
   "pages": {
     "modulesTitle": "Modules",

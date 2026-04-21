@@ -1,23 +1,13 @@
 import { getTranslations } from "next-intl/server";
 import { DigitalSignaturePanel } from "@/components/signature/DigitalSignaturePanel";
-import { ProgressOverview } from "@/components/dashboard/ProgressOverview";
+import { StudentDashboard } from "@/components/dashboard/StudentDashboard";
 
 export default async function DashboardPage() {
   const t = await getTranslations("dashboard");
 
   return (
     <div className="space-y-10">
-      <header className="space-y-2">
-        <p className="text-sm font-medium uppercase tracking-wide text-brand-700">
-          Vilo Academy
-        </p>
-        <h1 className="text-3xl font-semibold text-slate-900 md:text-4xl">
-          {t("welcome")}
-        </h1>
-        <p className="max-w-3xl text-lg text-slate-600">{t("subtitle")}</p>
-      </header>
-
-      <ProgressOverview />
+      <StudentDashboard />
 
       <section className="grid gap-6 lg:grid-cols-2">
         <DigitalSignaturePanel />

@@ -32,6 +32,13 @@ const config: Config = {
       },
       fontFamily: {
         sans: ["var(--font-geist-sans)", "system-ui", "sans-serif"],
+        serif: [
+          "Georgia",
+          "Cambria",
+          '"Times New Roman"',
+          "Times",
+          "serif",
+        ],
         mono: ["var(--font-geist-mono)", "ui-monospace", "monospace"],
       },
     },
