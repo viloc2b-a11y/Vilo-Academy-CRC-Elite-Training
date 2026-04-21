@@ -1,0 +1,66 @@
+{
+  "meta": {
+    "title": "Vilo Academy — Entrenamiento CRC Elite"
+  },
+  "nav": {
+    "dashboard": "Panel",
+    "modules": "Módulos",
+    "documents": "Esenciales ICH-GCP",
+    "certificates": "Certificados"
+  },
+  "dashboard": {
+    "welcome": "Bienvenido de nuevo",
+    "subtitle": "Progreso listo para auditoría en tu ruta de certificación CRC.",
+    "modulesTitle": "Módulos del curso",
+    "modulesHint": "15 módulos, de ética a inspecciones FDA — versionados frente a tus SOP.",
+    "examsTitle": "Exámenes y declaraciones",
+    "examsHint": "Cuestionarios pendientes y certificaciones con firma (p. ej. IATA / DOT).",
+    "certsTitle": "Certificados emitidos",
+    "certsHint": "Registros conservados según política; certificados críticos exigen identidad verificada.",
+    "statModules": "Módulos completados",
+    "statExams": "Exámenes pendientes",
+    "statCerts": "Certificados",
+    "statDocs": "Documentos ICH",
+    "statDocsHint": "Avance en los 52 documentos esenciales ICH-GCP.",
+    "shellNote": "El contenido generado en Google AI Studio se monta aquí — este shell es tu marco orientado al cumplimiento.",
+    "integrationTitle": "Notas de integración",
+    "integrationN8n": "n8n puede publicar completados con POST a /api/webhooks/n8n",
+    "integrationAudit": "Supabase guarda auditoría (IP + User-Agent) vía RPC append_audit",
+    "integrationRetention": "Retención 2 años (transporte de laboratorio) vía register_lab_transport_retention"
+  },
+  "signature": {
+    "title": "Firma digital y declaración de identidad",
+    "description": "Requerido antes de emitir certificados críticos de transporte o regulatorios. Tu dirección IP y el agente de usuario quedan registrados en la pista de auditoría.",
+    "printedName": "Nombre legal completo (debe coincidir con el registro)",
+    "titleField": "Puesto (opcional)",
+    "phraseLabel": "Escriba la frase de confirmación exactamente",
+    "phraseTarget": "Declaro que completé personalmente esta capacitación.",
+    "checkboxTraining": "Confirmo que completé personalmente la capacitación asociada a este certificado.",
+    "checkboxIdentity": "Confirmo que el nombre anterior es mi identidad legal para registros de cumplimiento.",
+    "submit": "Firmar y continuar",
+    "certType": "Tipo de certificado / declaración",
+    "certIata": "IATA (transporte)",
+    "certDot": "DOT (transporte)",
+    "certIchGcp": "Certificado ICH-GCP",
+    "certAttestation": "Declaración general",
+    "certOther": "Otro",
+    "success": "Firma registrada. La pista de auditoría se guardó en Supabase.",
+    "errors": {
+      "phrase": "La frase de confirmación debe coincidir exactamente.",
+      "checks": "Se requieren ambas declaraciones.",
+      "name": "El nombre legal es obligatorio."
+    }
+  },
+  "locale": {
+    "en": "English",
+    "es": "Español"
+  },
+  "pages": {
+    "modulesTitle": "Módulos",
+    "modulesBody": "Quince módulos versionados (ética → inspecciones FDA). Monta aquí lecciones generadas con IA y enlaces a SOP.",
+    "documentsTitle": "Documentos esenciales ICH-GCP",
+    "documentsBody": "Seguimiento de los 52 documentos esenciales — conecta con progreso_documentos_ich y documentos_esenciales.",
+    "certificatesTitle": "Certificados",
+    "certificatesBody": "Historial de emisión y descargas — enlaza con firmas_digitales y tu generador de PDF."
+  }
+}

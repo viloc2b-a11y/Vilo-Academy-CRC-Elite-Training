@@ -1,0 +1,66 @@
+{
+  "meta": {
+    "title": "Vilo Academy — CRC Elite Training"
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "modules": "Modules",
+    "documents": "ICH-GCP Essentials",
+    "certificates": "Certificates"
+  },
+  "dashboard": {
+    "welcome": "Welcome back",
+    "subtitle": "Audit-ready progress for your CRC certification path.",
+    "modulesTitle": "Course modules",
+    "modulesHint": "15 modules from ethics through FDA inspections — versioned against your SOPs.",
+    "examsTitle": "Exams & attestations",
+    "examsHint": "Pending quizzes and signature-gated certifications (e.g. IATA / DOT).",
+    "certsTitle": "Certificates issued",
+    "certsHint": "Records retained per policy; critical certs require verified identity.",
+    "statModules": "Modules completed",
+    "statExams": "Exams pending",
+    "statCerts": "Certificates",
+    "statDocs": "ICH docs tracked",
+    "statDocsHint": "Progress across all 52 ICH-GCP essential documents.",
+    "shellNote": "Content from Google AI Studio mounts here — this shell is your compliance-grade frame.",
+    "integrationTitle": "Integration notes",
+    "integrationN8n": "n8n can POST completion events to /api/webhooks/n8n",
+    "integrationAudit": "Supabase stores audit events (IP + User-Agent) via append_audit RPC",
+    "integrationRetention": "2-year lab transport retention via register_lab_transport_retention"
+  },
+  "signature": {
+    "title": "Digital signature & identity attestation",
+    "description": "Required before issuing transport or regulatory-critical certificates. Your IP address and browser fingerprint are recorded for the audit trail.",
+    "printedName": "Full legal name (must match enrollment)",
+    "titleField": "Job title (optional)",
+    "phraseLabel": "Type the confirmation phrase exactly",
+    "phraseTarget": "I attest that I personally completed this training.",
+    "checkboxTraining": "I confirm I personally completed the training associated with this certificate.",
+    "checkboxIdentity": "I confirm the name above is my legal identity for compliance records.",
+    "submit": "Sign and continue",
+    "certType": "Certificate / attestation type",
+    "certIata": "IATA (transport)",
+    "certDot": "DOT (transport)",
+    "certIchGcp": "ICH-GCP certificate",
+    "certAttestation": "General attestation",
+    "certOther": "Other",
+    "success": "Signature recorded. Audit trail persisted in Supabase.",
+    "errors": {
+      "phrase": "Confirmation phrase must match exactly.",
+      "checks": "Both attestations are required.",
+      "name": "Legal name is required."
+    }
+  },
+  "locale": {
+    "en": "English",
+    "es": "Español"
+  },
+  "pages": {
+    "modulesTitle": "Modules",
+    "modulesBody": "Fifteen versioned modules (ethics → FDA inspections). Mount AI-generated lessons and SOP links here.",
+    "documentsTitle": "ICH-GCP essential documents",
+    "documentsBody": "Tracker for all 52 essential documents — wire to progreso_documentos_ich and documentos_esenciales.",
+    "certificatesTitle": "Certificates",
+    "certificatesBody": "Issuance history and downloads — connect to firmas_digitales and your PDF generator."
+  }
+}
