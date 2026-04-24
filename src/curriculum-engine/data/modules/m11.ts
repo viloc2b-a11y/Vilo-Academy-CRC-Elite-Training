@@ -3,8 +3,14 @@
 import type { Module } from "../../types";
 
 /**
- * Module 11 — Source documentation & ALCOA+: audit-proof records under pressure.
- * Guided practice: three cases (GP1–GP3) — source conflict resolution, pre-monitoring cleanup trap, suspected backdating pattern.
+ * Module 11 — Source documentation & ALCOA+ (Technical / Regulatory Execution)
+ *
+ * PROMPT 2 — TÉCNICO / REGULATORIO (Modules 11–16):
+ * - Exact 8-section structure enforced via lesson titles (1–8).
+ * - Guided Practice includes: (1) clear correct vs incorrect, (2) integrity violation detection, (3) ambiguous timing/conflict.
+ * - Integrity traps are explicit: backdating, false closure, missing source, deviation misclassification.
+ * - Scoring is objective/binary and includes explicit GLOBAL FAIL integrity triggers (via failCondition).
+ * - Practical Exercise requires written audit defense (2–4 sentences) for FDA inspector + sponsor monitor.
  */
 export const MODULE_M11: Module = {
   id: "M11",
@@ -19,21 +25,24 @@ export const MODULE_M11: Module = {
     en: "Module 11 — Source Documentation & ALCOA+: Audit-Proof Records Under Pressure",
     es: "Módulo 11 — Documentación fuente y ALCOA+: registros a prueba de auditoría bajo presión",
   },
+
+  // SMART objective (exact action + exact output + audit scenario)
   objective: {
-    en: "Identify backdating red flags and source conflicts; resolve source-vs-source inconsistencies using defensible hierarchy and audit trails; manage delayed PI signature patterns; resist pre-monitoring ‘documentation fixes’; and implement system-level CAPA for structural documentation failures.",
-    es: "Identificar banderas rojas de backdating y conflictos entre fuentes; resolver inconsistencias fuente-vs-fuente con jerarquía defendible y audit trail; manejar patrones de firmas tardías del PI; resistir ‘arreglos’ de documentación antes de monitoría; e implementar CAPA a nivel sistema para fallas estructurales de documentación.",
+    en: "CRC can reconcile a source-vs-EDC conflict during a monitoring visit and produce (1) an audit-trail correction plan and (2) a 2–4 sentence FDA/monitor defense statement that separates known vs unknown.",
+    es: "El CRC puede reconciliar un conflicto fuente-vs-EDC durante una monitoría y producir (1) un plan de corrección con audit trail y (2) una defensa de 2–4 oraciones para FDA/monitor que separe conocido vs desconocido.",
   },
+
   outcomes: [
     {
       level: "L1",
       statements: [
         {
-          en: "Names ALCOA+ red flags: bulk backdating signals (same pen/ink across multiple days, identical phrasing), batch PI signatures, and coordinated corrections dated the same day shortly before monitoring.",
-          es: "Nombra banderas rojas ALCOA+: señales de backdating masivo (misma tinta/bolígrafo por varios días, frases idénticas), firmas PI en lote y correcciones coordinadas con la misma fecha justo antes de monitoría.",
+          en: "Flags integrity traps by name: backdating, false closure, missing source, and protocol deviation misclassification.",
+          es: "Marca trampas de integridad por nombre: backdating, cierre falso, fuente faltante y mala clasificación de desviación de protocolo.",
         },
         {
-          en: "Explains source conflicts (progress note vs vitals vs lab worksheet vs CRF) and why ‘busy clinic’ is not a compliance excuse; records must tell one coherent story an auditor can reconstruct.",
-          es: "Explica conflictos de fuente (nota de evolución vs signos vitales vs hoja de laboratorio vs CRF) y por qué ‘clínica ocupada’ no es excusa; los registros deben contar una historia coherente que un auditor pueda reconstruir.",
+          en: "Recognizes audit magnets: bulk PI signatures, coordinated ‘cleanup’ right before monitoring, and objective-source edits made to match narrative summaries.",
+          es: "Reconoce imanes de auditoría: firmas PI en lote, ‘cleanup’ coordinado justo antes de monitoría y edición de fuente objetiva para que coincida con resúmenes narrativos.",
         },
       ],
     },
@@ -41,12 +50,12 @@ export const MODULE_M11: Module = {
       level: "L2",
       statements: [
         {
-          en: "Executes real-time capture and reconciliation: documents during/immediately after interaction, records exact times and staff, and runs daily source ↔ CRF/EDC ↔ logs consistency checks before inconsistencies compound.",
-          es: "Ejecuta captura y reconciliación en tiempo real: documenta durante/inmediatamente después de la interacción, registra horas exactas y personal, y realiza chequeos diarios de consistencia fuente ↔ CRF/EDC ↔ logs antes de que las inconsistencias se acumulen.",
+          en: "Executes reconciliation using real artifacts (source note, vitals flowsheet, EDC field history, deviation log) and documents a correction that preserves originals and attribution.",
+          es: "Ejecuta reconciliación usando artefactos reales (nota fuente, flujo de signos, historial de campos EDC, log de desviaciones) y documenta una corrección que preserve originales y atribución.",
         },
         {
-          en: "Handles late oversight evidence correctly: uses transparent late-entry/addendum paths with attribution and rationale, without bulk-signing blanks or rewriting vitals to match summaries.",
-          es: "Maneja evidencia tardía de supervisión correctamente: usa vías transparentes de entrada tardía/adenda con atribución y razón, sin firmar en lote campos en blanco ni cambiar signos para que coincidan con resúmenes.",
+          en: "Produces an audit-facing explanation that is truthful, time-bounded, and does not claim facts that are not supported by artifacts.",
+          es: "Produce una explicación orientada a auditoría que sea veraz, acotada en tiempo y que no afirme hechos no soportados por artefactos.",
         },
       ],
     },
@@ -54,285 +63,442 @@ export const MODULE_M11: Module = {
       level: "L3",
       statements: [
         {
-          en: "Detects systemic patterns (batch signatures, repeated ‘cleanup’ behavior, recurring conflicts) and proposes CAPA: same-day PI review cadence, signature triggers, documentation SOP, QA sampling, and pressure-resistance escalation.",
-          es: "Detecta patrones sistémicos (firmas en lote, ‘cleanup’ repetido, conflictos recurrentes) y propone CAPA: cadencia de revisión PI el mismo día, disparadores de firma, SOP de documentación, muestreo QA y escalamiento ante presión.",
+          en: "Detects integrity violations under pressure (e.g., ‘close the query with no source’, ‘PI sign blanks now’, ‘change vitals to match note’) and escalates to QA/compliance.",
+          es: "Detecta violaciones de integridad bajo presión (p. ej., ‘cierra el query sin fuente’, ‘PI firme blancos ahora’, ‘cambia signos para que cuadre’) y escala a QA/cumplimiento.",
         },
         {
-          en: "Prepares audit-facing defense: prioritizes top risks, preserves original evidence, and explains corrections in a coherent 60–90 second narrative with artifact pointers.",
-          es: "Prepara defensa orientada a auditoría: prioriza riesgos principales, preserva evidencia original y explica correcciones en una narrativa coherente de 60–90 segundos con punteros de artefactos.",
+          en: "Builds a defensible CAPA theme that changes workflow (signature triggers, same-day documentation cadence, sampling) rather than ‘retraining only’.",
+          es: "Construye un tema CAPA defendible que cambie el flujo (disparadores de firma, cadencia de documentación el mismo día, muestreo) y no sea ‘solo reentrenar’.",
         },
       ],
     },
   ],
+
   lessons: [
+    // 1) Module Overview
     {
-      lessonId: "M11.L1",
-      title: { en: "Core concepts — ALCOA+ red flags & source conflicts", es: "Conceptos núcleo — banderas rojas ALCOA+ y conflictos de fuente" },
+      lessonId: "M11.S1",
+      title: { en: "1) Module overview", es: "1) Resumen del módulo" },
       lessonType: "reading",
       objective: {
-        en: "Anchor backdating risk patterns, source hierarchy, and why pre-monitoring cleanup is a fraud risk.",
-        es: "Anclar patrones de riesgo de backdating, jerarquía de fuentes y por qué ‘cleanup’ pre-monitoría es riesgo de fraude.",
+        en: "Define the audit-grade bar: reconcile conflicts with evidence and produce short, defensible outputs under time pressure.",
+        es: "Definir la barra nivel auditoría: reconciliar conflictos con evidencia y producir salidas cortas y defendibles bajo presión de tiempo.",
       },
       keyPoints: [
         {
-          en: "Reality check: a busy clinic does not justify incoherent or retroactively ‘cleaned’ source.",
-          es: "Reality check: una clínica ocupada no justifica fuente incoherente o ‘limpia’ retroactivamente.",
+          en: "This is execution, not theory: you will be judged on what you change, what you refuse to change, and what you escalate.",
+          es: "Esto es ejecución, no teoría: se te juzga por qué cambias, qué te niegas a cambiar y qué escalas.",
         },
         {
-          en: "Source conflicts must be resolved using most contemporaneous objective data (e.g., vitals) and an audit trail—not by making everything ‘match’ after the fact.",
-          es: "Conflictos de fuente se resuelven con el dato objetivo más contemporáneo (p. ej., signos vitales) y audit trail—no haciendo que todo ‘cuadre’ después.",
-        },
-        {
-          en: "Bulk signatures and identical phrasing across days are inspection magnets; treat as system issues, not isolated ‘paperwork’ problems.",
-          es: "Firmas en lote y frases idénticas entre días atraen inspección; tratar como problema sistémico, no ‘papeleo’ aislado.",
+          en: "Audit pressure standard: separate known vs unknown; preserve originals; never ‘make the story match’ by editing objective source.",
+          es: "Estándar bajo presión: separar conocido vs desconocido; preservar originales; nunca “hacer que cuadre” editando fuente objetiva.",
         },
       ],
     },
+
+    // 2) Core Concepts (rules only)
     {
-      lessonId: "M11.L2",
-      title: { en: "Real-world workflow — capture, reconciliation, and governance", es: "Flujo real — captura, reconciliación y gobierno" },
+      lessonId: "M11.S2",
+      title: { en: "2) Core concepts (rules only)", es: "2) Conceptos núcleo (solo reglas)" },
       lessonType: "reading",
       objective: {
-        en: "Execute daily documentation discipline and weekly pattern review with PI/QA to prevent systemic drift.",
-        es: "Ejecutar disciplina diaria de documentación y revisión semanal de patrones con PI/QA para prevenir deriva sistémica.",
+        en: "Use these as rules during any monitoring/inspection walkthrough.",
+        es: "Usar estas reglas en cualquier walkthrough de monitoría/inspección.",
       },
       keyPoints: [
         {
-          en: "Real-time capture: write during/immediately after interaction; note exact times and staff present; never destroy originals.",
-          es: "Captura en tiempo real: escribir durante/inmediatamente después; anotar horas exactas y personal presente; nunca destruir originales.",
+          en: "Rule: Objective contemporaneous source (e.g., vitals flowsheet) outranks narrative summaries for numeric fields; reconcile via addendum + audit trail, not by overwriting.",
+          es: "Regla: fuente objetiva contemporánea (p. ej., flujo de signos) supera resúmenes narrativos para campos numéricos; reconciliar con adenda + audit trail, no sobreescribiendo.",
         },
         {
-          en: "PI oversight: same-day review for eligibility/safety decisions; sign worksheets when decisions are made (not in bulk at week’s end).",
-          es: "Supervisión PI: revisión el mismo día para decisiones de elegibilidad/seguridad; firmar hojas cuando se decide (no en lote al final).",
+          en: "Rule: Late entries/addenda must be attributed (who/when) and state why; they cannot pretend to be contemporaneous.",
+          es: "Regla: entradas tardías/adendas deben atribuir (quién/cuándo) y decir por qué; no pueden fingir ser contemporáneas.",
         },
         {
-          en: "Reconciliation cadence: source vs CRF/EDC vs logs; fix inconsistencies via addendum/late entry with rationale; trend late entries and batch signatures weekly.",
-          es: "Cadencia de reconciliación: fuente vs CRF/EDC vs logs; corregir con adenda/entrada tardía con razón; revisar tendencias de entradas tardías y firmas en lote semanalmente.",
+          en: "Rule: Never backdate, never false-close queries, never create ‘missing source’ after the fact. If missing, label missing and escalate.",
+          es: "Regla: nunca backdate, nunca cierres queries en falso, nunca crees ‘fuente faltante’ después. Si falta, etiqueta como faltante y escala.",
+        },
+        {
+          en: "Rule: Deviation classification must match protocol window/requirement. Misclassification to reduce heat is an integrity defect.",
+          es: "Regla: clasificación de desviación debe coincidir con ventana/requisito del protocolo. Reclasificar para reducir presión es defecto de integridad.",
+        },
+        {
+          en: "Rule: Bulk PI signatures and pre-monitoring ‘cleanup’ are system signals—treat as QA/compliance events, not admin tasks.",
+          es: "Regla: firmas PI en lote y ‘cleanup’ pre-monitoría son señales sistémicas—trátalo como evento QA/cumplimiento, no tarea administrativa.",
         },
       ],
     },
+
+    // 3) Guided Practice (3 scenarios)
     {
-      lessonId: "M11.GP1",
-      title: { en: "Guided practice — GP-11.1: resolve a source conflict (BP)", es: "Práctica guiada — GP-11.1: resolver conflicto de fuente (PA)" },
+      lessonId: "M11.S3.GP1",
+      title: { en: "3) Guided practice — Scenario 1 (clear: correct vs incorrect)", es: "3) Práctica guiada — Escenario 1 (claro: correcto vs incorrecto)" },
       lessonType: "case",
       objective: {
-        en: "Subject 028: progress note says BP stable 120/80; vitals sheet shows 152/92; lab worksheet says HTN controlled.",
-        es: "Sujeto 028: nota dice PA estable 120/80; hoja de signos 152/92; hoja de lab dice HTA controlada.",
+        en: "Choose the correct reconciliation action and the incorrect one (you must label both).",
+        es: "Elegir la acción correcta de reconciliación y la incorrecta (debes etiquetar ambas).",
       },
       keyPoints: [
         {
-          en: "Use the most contemporaneous objective record (vitals) as the source of truth; document why summaries differ; ensure CRF reflects 152/92 with an audit trail.",
-          es: "Usar el registro objetivo más contemporáneo (signos) como verdad fuente; documentar por qué difieren resúmenes; asegurar CRF refleje 152/92 con audit trail.",
+          en: "Inputs: Subject 091 Visit 4. Vitals flowsheet: BP 148/90 at 10:02. Progress note: “BP stable” at 14:00. EDC field BP_SYSTOLIC: 120 entered 14:12 → query opened → corrected to 148 at 16:30 (field history available).",
+          es: "Insumos: Sujeto 091 Visita 4. Flujograma de signos: PA 148/90 a las 10:02. Nota: “PA estable” a las 14:00. Campo EDC BP_SYSTOLIC: 120 a las 14:12 → query abierto → corregido a 148 a las 16:30 (historial disponible).",
+        },
+        {
+          en: "Correct: keep vitals as source-of-truth; add an addendum clarifying ‘stable’ is qualitative; ensure EDC reflects 148/90 with audit trail reference.",
+          es: "Correcto: mantener signos como verdad fuente; adenda aclarando que ‘estable’ es cualitativo; asegurar EDC refleje 148/90 con referencia al audit trail.",
+        },
+        {
+          en: "Incorrect: edit vitals to 120/80 so the narrative/EDC “match” (integrity violation).",
+          es: "Incorrecto: editar signos a 120/80 para que “cuadre” narrativa/EDC (violación de integridad).",
         },
       ],
     },
     {
-      lessonId: "M11.GP2",
-      title: { en: "Guided practice — GP-11.2: pre-monitoring ‘cleanup’ trap", es: "Práctica guiada — GP-11.2: trampa de ‘cleanup’ pre-monitoría" },
+      lessonId: "M11.S3.GP2",
+      title: { en: "3) Guided practice — Scenario 2 (integrity violation: must detect)", es: "3) Práctica guiada — Escenario 2 (violación de integridad: debes detectar)" },
       lessonType: "case",
       objective: {
-        en: "Monitor arrives tomorrow; 5 charts have blank eligibility signature fields; team suggests PI sign them all now.",
-        es: "Monitor llega mañana; 5 charts con firmas de elegibilidad en blanco; equipo sugiere que PI firme todo ahora.",
+        en: "Detect false-closure pressure and choose the escalation output.",
+        es: "Detectar presión de cierre falso y elegir la salida de escalamiento.",
       },
       keyPoints: [
         {
-          en: "Do not bulk-sign blanks. Use transparent late-entry documentation explaining oversight occurred but signature was delayed; implement a real-time signature trigger going forward.",
-          es: "No firmar en lote campos en blanco. Usar documentación transparente de entrada tardía explicando supervisión ocurrió pero firma se retrasó; implementar disparador de firma en tiempo real.",
+          en: "Inputs: EDC query: “AE verbatim inconsistent with source.” Source shows “fatigue”; EDC changed to “tiredness” with note “per discussion with DM”; query closed 17:05. Sponsor email 16:40: “Close 80% queries today or DB lock slips.”",
+          es: "Insumos: query EDC: “AE verbatim inconsistent with source.” Fuente muestra “fatigue”; EDC cambió a “tiredness” con nota “per discussion with DM”; query cerrado 17:05. Correo patrocinador 16:40: “Cierra 80% queries hoy o se atrasa DB lock.”",
+        },
+        {
+          en: "Integrity trap: false closure (closing without source alignment or documented rationale supported by source).",
+          es: "Trampa de integridad: cierre falso (cerrar sin alinear con fuente o sin razón documentada soportada por fuente).",
+        },
+        {
+          en: "Required decision: reopen or document as non-compliant closure + escalate to DM/QA; do not ‘paper over’ sponsor pressure.",
+          es: "Decisión requerida: reabrir o documentar cierre no conforme + escalar a DM/QA; no “tapar” la presión del patrocinador.",
         },
       ],
     },
     {
-      lessonId: "M11.GP3",
-      title: { en: "Guided practice — GP-11.3: suspected backdating pattern", es: "Práctica guiada — GP-11.3: patrón sospechoso de backdating" },
+      lessonId: "M11.S3.GP3",
+      title: { en: "3) Guided practice — Scenario 3 (ambiguous timing/conflict)", es: "3) Práctica guiada — Escenario 3 (ambigüedad de tiempo/conflicto)" },
       lessonType: "case",
       objective: {
-        en: "Five consecutive notes (4/15–4/19) use identical blue pen/handwriting and PI signs them all on 4/22.",
-        es: "Cinco notas consecutivas (15–19/4) con misma tinta azul/estilo y PI firma todo el 22/4.",
+        en: "Handle a timing conflict without inventing facts; classify deviation correctly and document known vs unknown.",
+        es: "Manejar conflicto de tiempo sin inventar hechos; clasificar desviación correctamente y documentar conocido vs desconocido.",
       },
       keyPoints: [
         {
-          en: "Treat as a quality-system issue: document the pattern, implement daily documentation/signature SOP, and avoid claiming you can retroactively ‘validate’ timing that is uncertain.",
-          es: "Tratar como tema de sistema de calidad: documentar patrón, implementar SOP diario de documentación/firma y evitar afirmar que se puede ‘validar’ retroactivamente un tiempo incierto.",
+          en: "Inputs: Protocol Visit 5 window ±3 days. Scheduled 4/20; completed 4/24 (4 days late). Deviation log is blank. PI note: “patient no-show rescheduled” with no date/time. IP dispensing log shows dose given 4/24.",
+          es: "Insumos: ventana Visita 5 ±3 días. Programada 20/4; completada 24/4 (4 días tarde). Log de desviaciones en blanco. Nota PI: “no-show reprogramado” sin fecha/hora. Log de IP muestra dosis 24/4.",
+        },
+        {
+          en: "Integrity traps: missing source (no dated rationale), deviation misclassification (calling it ‘minor’ to reduce heat), backdating the deviation log entry.",
+          es: "Trampas de integridad: fuente faltante (sin razón fechada), mala clasificación de desviación (llamarla ‘menor’ para bajar presión), retrofechar el log de desviaciones.",
+        },
+        {
+          en: "Required decision: classify as window violation; document a contemporaneous entry now (late entry labeled as late); state known vs unknown; escalate for PI attestation and CAPA to prevent repeats.",
+          es: "Decisión requerida: clasificar como violación de ventana; documentar entrada contemporánea ahora (entrada tardía marcada como tardía); separar conocido vs desconocido; escalar para atestación PI y CAPA.",
         },
       ],
     },
+
+    // 4) Practical Exercise (real correction/defense)
     {
-      lessonId: "M11.L3",
-      title: { en: "Answer framework — audit-proof corrections under pressure", es: "Marco de respuesta — correcciones a prueba de auditoría bajo presión" },
+      lessonId: "M11.S4",
+      title: { en: "4) Practical exercise (real correction/defense)", es: "4) Ejercicio práctico (corrección/defensa real)" },
+      lessonType: "simulation",
+      objective: {
+        en: "Produce a correction plan + two short defenses suitable for an FDA inspector and a sponsor monitor.",
+        es: "Producir un plan de corrección + dos defensas cortas aptas para inspector FDA y monitor de patrocinador.",
+      },
+      keyPoints: [
+        {
+          en: "Time box: 12 minutes to produce deliverables. Incomplete output within time is incomplete performance.",
+          es: "Límite: 12 minutos para producir entregables. Salida incompleta a tiempo = desempeño incompleto.",
+        },
+        {
+          en: "You must include at least one explicit integrity trap refusal (e.g., ‘I will not backdate / I will not false-close’).",
+          es: "Debes incluir al menos un rechazo explícito de trampa de integridad (p. ej., ‘no retrofecharé / no cerraré en falso’).",
+        },
+      ],
+    },
+
+    // 5) Scoring Matrix
+    {
+      lessonId: "M11.S5",
+      title: { en: "5) Scoring matrix (binary + GLOBAL FAIL)", es: "5) Matriz de puntuación (binaria + GLOBAL FAIL)" },
+      lessonType: "reading",
+      objective: {
+        en: "Clarify objective grading and integrity global-fail conditions.",
+        es: "Aclarar calificación objetiva y condiciones de global-fail por integridad.",
+      },
+      keyPoints: [
+        {
+          en: "Binary: each criterion is met/not met. Passing requires meeting all non-global-fail criteria AND no integrity global fail.",
+          es: "Binario: cada criterio se cumple/no se cumple. Aprobar requiere cumplir criterios y no incurrir en global fail de integridad.",
+        },
+        {
+          en: "GLOBAL FAIL triggers: backdating, editing objective source to ‘match’, false query closure, inventing missing source, or deviation misclassification to hide a window violation.",
+          es: "Disparadores GLOBAL FAIL: backdating, editar fuente objetiva para ‘cuadrar’, cierre falso de query, inventar fuente faltante o reclasificar desviación para ocultar violación de ventana.",
+        },
+      ],
+    },
+
+    // 6) Answer Framework
+    {
+      lessonId: "M11.S6",
+      title: { en: "6) Answer framework (audit defense outputs)", es: "6) Marco de respuesta (salidas de defensa)" },
       lessonType: "recap",
       objective: {
-        en: "Consolidate how to prioritize risks, preserve evidence, resist pressure, and propose system CAPA.",
-        es: "Consolidar cómo priorizar riesgos, preservar evidencia, resistir presión y proponer CAPA de sistema.",
+        en: "Provide a repeatable format for inspector/monitor responses and correction documentation.",
+        es: "Dar un formato repetible para respuestas a inspector/monitor y documentación de corrección.",
       },
       keyPoints: [
         {
-          en: "Strong: sees patterns first; uses source hierarchy; preserves evidence; refuses ‘cleanup’; prepares a coherent defense narrative with CAPA.",
-          es: "Fuerte: ve patrones primero; usa jerarquía de fuente; preserva evidencia; rechaza ‘cleanup’; prepara narrativa defendible con CAPA.",
+          en: "Audit defense format (2–4 sentences): (1) what the artifact shows, (2) what is corrected and how, (3) what is unknown + verification step, (4) CAPA theme.",
+          es: "Formato defensa (2–4 oraciones): (1) qué muestra el artefacto, (2) qué se corrige y cómo, (3) qué es desconocido + paso de verificación, (4) tema CAPA.",
         },
         {
-          en: "Irreversibility awareness: some documentation issues cannot be retroactively corrected (e.g., backdating patterns, missing contemporaneous signatures). The correct approach is transparent acknowledgment, documenting what is known vs unknown, and implementing CAPA to prevent recurrence—because regulatory consequences can include warning letters, data exclusion, and operational restrictions.",
-          es: "Conciencia de irreversibilidad: algunos problemas de documentación no se pueden corregir retroactivamente (p. ej., patrones de backdating, firmas contemporáneas faltantes). El enfoque correcto es reconocerlo con transparencia, documentar qué se sabe vs qué no se sabe e implementar CAPA para prevenir recurrencia—porque las consecuencias regulatorias pueden incluir warning letters, exclusión de datos y restricciones operativas.",
+          en: "FDA inspector response must be factual and integrity-forward (no excuses). Sponsor/monitor response must include the next operational step + ETA.",
+          es: "Respuesta a inspector FDA: factual y orientada a integridad (sin excusas). Respuesta a sponsor/monitor: incluir siguiente paso operativo + ETA.",
+        },
+      ],
+    },
+
+    // 7) Cross-Module Links
+    {
+      lessonId: "M11.S7",
+      title: { en: "7) Cross-module links", es: "7) Enlaces entre módulos" },
+      lessonType: "reading",
+      objective: {
+        en: "Connect source integrity behaviors to EDC, monitoring defense, deviations, and capstone station outputs.",
+        es: "Conectar integridad de fuente con EDC, defensa en monitoría, desviaciones y outputs de capstone.",
+      },
+      keyPoints: [
+        {
+          en: "M4: master logs + ALCOA+ discipline (audit trail honesty and contemporaneous logging).",
+          es: "M4: logs maestros + disciplina ALCOA+ (honestidad del audit trail y registro contemporáneo).",
         },
         {
-          en: "Fail if: accepts bulk signatures, changes vitals to match notes, or proposes ‘PI will sign now’ as the solution without system fixes.",
-          es: "Fallo si: acepta firmas en lote, cambia signos para que coincidan, o propone ‘PI firma ahora’ como solución sin arreglos de sistema.",
+          en: "M12: EDC query lifecycle (false closure is an integrity fail).",
+          es: "M12: ciclo de vida de queries EDC (cierre falso = falla de integridad).",
+        },
+        {
+          en: "M13: monitoring visits defense (walkthrough narrative must align with artifacts).",
+          es: "M13: defensa en monitoría (narrativa del walkthrough debe alinear con artefactos).",
+        },
+        {
+          en: "M8: visit windows + deviation logging (misclassification escalates under audit).",
+          es: "M8: ventanas de visita + log de desviaciones (mala clasificación escala en auditoría).",
+        },
+        {
+          en: "M16 / OSCE.S5: source + ALCOA+ repair under pressure (truthful correction narrative).",
+          es: "M16 / OSCE.S5: reparación de fuente + ALCOA+ bajo presión (narrativa veraz de corrección).",
+        },
+      ],
+    },
+
+    // 8) Failure Impact
+    {
+      lessonId: "M11.S8",
+      title: { en: "8) Failure impact", es: "8) Impacto de fallas" },
+      lessonType: "reading",
+      objective: {
+        en: "Tie execution failures to 483 risk, data invalidation, and escalation pathways.",
+        es: "Vincular fallas de ejecución a riesgo 483, invalidación de datos y rutas de escalamiento.",
+      },
+      keyPoints: [
+        {
+          en: "483 findings: backdating patterns, false closures, missing source, and bulk signatures are classic integrity themes that trigger inspection escalation.",
+          es: "Hallazgos 483: patrones de backdating, cierres falsos, fuente faltante y firmas en lote son temas clásicos de integridad que disparan escalamiento en inspección.",
+        },
+        {
+          en: "Data invalidation: conflicting source/EDC with no audit-trail correction can lead to data exclusion and unreliable endpoint assessment.",
+          es: "Invalidación de datos: conflicto fuente/EDC sin corrección con audit trail puede llevar a exclusión de datos y evaluación poco confiable de endpoints.",
+        },
+        {
+          en: "Audit escalation: integrity violations shift the conversation from ‘training gap’ to ‘misconduct risk’ (QA, compliance, sponsor oversight).",
+          es: "Escalamiento: violaciones de integridad cambian de ‘brecha de capacitación’ a ‘riesgo de mala conducta’ (QA, cumplimiento, oversight del sponsor).",
         },
       ],
     },
   ],
+
+  // Error library (kept concise, integrity-forward)
   errorLibrary: [
     {
-      errorId: "M11.E1",
-      description: { en: "White-out used on source records to ‘fix’ mistakes.", es: "Se usa corrector líquido en registros fuente para ‘arreglar’ errores." },
-      risk: { en: "Original data destroyed; high inspection risk.", es: "Datos originales destruidos; alto riesgo en inspección." },
-      expectedLearnerResponse: {
-        en: "Stop and replace per GDP/SOP; preserve originals; document correction path transparently and retrain staff.",
-        es: "Detener y reemplazar según GDP/SOP; preservar originales; documentar corrección de forma transparente y reentrenar.",
-      },
+      errorId: "M11.E_BACKDATING",
+      description: { en: "Late entry is written but dated as if it occurred on the visit day (backdating).", es: "Se escribe entrada tardía pero se fecha como si fuera del día de la visita (backdating)." },
+      risk: { en: "Integrity violation; inspection escalation theme (483 / warning letter patterns).", es: "Violación de integridad; tema de escalamiento en inspección (patrones 483 / warning letter)." },
+      expectedLearnerResponse: { en: "Label as late entry with true entry date/time; document known vs unknown; escalate to QA/compliance if pattern exists.", es: "Marcar como entrada tardía con fecha/hora reales; documentar conocido vs desconocido; escalar a QA/cumplimiento si hay patrón." },
       relatedDimensions: ["Q", "R"],
     },
     {
-      errorId: "M11.E2",
-      description: { en: "Progress note says ‘BP normal’ while vitals show 160/100; CRF uses the ‘normal’ summary.", es: "Nota dice ‘PA normal’ mientras signos muestran 160/100; CRF usa el resumen ‘normal’." },
-      risk: { en: "Objective vs subjective conflict; safety/data integrity risk.", es: "Conflicto objetivo vs subjetivo; riesgo de seguridad/integridad." },
-      expectedLearnerResponse: {
-        en: "Use vitals as source of truth; addendum explaining discrepancy; correct CRF; trend-review similar conflicts.",
-        es: "Usar signos como verdad fuente; adenda explicando discrepancia; corregir CRF; revisar tendencia de conflictos similares.",
-      },
-      relatedDimensions: ["Q", "C"],
+      errorId: "M11.E_FALSE_CLOSURE",
+      description: { en: "EDC query is closed with “per discussion” while source remains unchanged and no source-supported rationale exists.", es: "Se cierra query EDC con “per discussion” mientras la fuente no cambia y no hay razón soportada por fuente." },
+      risk: { en: "Data integrity failure; sponsor escalation; potential data exclusion.", es: "Falla de integridad de datos; escalamiento del sponsor; posible exclusión de datos." },
+      expectedLearnerResponse: { en: "Reopen/rectify with source-supported documentation; document sponsor pressure; escalate to DM/QA.", es: "Reabrir/corregir con documentación soportada por fuente; documentar presión; escalar a DM/QA." },
+      relatedDimensions: ["Q", "O", "R"],
     },
     {
-      errorId: "M11.E3",
-      description: { en: "PI signs 12 worksheets on Friday for the entire prior week’s work.", es: "PI firma 12 hojas el viernes por todo el trabajo de la semana previa." },
-      risk: { en: "Batch oversight appears non-contemporaneous; major audit theme.", es: "Supervisión en lote parece no contemporánea; tema mayor de auditoría." },
-      expectedLearnerResponse: {
-        en: "Implement same-day PI sign triggers; document late signatures honestly; QA sampling to prevent recurrence.",
-        es: "Implementar disparadores de firma PI el mismo día; documentar firmas tardías con honestidad; muestreo QA para prevenir recurrencia.",
-      },
-      relatedDimensions: ["R", "O"],
+      errorId: "M11.E_MISSING_SOURCE",
+      description: { en: "A key safety/eligibility decision has no dated source note; team proposes to ‘write it in now’ as if it happened then.", es: "Decisión clave de seguridad/elegibilidad no tiene nota fuente fechada; el equipo propone ‘escribirla ahora’ como si hubiera ocurrido entonces." },
+      risk: { en: "Cannot reconstruct decision-making; inspection risk; credibility loss.", es: "No se puede reconstruir toma de decisión; riesgo de inspección; pérdida de credibilidad." },
+      expectedLearnerResponse: { en: "Do not invent; document the gap; obtain PI attestation with true dates; implement workflow trigger to prevent recurrence.", es: "No inventar; documentar brecha; obtener atestación PI con fechas reales; implementar disparador de flujo para prevenir recurrencia." },
+      relatedDimensions: ["R", "Q", "O"],
     },
     {
-      errorId: "M11.E4",
-      description: { en: "All corrections across subjects use the same Friday date/initials shortly before monitoring.", es: "Todas las correcciones entre sujetos usan la misma fecha/iniciales del viernes antes de monitoría." },
-      risk: { en: "Bulk backfilling signal; potential misconduct escalation.", es: "Señal de backfilling masivo; posible escalamiento por conducta." },
-      expectedLearnerResponse: {
-        en: "Freeze ‘cleanup’; route to QA/compliance; document what is known vs unknown; implement governance and training.",
-        es: "Detener ‘cleanup’; escalar a QA/cumplimiento; documentar conocido vs desconocido; implementar gobierno y capacitación.",
-      },
-      relatedDimensions: ["R", "Q"],
-    },
-    {
-      errorId: "M11.E5",
-      description: { en: "Team pressure: ‘Fix charts before the monitor comes.’", es: "Presión del equipo: ‘Arregla charts antes de que llegue el monitor.’" },
-      risk: { en: "Fraud risk; credibility collapse in inspection.", es: "Riesgo de fraude; colapso de credibilidad en inspección." },
-      expectedLearnerResponse: {
-        en: "Refuse backdating; document pressure; notify QA; prepare truthful monitor narrative and CAPA instead of cosmetic edits.",
-        es: "Rechazar backdating; documentar presión; notificar QA; preparar narrativa veraz al monitor y CAPA en vez de ediciones cosméticas.",
-      },
-      relatedDimensions: ["R", "O"],
+      errorId: "M11.E_DEVIATION_MISCLASS",
+      description: { en: "Visit window violation is labeled ‘minor/no deviation’ to reduce scrutiny; deviation log remains blank.", es: "Violación de ventana se etiqueta ‘menor/sin desviación’ para reducir escrutinio; log de desviaciones queda en blanco." },
+      risk: { en: "Protocol compliance failure; audit escalation; downstream endpoint risk.", es: "Falla de cumplimiento de protocolo; escalamiento; riesgo a endpoints." },
+      expectedLearnerResponse: { en: "Classify per protocol; document late entry transparently; notify sponsor/monitor as required; CAPA for scheduling controls.", es: "Clasificar según protocolo; documentar entrada tardía con transparencia; notificar sponsor/monitor según corresponda; CAPA de controles de agenda." },
+      relatedDimensions: ["R", "O", "Q"],
     },
   ],
+
   practicalExercises: [
     {
       exerciseId: "M11.EX1",
-      name: { en: "ALCOA+ crisis — monitoring visit in 40 minutes", es: "Crisis ALCOA+ — monitor llega en 40 minutos" },
+      name: { en: "Monitoring-room reconciliation + defense (12 minutes)", es: "Reconciliación + defensa en sala de monitoría (12 minutos)" },
       scenario: {
-        en: "Monitor arrives to review Subject 041. Red flags: consecutive notes with identical blue pen and bulk PI signature; vitals vs progress note BP conflict; unsigned eligibility; CRF uses ‘stable’ summary; team pressure to ‘just sign now’.",
-        es: "Monitor llega a revisar Sujeto 041. Banderas rojas: notas consecutivas con misma tinta azul y firma PI en lote; conflicto PA signos vs nota; elegibilidad sin firma; CRF usa resumen ‘estable’; presión del equipo para ‘solo firmar ahora’.",
+        en: "Monitoring visit, Subject 091 Visit 4. The monitor has three artifacts open: (A) vitals flowsheet, (B) progress note, (C) EDC field history. A deviation window question emerges (Visit 5 occurred 4 days late) and the deviation log is blank. You are pressured to ‘clean it up’ before the monitor documents a finding.",
+        es: "Monitoría, Sujeto 091 Visita 4. El monitor tiene tres artefactos abiertos: (A) flujo de signos, (B) nota de evolución, (C) historial de campos EDC. Surge una pregunta de ventana/desviación (Visita 5 4 días tarde) y el log de desviaciones está en blanco. Hay presión para ‘limpiarlo’ antes de que el monitor documente un hallazgo.",
       },
       inputs: [
-        { inputId: "M11.IN1", label: { en: "Subject 041 source bundle", es: "Bundle de fuente Sujeto 041" }, inputKind: "mock_ehr" },
-        { inputId: "M11.IN2", label: { en: "Vitals + worksheet excerpts", es: "Extractos de signos + hojas" }, inputKind: "bundle" },
-        { inputId: "M11.IN3", label: { en: "Eligibility checklist + PI signature log", es: "Checklist elegibilidad + log firmas PI" }, inputKind: "table" },
-        { inputId: "M11.IN4", label: { en: "CRF/EDC snapshot for the visit", es: "Snapshot CRF/EDC de la visita" }, inputKind: "export" },
+        { inputId: "M11.IN1", label: { en: "Vitals flowsheet (timestamped)", es: "Flujo de signos (con timestamps)" }, inputKind: "mock_ehr" },
+        { inputId: "M11.IN2", label: { en: "Progress note text + author/time", es: "Texto de nota + autor/hora" }, inputKind: "mock_ehr" },
+        { inputId: "M11.IN3", label: { en: "EDC field history (BP_SYSTOLIC)", es: "Historial de campo EDC (BP_SYSTOLIC)" }, inputKind: "export" },
+        { inputId: "M11.IN4", label: { en: "Visit schedule + protocol window (±3 days)", es: "Agenda + ventana de protocolo (±3 días)" }, inputKind: "table" },
+        { inputId: "M11.IN5", label: { en: "Deviation log (current = blank)", es: "Log de desviaciones (actual = en blanco)" }, inputKind: "table" },
       ],
       learnerTask: {
-        en: "In 40 minutes: identify the 4 highest audit risks; draft compliant corrections for the 2 most critical (preserving originals and explaining timing); prepare a 90-second monitor explanation; propose 1 immediate action and 1 system CAPA; document pressure resistance (QA notification).",
-        es: "En 40 minutos: identificar 4 riesgos principales de auditoría; redactar correcciones conformes para los 2 más críticos (preservando originales y explicando tiempos); preparar explicación al monitor de 90 segundos; proponer 1 acción inmediata y 1 CAPA de sistema; documentar resistencia a presión (notificación QA).",
+        en: "In 12 minutes produce:\n(1) Correction plan (bullets) for BP conflict and deviation log gap (no backdating; preserve originals; known vs unknown).\n(2) FDA inspector defense (2–4 sentences) explaining what happened + how you corrected + how you prevent recurrence.\n(3) Sponsor monitor defense (2–4 sentences) with next step + ETA + attached artifacts.\n\nIntegrity requirement: include one explicit refusal of an integrity trap (e.g., ‘We will not backdate or overwrite objective source’).",
+        es: "En 12 minutos produce:\n(1) Plan de corrección (bullets) para conflicto PA y brecha de log de desviación (sin backdating; preservar originales; conocido vs desconocido).\n(2) Defensa a inspector FDA (2–4 oraciones) explicando qué pasó + cómo se corrigió + cómo se previene recurrencia.\n(3) Defensa a monitor del sponsor (2–4 oraciones) con siguiente paso + ETA + artefactos adjuntos.\n\nRequisito de integridad: incluir un rechazo explícito de una trampa (p. ej., ‘No retrofecharemos ni sobreescribiremos fuente objetiva’).",
       },
       deliverables: [
-        { deliverableId: "M11.D1", label: { en: "Audit risk prioritization (top 4)", es: "Priorización de riesgos (top 4)" }, formatHint: "table" },
-        { deliverableId: "M11.D2", label: { en: "Correction/addendum drafts (2 items)", es: "Borradores corrección/adenda (2 ítems)" }, formatHint: "pdf" },
-        { deliverableId: "M11.D3", label: { en: "Monitor explanation + CAPA summary", es: "Explicación al monitor + resumen CAPA" }, formatHint: "short_memo" },
+        { deliverableId: "M11.D1", label: { en: "Correction plan (bullets)", es: "Plan de corrección (bullets)" }, formatHint: "short_memo" },
+        { deliverableId: "M11.D2", label: { en: "FDA inspector defense (2–4 sentences)", es: "Defensa a inspector FDA (2–4 oraciones)" }, formatHint: "short_memo" },
+        { deliverableId: "M11.D3", label: { en: "Sponsor monitor defense (2–4 sentences)", es: "Defensa a monitor sponsor (2–4 oraciones)" }, formatHint: "short_memo" },
       ],
     },
   ],
+
   assessmentRubric: {
-    rubricId: "M11.RUB1",
+    rubricId: "M11.RUB2",
     totalPoints: 100,
-    passingPoints: 78,
+    passingPoints: 95,
     criteria: [
       {
-        criterionId: "M11.C1",
+        criterionId: "M11.C1_RECONCILE_NUMERIC",
         description: {
-          en: "Detects ALCOA+ red flags (backdating, bulk signatures, coordinated cleanup) and prioritizes audit risk correctly under time pressure.",
-          es: "Detecta banderas rojas ALCOA+ (backdating, firmas en lote, cleanup coordinado) y prioriza riesgo de auditoría correctamente bajo presión.",
+          en: "Reconciliation is correct: objective source (vitals) remains the numeric truth; narrative summary is clarified via addendum/audit trail rather than overwriting.",
+          es: "Reconciliación correcta: fuente objetiva (signos) permanece como verdad numérica; resumen narrativo se aclara con adenda/audit trail, no sobreescritura.",
         },
-        points: 30,
-        mapsToDimensions: ["Q", "R"],
-        failCondition: {
-          en: "Treats bulk signatures/backdating signals as ‘admin only’ or fails to identify pressure-driven cleanup as fraud risk.",
-          es: "Trata señales de firmas/backdating como ‘solo admin’ o no identifica cleanup por presión como riesgo de fraude.",
-        },
-      },
-      {
-        criterionId: "M11.C2",
-        description: {
-          en: "Resolves source conflicts using defensible hierarchy (objective contemporaneous data first) and produces audit-trail corrections without destroying originals.",
-          es: "Resuelve conflictos de fuente con jerarquía defendible (dato objetivo contemporáneo primero) y produce correcciones con audit trail sin destruir originales.",
-        },
-        points: 30,
+        points: 20,
         mapsToDimensions: ["Q", "C"],
         failCondition: {
-          en: "Edits vitals or other objective source to match a summary note, or ‘fixes’ by overwriting without an audit trail.",
-          es: "Edita signos u otra fuente objetiva para que coincida con una nota resumen, o ‘arregla’ sobreescribiendo sin audit trail.",
+          en: "GLOBAL FAIL if learner proposes editing objective source to match narrative/EDC (‘make it match’).",
+          es: "GLOBAL FAIL si propone editar fuente objetiva para que cuadre con narrativa/EDC (‘que cuadre’).",
         },
       },
       {
-        criterionId: "M11.C3",
+        criterionId: "M11.C2_TIMELINE_KNOWN_UNKNOWN",
         description: {
-          en: "Handles delayed PI signatures and missing oversight evidence compliantly: transparent late-entry rationale, correct escalation, and no bulk signing of blanks.",
-          es: "Maneja firmas tardías PI y evidencia de supervisión faltante de forma conforme: razón transparente de entrada tardía, escalamiento correcto y sin firma en lote de campos en blanco.",
+          en: "Separates known vs unknown and states how unknown will be verified (artifact-based), without inventing facts.",
+          es: "Separa conocido vs desconocido y declara cómo se verificará lo desconocido (por artefactos), sin inventar hechos.",
         },
-        points: 20,
+        points: 15,
+        mapsToDimensions: ["Q", "R"],
+        failCondition: {
+          en: "GLOBAL FAIL if learner invents dates, claims ‘verbal oversight’, or recommends backdating to cover a gap.",
+          es: "GLOBAL FAIL si inventa fechas, afirma ‘supervisión verbal’ o recomienda retrofechar para cubrir brecha.",
+        },
+      },
+      {
+        criterionId: "M11.C3_FALSE_CLOSURE_DETECT",
+        description: {
+          en: "Detects false closure pressure and selects compliant path (reopen/rectify with source-supported rationale + QA/DM escalation when pressured).",
+          es: "Detecta presión de cierre falso y elige ruta conforme (reabrir/corregir con razón soportada por fuente + escalamiento a QA/DM bajo presión).",
+        },
+        points: 15,
+        mapsToDimensions: ["Q", "O", "R"],
+        failCondition: {
+          en: "GLOBAL FAIL if learner endorses closing a query with ‘per discussion’ while source remains unaligned or missing.",
+          es: "GLOBAL FAIL si avala cerrar query con ‘per discussion’ con fuente no alineada o faltante.",
+        },
+      },
+      {
+        criterionId: "M11.C4_DEVIATION_CLASSIFY",
+        description: {
+          en: "Classifies the visit window violation correctly and documents a transparent late entry for the deviation log gap (no backdating).",
+          es: "Clasifica correctamente la violación de ventana y documenta entrada tardía transparente para la brecha del log (sin backdating).",
+        },
+        points: 15,
         mapsToDimensions: ["R", "O"],
         failCondition: {
-          en: "Recommends ‘PI sign everything now’ as the main fix or claims contemporaneous oversight without support.",
-          es: "Recomienda ‘PI firme todo ahora’ como arreglo principal o afirma supervisión contemporánea sin soporte.",
+          en: "GLOBAL FAIL if learner misclassifies a window violation to hide scrutiny or backdates the deviation log entry.",
+          es: "GLOBAL FAIL si reclasifica la violación para ocultar escrutinio o retrofecha el log de desviación.",
         },
       },
       {
-        criterionId: "M11.C4",
+        criterionId: "M11.C5_FDA_DEFENSE",
         description: {
-          en: "Proposes system CAPA that prevents repeat failures: real-time documentation workflow, signature triggers, QA sampling, and pressure-resistance governance.",
-          es: "Propone CAPA de sistema que previene recurrencias: flujo de documentación en tiempo real, disparadores de firma, muestreo QA y gobierno anti-presión.",
+          en: "FDA defense (2–4 sentences) is factual, integrity-forward, and artifact-referenced (what happened, what corrected, prevention).",
+          es: "Defensa FDA (2–4 oraciones) factual, orientada a integridad y con referencia a artefactos (qué pasó, qué se corrigió, prevención).",
         },
-        points: 20,
+        points: 15,
+        mapsToDimensions: ["R", "Q"],
+        failCondition: {
+          en: "Fail if defense minimizes, blames, or claims compliance without evidence.",
+          es: "Falla si minimiza, culpa o afirma cumplimiento sin evidencia.",
+        },
+      },
+      {
+        criterionId: "M11.C6_MONITOR_DEFENSE",
+        description: {
+          en: "Sponsor monitor defense (2–4 sentences) includes next step + ETA + attached artifacts; no minimization.",
+          es: "Defensa a monitor (2–4 oraciones) incluye siguiente paso + ETA + artefactos adjuntos; sin minimizar.",
+        },
+        points: 10,
         mapsToDimensions: ["O", "R"],
         failCondition: {
-          en: "Only case-by-case fixes; no system controls or governance changes.",
-          es: "Solo arreglos caso por caso; sin controles de sistema ni cambios de gobierno.",
+          en: "Fail if defense hides the issue or proposes cosmetic ‘cleanup’ instead of compliant correction.",
+          es: "Falla si oculta el tema o propone ‘cleanup’ cosmético en vez de corrección conforme.",
+        },
+      },
+      {
+        criterionId: "M11.C7_CAPA_WORKFLOW",
+        description: {
+          en: "CAPA theme changes workflow (same-day documentation cadence, signature triggers, QA sampling) rather than ‘retraining only’.",
+          es: "Tema CAPA cambia el flujo (cadencia el mismo día, disparadores de firma, muestreo QA) y no es ‘solo reentrenar’.",
+        },
+        points: 10,
+        mapsToDimensions: ["O", "Q"],
+        failCondition: {
+          en: "Fail if CAPA is only ‘remind staff’ with no control mechanism.",
+          es: "Falla si CAPA es solo ‘recordar al personal’ sin mecanismo de control.",
         },
       },
     ],
   },
+
   scorecardContribution: [
     { dimension: "Q", weight: 0.4, aggregationKey: "alcoa_plus_source_coherence_conflict_resolution_and_audit_trail" },
     { dimension: "R", weight: 0.28, aggregationKey: "documentation_integrity_pressure_resistance_and_inspection_defense" },
     { dimension: "O", weight: 0.22, aggregationKey: "documentation_workflow_governance_pi_oversight_and_signature_cadence" },
     { dimension: "C", weight: 0.1, aggregationKey: "clinical_plausibility_of_source_when_records_conflict" },
   ],
+
   capstoneConnection: {
     summary: {
-      en: "OSCE.S5 is the source documentation & ALCOA+ repair station: audit-trail truthfulness under monitor pressure—the same core behaviors as this module.",
-      es: "OSCE.S5 es la estación de documentación fuente y reparación ALCOA+: veracidad del audit trail bajo presión de monitoría—las mismas conductas núcleo que este módulo.",
+      en: "OSCE.S5 is the source documentation & ALCOA+ repair station: audit-trail truthfulness under monitor pressure—the same global-fail integrity constraints as this module.",
+      es: "OSCE.S5 es la estación de documentación fuente y reparación ALCOA+: veracidad del audit trail bajo presión—las mismas restricciones de integridad (global fail) que este módulo.",
     },
     stationIds: ["OSCE.S5"],
   },
+
   tags: ["documentation", "data_integrity", "audit_readiness", "regulatory", "traceability", "flagship", "bilingual"],
   bilingualNotes: {
-    en: "Keep ALCOA+, GDP, EMR/EHR, PI, CRA, EDC, ISF as EN operational tokens; expand once in ES if needed.",
-    es: "Mantener ALCOA+, GDP, EMR/EHR, PI, CRA, EDC, ISF como tokens operativos EN; expandir una vez en ES si hace falta.",
+    en: "Keep ALCOA+, GDP, PI, CRA, EDC, EHR/EMR as EN operational tokens; translate the operational meaning, not the tokens.",
+    es: "Mantener ALCOA+, GDP, PI, CRA, EDC, EHR/EMR como tokens operativos EN; traducir el significado operativo, no los tokens.",
   },
 };
 

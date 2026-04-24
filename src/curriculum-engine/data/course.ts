@@ -19,11 +19,12 @@ import { MODULE_M13 } from "./modules/m13";
 import { MODULE_M14 } from "./modules/m14";
 import { MODULE_M15 } from "./modules/m15";
 import { MODULE_M16 } from "./modules/m16";
+import { MODULE_M17 } from "./modules/m17";
 
 export const CRC_ELITE_METADATA: CourseMetadata = {
   courseId: "vilo_crc_elite",
   schemaVersion: "1.0.1",
-  courseVersion: "2026.04.14",
+  courseVersion: "2026.04.24",
   title: {
     en: "Vilo Academy: CRC Elite Training",
     es: "Vilo Academy: Formación élite para CRC",
@@ -253,6 +254,7 @@ export const CRC_ELITE_MODULES_BY_ID: Readonly<Record<string, Module>> = {
   M14: MODULE_M14,
   M15: MODULE_M15,
   M16: MODULE_M16,
+  M17: MODULE_M17,
 };
 
 export const CRC_ELITE_COURSE: Course = {

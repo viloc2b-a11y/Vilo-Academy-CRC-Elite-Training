@@ -3,9 +3,13 @@
 import type { Module } from "../../types";
 
 /**
- * Module 1 — Ethics, Human Subjects Protection & HIPAA
- * Pedagogical structure maps: Core Concepts + Workflow + Error-Prone Areas + 3 Guided Practice cases + Audit + Answer Framework → lessons;
- * Error Library + hierarchical conflict → errorLibrary; Practical Exercise + Rubric → assessment.
+ * Module 1 — Ethics, Human Subjects Protection & HIPAA (Operational / Core CRC Skills)
+ *
+ * PROMPT 1 — BASE OPERATIVO (Modules 1–10) mapping:
+ * - The required 8 sections are enforced via ordered lesson titles.
+ * - Guided Practice is split into 3 scenario lessons (clear / incorrect / ambiguous) under section 3.
+ * - Practical Exercise produces real outputs (log entry + escalation email + sponsor/monitor message) under time pressure.
+ * - Scoring rubric uses objective/binary criteria and explicit critical fails.
  */
 export const MODULE_M1: Module = {
   id: "M1",
@@ -20,21 +24,24 @@ export const MODULE_M1: Module = {
     en: "Module 1 — Ethics, Human Subjects Protection & HIPAA in CRC Practice",
     es: "Módulo 1 — Ética, protección de participantes e HIPAA en la práctica del CRC",
   },
+
+  // SMART objective (MANDATORY format)
   objective: {
-    en: "Apply Belmont principles, informed consent regulations, IRB requirements, and HIPAA privacy rules to day-to-day site operations; identify ethical and privacy risks; document and escalate concerns appropriately.",
-    es: "Aplicar principios de Belmont, normativa de consentimiento informado, requisitos del CEI y reglas de privacidad HIPAA a la operación diaria del sitio; identificar riesgos éticos y de privacidad; documentar y escalar inquietudes apropiadamente.",
+    en: "CRC can stop a consent/privacy defect in a real screening visit and produce a compliant escalation email and an audit-ready log entry.",
+    es: "El CRC puede detener un defecto de consentimiento/privacidad en una visita real de tamizaje y producir un correo de escalamiento conforme y una entrada de log lista para auditoría.",
   },
+
   outcomes: [
     {
       level: "L1",
       statements: [
         {
-          en: "States how respect for persons, beneficence, and justice translate into concrete CRC behaviors (consent before research procedures, fair recruitment, safety transparency).",
-          es: "Enuncia cómo respeto a las personas, beneficencia y justicia se traducen en conductas concretas del CRC (consentimiento antes de procedimientos de investigación, reclutamiento justo, transparencia de seguridad).",
+          en: "States the CRC stop-rules: no research procedures before legally effective consent; correct IRB-approved ICF version; confidentiality by minimum necessary.",
+          es: "Enuncia reglas de paro CRC: sin procedimientos de investigación antes de consentimiento legalmente efectivo; versión correcta de ICF aprobada por CEI; confidencialidad por minimum necessary.",
         },
         {
-          en: "Lists which items typically require IRB approval (ICF changes, amendments affecting participants) and what qualifies as PHI under HIPAA at a research site.",
-          es: "Lista qué elementos suelen requerir aprobación del CEI (cambios en ICF, enmiendas que afectan participantes) y qué califica como PHI bajo HIPAA en un sitio de investigación.",
+          en: "Identifies what requires IRB approval (ICF versions, recruitment language, amendments affecting participants) and what counts as PHI (identifiers + health information).",
+          es: "Identifica qué requiere aprobación del CEI (versiones ICF, lenguaje de reclutamiento, enmiendas que afectan participantes) y qué cuenta como PHI (identificadores + información de salud).",
         },
       ],
     },
@@ -42,12 +49,12 @@ export const MODULE_M1: Module = {
       level: "L2",
       statements: [
         {
-          en: "Executes site workflow checkpoints: IRB-stamped ICF version, HIPAA forms, approved recruitment channels, consent documentation package, and secure PHI handling before and during the study.",
-          es: "Ejecuta puntos de control del flujo del sitio: versión de ICF sellada por CEI, formularios HIPAA, canales de reclutamiento aprobados, paquete documental de consentimiento y manejo seguro de PHI antes y durante el estudio.",
+          en: "Executes a consent visit that can be audited: version control, timing proof (consent before procedures), teach-back, copy given, and interpreter documentation when required.",
+          es: "Ejecuta una visita de consentimiento audit-able: control de versión, prueba de tiempo (consentimiento antes de procedimientos), teach-back, copia entregada y documentación de intérprete cuando aplique.",
         },
         {
-          en: "Uses teach-back and documented process steps to confirm comprehension, copies given, and presence of qualified interpreters when required.",
-          es: "Usa teach-back y pasos documentados para confirmar comprensión, copias entregadas y presencia de intérpretes calificados cuando corresponde.",
+          en: "Routes PHI through approved channels and documents a defensible escalation when policy is unclear (no improvisation).",
+          es: "Canaliza PHI por canales aprobados y documenta un escalamiento defendible cuando la política no es clara (sin improvisar).",
         },
       ],
     },
@@ -55,470 +62,521 @@ export const MODULE_M1: Module = {
       level: "L3",
       statements: [
         {
-          en: "Detects consent timing/version defects, vulnerable-subject coercion patterns, IRB non-compliance signals, and informal PHI channels; escalates per SOP when PI instructions conflict with IRB or sponsor letters.",
-          es: "Detecta defectos de tiempo/versión de consentimiento, patrones de coerción en sujetos vulnerables, señales de incumplimiento del CEI y canales informales de PHI; escala según SOP cuando instrucciones del PI chocan con cartas del CEI o patrocinador.",
+          en: "Detects and classifies consent integrity failures (wrong version, timing gaps, capacity/language failure) and escalates when PI instructions conflict with IRB requirements.",
+          es: "Detecta y clasifica fallas de integridad del consentimiento (versión incorrecta, brechas de tiempo, falla de capacidad/idioma) y escala cuando instrucciones del PI chocan con requisitos del CEI.",
         },
         {
-          en: "Prioritizes issues that invalidate legally effective consent or breach HIPAA before cosmetic documentation fixes; drafts monitor-defensible CAPA and defense statements without minimizing harm.",
-          es: "Prioriza problemas que invalidan consentimiento legalmente efectivo o violan HIPAA antes que arreglos documentales cosméticos; redacta CAPA y declaraciones de defensa defendibles ante monitor sin minimizar el daño.",
+          en: "Produces audit-grade outputs under time pressure without inventing facts: issue log entry, escalation email, and prevention step that changes workflow (not “retraining only”).",
+          es: "Produce salidas nivel auditoría bajo presión de tiempo sin inventar hechos: entrada de log, correo de escalamiento y paso preventivo que cambia el flujo (no “solo reentrenar”).",
         },
       ],
     },
   ],
+
   lessons: [
+    // 1) Module Overview
     {
-      lessonId: "M1.L1",
-      title: { en: "Core concepts — teaching (10–15 min)", es: "Conceptos núcleo — enseñanza (10–15 min)" },
+      lessonId: "M1.S1",
+      title: { en: "1) Module overview", es: "1) Resumen del módulo" },
       lessonType: "reading",
       objective: {
-        en: "Anchor Belmont, consent-as-process, IRB role, HIPAA minimum necessary, and the CRC as early-warning system.",
-        es: "Anclar Belmont, consentimiento como proceso, rol del CEI, HIPAA minimum necessary y el CRC como sistema de alerta temprana.",
+        en: "Set the operational bar: stop-rule decisions + audit-ready outputs.",
+        es: "Establecer la barra operativa: decisiones de paro + salidas listas para auditoría.",
       },
       keyPoints: [
         {
-          en: "Respect for persons: autonomy + extra safeguards for diminished autonomy (children, cognitive impairment, economic vulnerability).",
-          es: "Respeto a las personas: autonomía + salvaguardas extra ante autonomía disminuida (menores, deterioro cognitivo, vulnerabilidad económica).",
+          en: "You are graded on execution: what you stop, what you document, and who you notify.",
+          es: "Se te califica por ejecución: qué detienes, qué documentas y a quién notificas.",
         },
         {
-          en: "Beneficence: no harm; maximize benefit, minimize risk → eligibility rigor, safety reporting, transparent consent.",
-          es: "Beneficencia: no dañar; maximizar beneficio, minimizar riesgo → rigor de elegibilidad, reporte de seguridad, consentimiento transparente.",
+          en: "Non-negotiables: (1) no research procedures before consent, (2) correct IRB-stamped ICF, (3) PHI handled by minimum necessary and approved channels.",
+          es: "No negociables: (1) sin procedimientos de investigación antes del consentimiento, (2) ICF correcto sellado por CEI, (3) PHI manejado con minimum necessary y canales aprobados.",
         },
         {
-          en: "Justice: fair selection; avoid exploiting ‘easy’ populations; include those who may benefit.",
-          es: "Justicia: selección justa; evitar explotar poblaciones ‘fáciles’; incluir a quienes puedan beneficiarse.",
+          en: "Outputs required in this module: log entry + escalation email + sponsor/monitor message (short, truthful).",
+          es: "Salidas requeridas en este módulo: entrada de log + correo de escalamiento + mensaje a patrocinador/monitor (corto, veraz).",
         },
         {
-          en: "Consent: 45 CFR 46, 21 CFR 50; IRB-approved ICF; understandable language; CRC ensures consent before any research procedure and documents copy given.",
-          es: "Consentimiento: 45 CFR 46, 21 CFR 50; ICF aprobado por CEI; lenguaje comprensible; CRC asegura consentimiento antes de cualquier procedimiento de investigación y documenta copia entregada.",
-        },
-        {
-          en: "IRB: approves/modifies/disapproves; CRC knows what changes need IRB and what unanticipated problems must be reported.",
-          es: "CEI: aprueba/modifica/desaprueba; CRC sabe qué cambios requieren CEI y qué problemas no anticipados deben reportarse.",
-        },
-        {
-          en: "HIPAA: PHI = identifiable health info; minimum necessary; no unencrypted email or casual WhatsApp with full identifiers; workforce training refreshed regularly.",
-          es: "HIPAA: PHI = información de salud identificable; mínimo necesario; sin correo sin cifrar ni WhatsApp informal con identificadores completos; capacitación del personal renovada periódicamente.",
-        },
-        {
-          en: "CRC escalates pressured consent, unreported AEs, PDs, PHI misuse to PI, IRB, compliance.",
-          es: "CRC escala consentimiento presionado, EA no reportados, desviaciones y mal uso de PHI a PI, CEI, cumplimiento.",
+          en: "Regulatory tokens remain in EN in both locales (IRB, ICF, PHI, HIPAA, 45 CFR 46, 21 CFR 50).",
+          es: "Tokens regulatorios permanecen en inglés en ambos idiomas (IRB, ICF, PHI, HIPAA, 45 CFR 46, 21 CFR 50).",
         },
       ],
     },
+
+    // 2) Core Concepts (only actionable rules)
     {
-      lessonId: "M1.L2",
-      title: { en: "Real-world workflow at the site", es: "Flujo real en el sitio" },
+      lessonId: "M1.S2",
+      title: { en: "2) Core concepts (actionable rules only)", es: "2) Conceptos núcleo (solo reglas accionables)" },
       lessonType: "reading",
       objective: {
-        en: "Walk through first subject, recruitment, consent visit, ongoing study, and closure with CRC / PI / IRB / sponsor roles.",
-        es: "Recorrer primer sujeto, reclutamiento, visita de consentimiento, estudio en curso y cierre con roles CRC / PI / CEI / patrocinador.",
+        en: "Use these rules during any consent/PHI workflow.",
+        es: "Usar estas reglas en cualquier flujo con consentimiento/PHI.",
       },
       keyPoints: [
         {
-          en: "Before first subject: IRB-approved protocol, ICF, recruitment, HIPAA auth; CRC uses IRB-stamped current ICF.",
-          es: "Antes del primer sujeto: protocolo aprobado por CEI, ICF, reclutamiento, autorización HIPAA; CRC usa ICF vigente sellado por CEI.",
+          en: "Rule: If consent is not complete and legally effective, no research procedure starts (stop the workflow).",
+          es: "Regla: si el consentimiento no está completo y es legalmente efectivo, no comienza ningún procedimiento de investigación (detén el flujo).",
         },
         {
-          en: "Recruitment: only IRB-approved channels/scripts; minimal PHI for pre-screening, stored per approval.",
-          es: "Reclutamiento: solo canales/guiones aprobados por CEI; PHI mínimo en pre-screening, almacenado según aprobación.",
+          en: "Rule: Only the current IRB-stamped ICF can be used; superseded versions must be segregated from active use.",
+          es: "Regla: solo se usa el ICF vigente sellado por CEI; versiones sustituidas deben segregarse del uso activo.",
         },
         {
-          en: "Consent visit: correct version, capacity, language; no procedures before consent; teach-back; document who/when/where/version/presence/copy.",
-          es: "Visita de consentimiento: versión correcta, capacidad, idioma; sin procedimientos antes del consentimiento; teach-back; documentar quién/cuándo/dónde/versión/presencia/copia.",
+          en: "Rule: If comprehension is uncertain, use teach-back; if language support is needed, use qualified interpreter support and document it.",
+          es: "Regla: si la comprensión es incierta, usa teach-back; si se requiere soporte de idioma, usa intérprete calificado y documéntalo.",
         },
         {
-          en: "During study: honor withdrawal; avoid undue influence; PHI only as allowed; escalate ethical concerns.",
-          es: "Durante el estudio: respetar retiro; evitar influencia indebida; PHI solo según lo permitido; escalar inquietudes éticas.",
+          en: "Rule: PHI is identifiers + health information. Use minimum necessary and approved channels. When policy is unclear, escalate—don’t improvise.",
+          es: "Regla: PHI = identificadores + información de salud. Usa minimum necessary y canales aprobados. Si la política no está clara, escala—no improvises.",
         },
         {
-          en: "Closure: ICF and HIPAA auth archived; retention met. CRC: process integrity; PI: accountable; IRB: oversight; sponsor/CRO: monitoring.",
-          es: "Cierre: ICF y autorización HIPAA archivados; retención cumplida. CRC: integridad de proceso; PI: responsable; CEI: supervisión; patrocinador/CRO: monitoría.",
+          en: "Rule: If PI instruction conflicts with IRB/consent/privacy requirements, document the conflict and escalate per SOP (not optional).",
+          es: "Regla: si la instrucción del PI choca con requisitos de CEI/consentimiento/privacidad, documenta el conflicto y escala según SOP (no es opcional).",
         },
       ],
     },
+
+    // 3) Guided Practice (3 scenarios)
     {
-      lessonId: "M1.L3",
-      title: { en: "Error-prone areas (≥5 mistakes + why)", es: "Zonas propensas a error (≥5 errores + por qué)" },
-      lessonType: "reading",
-      objective: {
-        en: "Recognize predictable failure modes that drive IRB findings and HIPAA breaches.",
-        es: "Reconocer modos de falla predecibles que generan hallazgos del CEI y brechas HIPAA.",
-      },
-      keyPoints: [
-        {
-          en: "Mistake 1: Wrong ICF version after amendment — rushed clinics, poor version segregation, sponsor packet lag.",
-          es: "Error 1: Versión incorrecta de ICF tras enmienda — clínicas apuradas, mala segregación de versiones, retraso del paquete del patrocinador.",
-        },
-        {
-          en: "Mistake 2: Procedures before consent — schedule pressure, ‘efficiency’ culture, blurred standard-of-care vs research.",
-          es: "Error 2: Procedimientos antes del consentimiento — presión de agenda, cultura de ‘eficiencia’, mezcla entre estándar de atención e investigación.",
-        },
-        {
-          en: "Mistake 3: Vulnerable subjects + ad hoc interpreter — convenience, cost avoidance, therapeutic misconception.",
-          es: "Error 3: Sujetos vulnerables + intérprete improvisado — conveniencia, evitar costo, falsa creencia terapéutica.",
-        },
-        {
-          en: "Mistake 4: PHI on open counters or consumer apps — habit, understaffing, ‘just quick messaging’.",
-          es: "Error 4: PHI en mostradores abiertos o apps de consumo — hábito, falta de personal, ‘solo un mensaje rápido’.",
-        },
-        {
-          en: "Mistake 5: Silence when PI diverges from IRB — hierarchy fear, unclear escalation SOP.",
-          es: "Error 5: Silencio cuando el PI se aparta del CEI — miedo a jerarquía, SOP de escalamiento poco clara.",
-        },
-        {
-          en: "Mistake 6: Back-dating or mismatched consent vs procedure dates — poor same-day documentation discipline.",
-          es: "Error 6: Retrofechado o fechas de consentimiento vs procedimiento incoherentes — mala disciplina documental el mismo día.",
-        },
-      ],
-    },
-    {
-      lessonId: "M1.GP1",
-      title: { en: "Guided practice — Case GP-1: correct ICF version", es: "Práctica guiada — Caso GP-1: versión correcta de ICF" },
+      lessonId: "M1.S3.GP1",
+      title: { en: "3) Guided practice — Scenario 1 (clear)", es: "3) Práctica guiada — Escenario 1 (claro)" },
       lessonType: "case",
       objective: {
-        en: "Scenario: Amendment approved May 10; consent May 15. Binder has v2.0 stamped May 10 and v1.0 Jan 1. IRB letter: v2.0 for all new subjects from May 10.",
-        es: "Escenario: Enmienda aprobada 10 may; consentimiento 15 may. Carpeta con v2.0 sellado 10 may y v1.0 1 ene. Carta CEI: v2.0 para nuevos sujetos desde 10 may.",
+        en: "Choose the correct ICF version and document a single audit-ready line that proves version control.",
+        es: "Elegir la versión correcta de ICF y documentar una sola línea lista para auditoría que pruebe control de versión.",
       },
       keyPoints: [
         {
-          en: "What CRC sees: two ICF versions in active folder.",
-          es: "Qué ve el CRC: dos versiones de ICF en carpeta activa.",
+          en: "Scenario: Amendment approved May 10. Consent scheduled May 15. Two versions are in the room: ICF v2.0 stamped May 10; ICF v1.0 stamped Jan 1.",
+          es: "Escenario: enmienda aprobada 10 mayo. Consentimiento 15 mayo. Hay dos versiones: ICF v2.0 sellado 10 mayo; ICF v1.0 sellado 1 enero.",
         },
         {
-          en: "How to think: match stamp to IRB letter; segregate superseded forms.",
-          es: "Cómo pensar: cruzar sello con carta CEI; segregar formularios sustituidos.",
+          en: "Decision (forced): Use v2.0 now. Segregate v1.0 as “Superseded — Do Not Use”.",
+          es: "Decisión (forzada): usar v2.0 ahora. Segregar v1.0 como “Sustituido — No usar”.",
         },
         {
-          en: "Decision: Use v2.0; mark/remove v1.0 ‘Superseded — Do Not Use’.",
-          es: "Decisión: Usar v2.0; marcar/retirar v1.0 ‘Sustituido — No usar’.",
+          en: "Required output: one-line note with ICF version + stamp date + copy given.",
+          es: "Salida obligatoria: nota de una línea con versión ICF + fecha del sello + copia entregada.",
         },
         {
-          en: "Why it matters: patient risk disclosure; valid consent; avoids major audit finding.",
-          es: "Por qué importa: divulgación de riesgo al paciente; consentimiento válido; evita hallazgo mayor en auditoría.",
+          en: "Stop rule: if you cannot confirm the current version, pause and verify with the IRB letter/binder control.",
+          es: "Regla de paro: si no puedes confirmar versión vigente, pausa y verifica con carta del CEI/control del binder.",
         },
       ],
     },
     {
-      lessonId: "M1.GP2",
-      title: {
-        en: "Guided practice — Case GP-2: procedures before consent (incorrect)",
-        es: "Práctica guiada — Caso GP-2: procedimientos antes del consentimiento (incorrecto)",
-      },
+      lessonId: "M1.S3.GP2",
+      title: { en: "3) Guided practice — Scenario 2 (incorrect action)", es: "3) Práctica guiada — Escenario 2 (acción incorrecta)" },
       lessonType: "case",
       objective: {
-        en: "Scenario: PI asks to draw screening labs and ECG before consent visit to save time. Protocol defines them as research screening, not SOC. No ICF signed.",
-        es: "Escenario: PI pide extracción de labs de screening y ECG antes de visita de consentimiento para ganar tiempo. Protocolo los define como screening de investigación, no SOC. Sin ICF firmado.",
+        en: "Refuse procedures-before-consent and produce a compliant escalation message.",
+        es: "Rechazar procedimientos antes del consentimiento y producir un mensaje de escalamiento conforme.",
       },
       keyPoints: [
         {
-          en: "What CRC sees: tight schedule; research-only procedures queued pre-consent.",
-          es: "Qué ve el CRC: agenda ajustada; procedimientos solo-investigación antes del consentimiento.",
+          en: "Scenario: PI instructs you to draw research screening labs + ECG before consent “to save time”. Protocol defines them as research procedures (not SOC). No ICF signed.",
+          es: "Escenario: el PI te instruye tomar labs + ECG de screening de investigación antes del consentimiento “para ahorrar tiempo”. El protocolo los define como investigación (no SOC). Sin ICF firmado.",
         },
         {
-          en: "How to think: research vs clinical care; legally effective consent required unless IRB waiver explicitly covers these steps.",
-          es: "Cómo pensar: investigación vs atención clínica; consentimiento legalmente efectivo salvo waiver del CEI que cubra explícitamente estos pasos.",
+          en: "Decision (forced): NO. Stop. Consent first (or explicit IRB waiver).",
+          es: "Decisión (forzada): NO. Detén. Primero consentimiento (o waiver explícito del CEI).",
         },
         {
-          en: "Decision: Do not perform; escalate need for waiver or reschedule; consent first.",
-          es: "Decisión: No realizar; escalar necesidad de waiver o reprogramar; consentimiento primero.",
+          en: "Required output: escalation language that documents the conflict (PI instruction vs IRB/consent requirement).",
+          es: "Salida obligatoria: lenguaje de escalamiento que documente el conflicto (instrucción del PI vs requisito CEI/consentimiento).",
         },
         {
-          en: "Why it matters: autonomy; data may be unusable; major compliance finding.",
-          es: "Por qué importa: autonomía; datos pueden ser inutilizables; hallazgo mayor de cumplimiento.",
-        },
-        {
-          en: "Why this happens: PI time pressure, full clinics, CRC desire to appear ‘efficient’, culture of ‘we do first, fix paper later’ — recognize pressure, hold ethical standard.",
-          es: "Por qué ocurre: presión de tiempo del PI, clínicas llenas, deseo del CRC de parecer ‘eficiente’, cultura de ‘hacemos primero, corregimos el papel después’ — reconocer presión, mantener estándar ético.",
+          en: "Critical fail pattern: “Do it now, fix paperwork later.” That is an integrity failure, not a documentation issue.",
+          es: "Patrón de falla crítica: “hazlo ahora y arregla el papel luego”. Eso es falla de integridad, no un tema de papeleo.",
         },
       ],
     },
     {
-      lessonId: "M1.GP3",
-      title: { en: "Guided practice — Case GP-3: WhatsApp and PHI (ambiguous)", es: "Práctica guiada — Caso GP-3: WhatsApp y PHI (ambiguo)" },
+      lessonId: "M1.S3.GP3",
+      title: { en: "3) Guided practice — Scenario 3 (ambiguous)", es: "3) Práctica guiada — Escenario 3 (ambiguo)" },
       lessonType: "case",
       objective: {
-        en: "Scenario: Spanish-speaking participant sends full name, DOB, Rx photo via WhatsApp asking about new medication with IMP. Informal team use; SOP silent.",
-        es: "Escenario: Participante hispanohablante envía nombre completo, DOB, foto de receta por WhatsApp preguntando nuevo medicamento con IMP. Uso informal del equipo; SOP silencioso.",
+        en: "Handle PHI in a gray-zone channel without inventing policy; move to an approved route and escalate.",
+        es: "Manejar PHI en un canal gris sin inventar política; migrar a una ruta aprobada y escalar.",
       },
       keyPoints: [
         {
-          en: "What CRC sees: helpful intent; PHI in chat/photo; unclear institutional policy.",
-          es: "Qué ve el CRC: intención útil; PHI en chat/foto; política institucional poco clara.",
+          en: "Scenario: Spanish-speaking participant sends WhatsApp with full name + DOB + prescription photo asking about a new medication with IMP. SOP is silent; team “normally uses WhatsApp”.",
+          es: "Escenario: participante hispanohablante envía WhatsApp con nombre + fecha nac. + foto de receta preguntando por nueva medicación con PI. SOP es silencioso; el equipo “normalmente usa WhatsApp”.",
         },
         {
-          en: "How to think: HIPAA + archiving + device loss risk vs accessibility/justice for Spanish speakers.",
-          es: "Cómo pensar: HIPAA + archivo + riesgo de pérdida de dispositivo vs accesibilidad/justicia para hispanohablantes.",
+          en: "Decision (forced): acknowledge briefly, then move to an approved channel; minimize identifiers; document clinically in source; escalate to privacy/compliance to clarify policy and Spanish-access workflow.",
+          es: "Decisión (forzada): acusar recibo breve y migrar a canal aprobado; minimizar identificadores; documentar clínicamente en fuente; escalar a privacidad/cumplimiento para aclarar política y flujo de acceso en español.",
         },
         {
-          en: "Decision: Defensible options — move to secure channel + document clinically in source + delete per policy; OR follow org managed-messaging policy if it exists; always escalate privacy/compliance.",
-          es: "Decisión: Opciones defendibles — pasar a canal seguro + documentar clínicamente en fuente + borrar según política; O seguir política de mensajería gestionada si existe; siempre escalar privacidad/cumplimiento.",
+          en: "Required output: escalation note that separates known vs unknown and requests an approved messaging workflow (do not invent a policy).",
+          es: "Salida obligatoria: nota de escalamiento que separe conocido vs desconocido y solicite un flujo aprobado de mensajería (no inventes política).",
         },
         {
-          en: "Why it matters: confidentiality; safety record consistency; HIPAA and policy investigations if repeated.",
-          es: "Por qué importa: confidencialidad; consistencia del registro de seguridad; HIPAA e investigaciones por política si se repite.",
+          en: "Critical fail pattern: recommending continued PHI via consumer messaging for convenience.",
+          es: "Patrón de falla crítica: recomendar continuar PHI en mensajería de consumo por conveniencia.",
         },
       ],
     },
+
+    // 4) Practical Exercise
     {
-      lessonId: "M1.L4",
-      title: { en: "Audit / monitor perspective", es: "Perspectiva de auditoría / monitor" },
+      lessonId: "M1.S4",
+      title: { en: "4) Practical exercise (time pressure + real output)", es: "4) Ejercicio práctico (presión de tiempo + salida real)" },
+      lessonType: "worksheet",
+      objective: {
+        en: "Execute the exercise exactly once under the 15-minute time box and produce the required outputs.",
+        es: "Ejecutar el ejercicio una sola vez bajo el límite de 15 minutos y producir las salidas requeridas.",
+      },
+      keyPoints: [
+        {
+          en: "Time box: 15 minutes. If you cannot produce a clear, structured response in time, performance is incomplete.",
+          es: "Límite: 15 minutos. Si no puedes producir una respuesta clara y estructurada a tiempo, el desempeño es incompleto.",
+        },
+        {
+          en: "Outputs must include: a log entry + an escalation email + a sponsor/monitor message.",
+          es: "Salidas obligatorias: entrada de log + correo de escalamiento + mensaje a patrocinador/monitor.",
+        },
+      ],
+    },
+
+    // 5) Scoring Matrix
+    {
+      lessonId: "M1.S5",
+      title: { en: "5) Scoring matrix (objective pass/fail + critical fails)", es: "5) Matriz de puntuación (aprobado/reprobado objetivo + fallas críticas)" },
       lessonType: "reading",
       objective: {
-        en: "Anticipate QA, IRB, and regulator questions; typical findings; CAPA expectations beyond ‘retraining’.",
-        es: "Anticipar preguntas de QA, CEI y regulador; hallazgos típicos; expectativas de CAPA más allá de ‘reentrenamiento’.",
+        en: "Make pass/fail transparent: binary criteria and critical fails.",
+        es: "Hacer transparente aprobado/reprobado: criterios binarios y fallas críticas.",
       },
       keyPoints: [
         {
-          en: "Questions: How do you ensure current ICF? How are non-English/low-literacy subjects consented? Re-consent after new safety info? PHI in electronic comms?",
-          es: "Preguntas: ¿Cómo aseguran ICF vigente? ¿Cómo consienten sujetos no inglés/baja alfabetización? ¿Re-consentimiento tras nueva información de seguridad? ¿PHI en comunicación electrónica?",
+          en: "Binary grading: each rubric criterion is met/not met. Points represent completion, not “partial effort”.",
+          es: "Calificación binaria: cada criterio se cumple/no se cumple. Los puntos representan cumplimiento, no “esfuerzo parcial”.",
         },
         {
-          en: "Findings: wrong ICF version; missing re-consent; procedures before consent; poor interpreter documentation; HIPAA exposure; insecure messaging.",
-          es: "Hallazgos: versión ICF errónea; falta de re-consentimiento; procedimientos antes del consentimiento; documentación deficiente de intérprete; exposición HIPAA; mensajería insegura.",
-        },
-        {
-          en: "CAPA expected: version-control workflow, consent checklist, interpreter policy, technical/physical safeguards, not slides only.",
-          es: "CAPA esperada: flujo de control de versiones, checklist de consentimiento, política de intérprete, salvaguardas técnicas/físicas, no solo diapositivas.",
+          en: "Critical fails override score: research procedures pre-consent; knowingly using a superseded ICF; continuing PHI in consumer messaging; back-dating/rewriting/inventing facts.",
+          es: "Fallas críticas anulan el puntaje: procedimientos de investigación pre-consentimiento; usar conscientemente ICF sustituido; continuar PHI en mensajería de consumo; retrofechar/reescribir/inventar hechos.",
         },
       ],
     },
+
+    // 6) Answer Framework
     {
-      lessonId: "M1.L5",
-      title: { en: "Answer framework & fail conditions", es: "Marco de respuesta y condiciones de fallo" },
+      lessonId: "M1.S6",
+      title: { en: "6) Answer framework (elite output + fail patterns)", es: "6) Marco de respuesta (salida élite + patrones de falla)" },
       lessonType: "recap",
       objective: {
-        en: "Consolidate prioritization (autonomy/safety, legally effective consent, regulatory exposure), CAPA rigor, and defensible monitor language.",
-        es: "Consolidar priorización (autonomía/seguridad, consentimiento legalmente efectivo, exposición regulatoria), rigor de CAPA y lenguaje defendible ante monitor.",
+        en: "Use a repeatable output format that stays audit-facing and concise.",
+        es: "Usar un formato repetible que sea orientado a auditoría y conciso.",
       },
       keyPoints: [
         {
-          en: "Strong work: flags outdated ICF post-amendment as major/critical; treats date/signature mismatches as high-risk; never minimizes vulnerable consent or PHI breach.",
-          es: "Trabajo sólido: marca ICF desactualizado post-enmienda como mayor/crítico; trata discrepancias fecha/firma como alto riesgo; nunca minimiza consentimiento vulnerable ni brecha PHI.",
+          en: "Elite format (3 lines): (1) Stop rule + immediate action, (2) Known vs unknown facts, (3) Escalation + prevention theme.",
+          es: "Formato élite (3 líneas): (1) Regla de paro + acción inmediata, (2) Hechos conocidos vs desconocidos, (3) Escalamiento + tema preventivo.",
         },
         {
-          en: "Defense: admit issue, remedial steps, prevention aligned with Belmont + GCP; no blame-shifting.",
-          es: "Defensa: admitir problema, medidas correctivas, prevención alineada con Belmont + GCP; sin culpar a otros.",
+          en: "Fail patterns: “paperwork later”; “we always do it this way”; “verbal consent is enough”; “I fixed it by changing the date”.",
+          es: "Patrones de falla: “papel luego”; “siempre se hace así”; “consentimiento verbal basta”; “lo arreglé cambiando la fecha”.",
+        },
+      ],
+    },
+
+    // 7) Cross-Module Links
+    {
+      lessonId: "M1.S7",
+      title: { en: "7) Cross-module links", es: "7) Enlaces entre módulos" },
+      lessonType: "reading",
+      objective: {
+        en: "Connect consent/PHI stop rules to downstream documentation, visits, and safety reporting.",
+        es: "Conectar reglas de paro de consentimiento/PHI con documentación, visitas y reporte de seguridad posteriores.",
+      },
+      keyPoints: [
+        {
+          en: "M4 (Master Control Logs & ALCOA+): your consent/version decisions must be traceable and contemporaneous in logs and source-aligned corrections.",
+          es: "M4 (Logs maestros & ALCOA+): tus decisiones de consentimiento/versión deben ser trazables y contemporáneas en logs y correcciones alineadas a fuente.",
         },
         {
-          en: "Learner fails if: accepts pre-consent research procedures; misses wrong ICF after amendment; ignores date/procedure gaps; labels vulnerable consent or PHI breach as minor only.",
-          es: "El estudiante falla si: acepta procedimientos de investigación pre-consentimiento; no detecta ICF incorrecto tras enmienda; ignora brechas fecha/procedimiento; etiqueta consentimiento vulnerable o brecha PHI como solo menor.",
+          en: "M8 (Screening & Study Visits): consent timing vs screening procedures; the visit workflow starts with correct sequencing (eligibility → consent → research procedures).",
+          es: "M8 (Visitas): tiempo de consentimiento vs procedimientos de tamizaje; el flujo de visita inicia con secuencia correcta (elegibilidad → consentimiento → procedimientos).",
+        },
+        {
+          en: "M10 (AE/SAE): beneficence in practice—do not hide safety signals to protect enrollment; integrity beats speed.",
+          es: "M10 (AE/SAE): beneficencia en práctica—no ocultar señales de seguridad para proteger enrolamiento; integridad > velocidad.",
+        },
+      ],
+    },
+
+    // 8) Failure Impact
+    {
+      lessonId: "M1.S8",
+      title: { en: "8) Failure impact", es: "8) Impacto de fallas" },
+      lessonType: "reading",
+      objective: {
+        en: "Make consequences explicit across safety, data, compliance, and revenue/trust.",
+        es: "Hacer explícitas consecuencias en seguridad, datos, cumplimiento e ingresos/confianza.",
+      },
+      keyPoints: [
+        {
+          en: "Patient safety: consent defects mean subjects may accept risks they never received; coercion or misunderstanding increases harm.",
+          es: "Seguridad del paciente: defectos de consentimiento implican aceptar riesgos no divulgados; coerción o mala comprensión aumenta daño.",
+        },
+        {
+          en: "Data integrity: procedures-before-consent or back-dating creates unusable/contestable data and undermines source credibility.",
+          es: "Integridad de datos: procedimientos antes del consentimiento o retrofechado crea datos impugnables/inutilizables y destruye credibilidad de la fuente.",
+        },
+        {
+          en: "Compliance (483 risk): systematic consent/version or PHI failures are inspection-grade findings (FDA 483 / warning letter patterns).",
+          es: "Cumplimiento (riesgo 483): fallas sistemáticas de consentimiento/versión o PHI son hallazgos de inspección (patrones FDA 483 / warning letter).",
+        },
+        {
+          en: "Revenue / sponsor trust: repeat integrity failures trigger enrollment holds, monitoring intensity, payment holds, and site deactivation.",
+          es: "Ingresos / confianza patrocinador: fallas repetidas de integridad disparan holds de enrolamiento, mayor monitoreo, retención de pagos y desactivación del sitio.",
         },
       ],
     },
   ],
+
   errorLibrary: [
     {
       errorId: "M1.E1",
       description: {
-        en: "Site uses ICF v1.0 after major safety amendment; subjects 011–013 enrolled with outdated form after IRB approved v2.0. Subjects 005–006 never re-consented with updated risks.",
-        es: "Sitio usa ICF v1.0 tras enmienda mayor de seguridad; sujetos 011–013 incluidos con formulario desactualizado tras aprobación CEI de v2.0. Sujetos 005–006 nunca re-consentidos con riesgos actualizados.",
+        en: "Site uses ICF v1.0 after major safety amendment; subjects enrolled with outdated ICF after IRB approved v2.0.",
+        es: "El sitio usa ICF v1.0 tras enmienda mayor de seguridad; sujetos incluidos con ICF desactualizado tras aprobación CEI de v2.0.",
       },
       risk: {
-        en: "Patient: uninformed of new risks. Compliance: major finding; may require re-consent and data impact assessment.",
-        es: "Paciente: sin información de nuevos riesgos. Cumplimiento: hallazgo mayor; puede exigir re-consentimiento y evaluación de impacto en datos.",
+        en: "Patient: uninformed of new risks. Compliance: major finding; re-consent and data impact assessment required.",
+        es: "Paciente: sin información de nuevos riesgos. Cumplimiento: hallazgo mayor; re-consentimiento y evaluación de impacto de datos.",
       },
       expectedLearnerResponse: {
-        en: "Stop enrollment in affected cohort per SOP; notify IRB/sponsor; re-consent plan; version-control CAPA; document timeline.",
-        es: "Detener inclusión en cohorte afectada según SOP; notificar CEI/patrocinador; plan de re-consentimiento; CAPA de control de versiones; documentar línea temporal.",
+        en: "Stop enrollment per SOP; notify IRB/sponsor; execute re-consent plan; implement version segregation control; document timeline.",
+        es: "Detener inclusión según SOP; notificar CEI/patrocinador; ejecutar plan de re-consentimiento; implementar control de segregación de versiones; documentar línea temporal.",
       },
       relatedDimensions: ["R", "Q"],
     },
     {
       errorId: "M1.E2",
       description: {
-        en: "Subject 020: ICF signatures dated 14 June; source note says consent discussion 15 June; first research procedure 15 June — appearance of back-dating.",
-        es: "Sujeto 020: firmas ICF fechadas 14 jun; nota fuente indica discusión de consentimiento 15 jun; primer procedimiento de investigación 15 jun — apariencia de retrofechado.",
+        en: "ICF signature dates do not match consent discussion note; first research procedure date is unclear—appearance of back-dating.",
+        es: "Fechas de firma ICF no coinciden con nota de discusión; fecha del primer procedimiento de investigación es incierta—apariencia de retrofechado.",
       },
       risk: {
-        en: "Cannot prove consent preceded procedures; integrity and GCP credibility.",
-        es: "No se prueba que el consentimiento precedió procedimientos; credibilidad de integridad y GCP.",
+        en: "Cannot prove consent preceded procedures; integrity failure; audit escalations likely.",
+        es: "No se prueba consentimiento antes de procedimientos; falla de integridad; escalamiento en auditoría probable.",
       },
       expectedLearnerResponse: {
-        en: "Factual reconciliation; transparent late entry or correction per policy; PI attestation; query resolution with audit trail.",
-        es: "Conciliación factual; asiento tardío o corrección transparente según política; atestación PI; resolución de query con audit trail.",
+        en: "Reconcile facts transparently; document known vs unknown; corrective note per policy; PI attestation; do not alter source to “fix”.",
+        es: "Conciliar hechos con transparencia; documentar conocido vs desconocido; nota correctiva según política; atestación PI; no alterar fuente para “arreglar”.",
       },
       relatedDimensions: ["Q", "R"],
     },
     {
       errorId: "M1.E3",
       description: {
-        en: "Non-English subject with limited literacy; adult child used as ad hoc interpreter; no certified interpreter or translated ICF despite availability. Family states study will ‘get better treatment’.",
-        es: "Sujeto no anglófono con alfabetización limitada; hijo adulto como intérprete improvisado; sin intérprete certificado ni ICF traducido pese a disponibilidad. Familia dice que el estudio ‘dará mejor tratamiento’.",
+        en: "Non-English/low-literacy subject consented with ad hoc interpreter; no qualified interpreter documentation.",
+        es: "Participante no anglófono/baja alfabetización consentido con intérprete improvisado; sin documentación de intérprete calificado.",
       },
       risk: {
-        en: "Autonomy and understanding compromised; serious consent violation.",
-        es: "Autonomía y comprensión comprometidas; violación grave del consentimiento.",
+        en: "Autonomy compromised; serious consent violation; re-consent may be required.",
+        es: "Autonomía comprometida; violación grave del consentimiento; puede requerir re-consentimiento.",
       },
       expectedLearnerResponse: {
-        en: "Halt consent process; qualified interpreter + translated ICF; assess undue influence; IRB/compliance consult.",
-        es: "Detener proceso de consentimiento; intérprete calificado + ICF traducido; evaluar influencia indebida; consulta CEI/cumplimiento.",
+        en: "Stop and correct: qualified interpreter + documented teach-back; consult IRB/compliance if already occurred.",
+        es: "Detener y corregir: intérprete calificado + teach-back documentado; consultar CEI/cumplimiento si ya ocurrió.",
       },
       relatedDimensions: ["C", "R"],
     },
     {
       errorId: "M1.E4",
       description: {
-        en: "PI continues enrolling despite IRB suspension pending safety review, stating IRB is ‘overreacting’.",
-        es: "PI continúa incluyendo pese a suspensión del CEI pendiente de revisión de seguridad, afirmando que el CEI ‘sobrerreacciona’.",
+        en: "PHI handled in consumer messaging (e.g., WhatsApp) with full identifiers because “that’s what we do”.",
+        es: "PHI manejado por mensajería de consumo (p. ej., WhatsApp) con identificadores completos porque “así se hace”.",
       },
       risk: {
-        en: "Subjects exposed without independent oversight; catastrophic regulatory exposure.",
-        es: "Sujetos expuestos sin supervisión independiente; exposición regulatoria catastrófica.",
+        en: "Privacy breach risk; repeat pattern becomes reportable and inspection-grade.",
+        es: "Riesgo de brecha de privacidad; patrón repetido se vuelve reportable y de inspección.",
       },
       expectedLearnerResponse: {
-        en: "Immediate escalation to compliance/IRB; document instruction conflict; do not enroll; sponsor notification per SOP.",
-        es: "Escalamiento inmediato a cumplimiento/CEI; documentar conflicto de instrucciones; no incluir; notificación al patrocinador según SOP.",
-      },
-      relatedDimensions: ["R", "C"],
-    },
-    {
-      errorId: "M1.E5",
-      description: {
-        en: "Paper ICFs and screening logs with full identifiers left on open counter; family member of another patient photographs names.",
-        es: "ICF en papel y logs de screening con identificadores completos en mostrador abierto; familiar de otro paciente fotografía nombres.",
-      },
-      risk: {
-        en: "Privacy breach; reportable HIPAA incident; remediation and notification may be required.",
-        es: "Brecha de privacidad; incidente HIPAA reportable; remediación y notificación pueden ser obligatorias.",
-      },
-      expectedLearnerResponse: {
-        en: "Incident report; risk assessment; containment; training; physical safeguards; monitor/Q notification per policy.",
-        es: "Reporte de incidente; evaluación de riesgo; contención; capacitación; salvaguardas físicas; notificación a monitor/Q según política.",
+        en: "Move to approved channel; minimum necessary; document and escalate to privacy/compliance; implement a managed workflow.",
+        es: "Migrar a canal aprobado; minimum necessary; documentar y escalar a privacidad/cumplimiento; implementar flujo gestionado.",
       },
       relatedDimensions: ["Q", "R"],
     },
-    {
-      errorId: "M1.E6",
-      description: {
-        en: "IRB requires re-consent all enrolled with ICF v3.0 ‘at earliest opportunity’ after new serious risk. Two weeks later half remain without re-consent. PI refuses proactive outreach, waits months for visits.",
-        es: "CEI exige re-consentir a todos los incluidos con ICF v3.0 ‘a la primera oportunidad’ tras nuevo riesgo serio. Dos semanas después la mitad sigue sin re-consentimiento. PI rechaza contacto proactivo y espera meses a visitas.",
-      },
-      risk: {
-        en: "Subjects continue IMP without material risk disclosure; autonomy and safety compromised; IRB directive unmet.",
-        es: "Sujetos continúan IMP sin divulgación material de riesgo; autonomía y seguridad comprometidas; directiva del CEI incumplida.",
-      },
-      expectedLearnerResponse: {
-        en: "Document conflict; meet PI with IRB letter; propose compliant plan (tele-consent, prioritized calls); if unresolved, escalate to compliance/IRB office with email trail.",
-        es: "Documentar conflicto; reunión con PI con carta CEI; plan conforme (tele-consent, llamadas priorizadas); sin resolución, escalar a cumplimiento/oficina CEI con hilo de correos.",
-      },
-      relatedDimensions: ["R", "C", "Q"],
-    },
   ],
+
   practicalExercises: [
     {
       exerciseId: "M1.EX1",
       name: {
-        en: "Ethics & consent under pressure — protect the subject, protect the site",
-        es: "Ética y consentimiento bajo presión — proteger al participante y al sitio",
+        en: "Consent integrity under pressure (15 minutes) — stop, log, escalate",
+        es: "Integridad de consentimiento bajo presión (15 minutos) — detener, registrar, escalar",
       },
       scenario: {
-        en: "30 minutes before internal QA review. Pre-review consent and ethics documentation for subjects 011, 020, and 025. Inputs: signed ICFs with stamps/signatures/dates; IRB letters including ICF version effective dates; source notes on consent discussions, attendees, first study procedures; email chain PI–sponsor on safety update (possible distractor / missing re-consent); HIPAA acknowledgments. Incomplete and conflicting data by design.",
-        es: "30 minutos antes de revisión interna de QA. Pre-revisar documentación de consentimiento y ética de sujetos 011, 020 y 025. Insumos: ICF firmados con sellos/firmas/fechas; cartas CEI con fechas efectivas de versión; notas fuente sobre discusiones de consentimiento, asistentes, primeros procedimientos; cadena de correo PI–patrocinador sobre actualización de seguridad (posible distractor / re-consentimiento faltante); reconocimientos HIPAA. Datos incompletos y conflictivos a propósito.",
+        en: "You are 15 minutes from a monitor arriving to review consent + privacy controls. Three subjects (011, 020, 025) have defects by design: ICF version mix-ups, timing gaps, and a PHI channel risk. Produce audit-ready outputs fast—without inventing facts.",
+        es: "Faltan 15 minutos para que llegue el monitor a revisar controles de consentimiento + privacidad. Tres sujetos (011, 020, 025) tienen defectos a propósito: mezcla de versiones ICF, brechas de tiempo y un riesgo por canal de PHI. Produce salidas listas para auditoría rápido—sin inventar hechos.",
       },
       inputs: [
         { inputId: "M1.IN1", label: { en: "ICF packet (011, 020, 025)", es: "Paquete ICF (011, 020, 025)" }, inputKind: "pdf" },
-        { inputId: "M1.IN2", label: { en: "IRB approval letters + amendment dates", es: "Cartas de aprobación CEI + fechas de enmienda" }, inputKind: "pdf" },
-        { inputId: "M1.IN3", label: { en: "Source consent notes + procedure log excerpts", es: "Notas fuente de consentimiento + extractos log procedimientos" }, inputKind: "mock_ehr" },
-        { inputId: "M1.IN4", label: { en: "PI–sponsor email thread (safety update)", es: "Hilo correo PI–patrocinador (actualización seguridad)" }, inputKind: "table" },
+        { inputId: "M1.IN2", label: { en: "IRB approval letters + amendment dates", es: "Cartas CEI + fechas de enmienda" }, inputKind: "pdf" },
+        { inputId: "M1.IN3", label: { en: "Source consent note + procedure log excerpts", es: "Nota fuente de consentimiento + extractos de log" }, inputKind: "mock_ehr" },
+        { inputId: "M1.IN4", label: { en: "PI–sponsor email thread (safety update)", es: "Hilo de correo PI–patrocinador (seguridad)" }, inputKind: "table" },
         { inputId: "M1.IN5", label: { en: "HIPAA forms per subject", es: "Formularios HIPAA por sujeto" }, inputKind: "pdf" },
       ],
       learnerTask: {
-        en: "List all ethical/consent/privacy issues (wrong ICF version, timing/documentation gaps, vulnerable-population communication, PHI risks). Prioritize top 3 before QA; for each classify minor/major/critical and impact (patient/data/compliance, ≥1 each). Propose immediate corrective + preventive CAPA. Draft a short defense statement for one major/critical issue (what went wrong, fix, prevention).",
-        es: "Listar todos los problemas éticos/consentimiento/privacidad (versión ICF errónea, brechas tiempo/documentación, comunicación población vulnerable, riesgos PHI). Priorizar 3 principales antes de QA; clasificar cada uno menor/mayor/crítico e impacto (paciente/datos/cumplimiento, ≥1 cada uno). Proponer CAPA correctiva + preventiva inmediata. Redactar declaración breve de defensa para un tema mayor/crítico (qué falló, corrección, prevención).",
+        en: "In 15 minutes produce exactly three outputs:\n(1) A single log/tracker entry for the top defect (what happened + severity + impact domain).\n(2) An escalation email to PI + IRB/Compliance (short, factual, stop-rule based; known vs unknown).\n(3) A sponsor/monitor-facing message (2–3 lines) stating the corrective next step without minimizing.\n\nDo not invent facts. If a fact is uncertain, label it as unknown and state how you will verify.",
+        es: "En 15 minutos produce exactamente tres salidas:\n(1) Una sola entrada en log/tracker del defecto principal (qué pasó + severidad + dominio de impacto).\n(2) Un correo de escalamiento a PI + CEI/Cumplimiento (corto, factual, basado en regla de paro; conocido vs desconocido).\n(3) Un mensaje a patrocinador/monitor (2–3 líneas) declarando el siguiente paso correctivo sin minimizar.\n\nNo inventes hechos. Si un hecho es incierto, márcalo como desconocido y di cómo lo verificarás.",
       },
       deliverables: [
-        { deliverableId: "M1.D1", label: { en: "Issue register + severity/impact matrix", es: "Registro de hallazgos + matriz severidad/impacto" }, formatHint: "table" },
-        { deliverableId: "M1.D2", label: { en: "Top-3 CAPA (corrective + preventive)", es: "CAPA top-3 (correctiva + preventiva)" }, formatHint: "pdf|docx" },
-        { deliverableId: "M1.D3", label: { en: "Defense statement to QA/monitor", es: "Declaración de defensa a QA/monitor" }, formatHint: "short_memo" },
+        { deliverableId: "M1.D1", label: { en: "Consent/PHI issue log entry", es: "Entrada de log de consentimiento/PHI" }, formatHint: "table_row" },
+        { deliverableId: "M1.D2", label: { en: "Escalation email (PI + IRB/Compliance)", es: "Correo de escalamiento (PI + CEI/Cumplimiento)" }, formatHint: "email" },
+        { deliverableId: "M1.D3", label: { en: "Sponsor/monitor message (2–3 lines)", es: "Mensaje a patrocinador/monitor (2–3 líneas)" }, formatHint: "chat|email_snippet" },
       ],
     },
   ],
+
+  // Scoring Matrix: objective/binary criteria + critical fails
   assessmentRubric: {
     rubricId: "M1.RUB1",
     totalPoints: 100,
-    passingPoints: 78,
+    passingPoints: 95,
     criteria: [
       {
-        criterionId: "M1.C1",
+        criterionId: "M1.C1_STOP_RULE",
         description: {
-          en: "Identifies wrong ICF version use, consent timing gaps, vulnerable-subject process defects, and PHI exposure; prioritizes autonomy/safety and legally effective consent over cosmetic fixes.",
-          es: "Identifica uso de versión ICF incorrecta, brechas de tiempo de consentimiento, defectos en sujetos vulnerables y exposición PHI; prioriza autonomía/seguridad y consentimiento legalmente efectivo sobre arreglos cosméticos.",
+          en: "Stop rule executed: learner refuses research procedures pre-consent and documents the stop decision.",
+          es: "Regla de paro ejecutada: rechaza procedimientos de investigación pre-consentimiento y documenta la decisión de paro.",
         },
-        points: 35,
-        mapsToDimensions: ["R", "Q"],
+        points: 15,
+        mapsToDimensions: ["R", "C"],
         failCondition: {
-          en: "Misses outdated ICF after amendment or treats procedures-before-consent as acceptable.",
-          es: "Omite ICF desactualizado tras enmienda o trata procedimientos antes del consentimiento como aceptables.",
+          en: "Critical fail if learner proceeds with research procedures pre-consent or endorses a workaround.",
+          es: "Falla crítica si procede con procedimientos pre-consentimiento o avala un atajo.",
         },
       },
       {
-        criterionId: "M1.C2",
+        criterionId: "M1.C2_VERSION_CONTROL",
         description: {
-          en: "Classifies each top issue minor/major/critical with defensible rationale; maps impact to patient, data, and compliance domains.",
-          es: "Clasifica cada tema principal menor/mayor/crítico con justificación defendible; mapea impacto a paciente, datos y cumplimiento.",
-        },
-        points: 25,
-        mapsToDimensions: ["C", "R"],
-        failCondition: {
-          en: "Labels major ethical, consent, or PHI breach patterns as uniformly minor without justification.",
-          es: "Etiqueta patrones mayores éticos, de consentimiento o PHI como uniformemente menores sin justificación.",
-        },
-      },
-      {
-        criterionId: "M1.C3",
-        description: {
-          en: "CAPA: concrete immediate corrections (re-consent, breach report, IRB notification) and preventive systems (version control, interpreter policy, clean desk, escalation SOP).",
-          es: "CAPA: correcciones inmediatas concretas (re-consentimiento, reporte de brecha, notificación CEI) y sistemas preventivos (control de versiones, política de intérprete, escritorio limpio, SOP de escalamiento).",
-        },
-        points: 25,
-        mapsToDimensions: ["O", "Q"],
-        failCondition: {
-          en: "CAPA is retraining-only with no workflow or safeguard changes for critical risks.",
-          es: "CAPA es solo reentrenamiento sin cambios de flujo o salvaguardas para riesgos críticos.",
-        },
-      },
-      {
-        criterionId: "M1.C4",
-        description: {
-          en: "Defense statement: accurate, non-minimizing, Belmont/GCP-aligned; admits issue, remedial steps, prevention.",
-          es: "Declaración de defensa: precisa, sin minimizar, alineada Belmont/GCP; admite problema, medidas correctivas, prevención.",
+          en: "Version control is correct: current IRB-stamped ICF selected; superseded versions are segregated from active use.",
+          es: "Control de versión correcto: selecciona ICF vigente sellado por CEI; segrega versiones sustituidas del uso activo.",
         },
         points: 15,
         mapsToDimensions: ["R", "Q"],
         failCondition: {
-          en: "Blames participants/staff only or conceals known discrepancies from QA/monitor narrative.",
-          es: "Culpa solo a participantes/personal u oculta discrepancias conocidas en narrativa a QA/monitor.",
+          en: "Critical fail if learner uses a superseded ICF after identifying it as superseded.",
+          es: "Falla crítica si usa un ICF sustituido tras identificarlo como sustituido.",
+        },
+      },
+      {
+        criterionId: "M1.C3_PHI_CHANNEL",
+        description: {
+          en: "PHI handling is defensible: identifies PHI risk and routes the interaction to an approved channel using minimum necessary.",
+          es: "Manejo de PHI defendible: identifica riesgo PHI y canaliza a un canal aprobado usando minimum necessary.",
+        },
+        points: 15,
+        mapsToDimensions: ["Q", "R"],
+        failCondition: {
+          en: "Critical fail if learner recommends continuing PHI in consumer messaging as normal workflow.",
+          es: "Falla crítica si recomienda continuar PHI en mensajería de consumo como flujo normal.",
+        },
+      },
+      {
+        criterionId: "M1.C4_LOG_ENTRY",
+        description: {
+          en: "Log entry is audit-grade: what happened + timing/version facts + severity + impact domain; no speculation.",
+          es: "Entrada de log nivel auditoría: qué pasó + hechos de tiempo/versión + severidad + dominio de impacto; sin especulación.",
+        },
+        points: 10,
+        mapsToDimensions: ["Q"],
+        failCondition: {
+          en: "Fail if log is missing timing/version facts or alters facts to appear compliant.",
+          es: "Falla si falta tiempo/versión o altera hechos para aparentar cumplimiento.",
+        },
+      },
+      {
+        criterionId: "M1.C5_ESCALATION_EMAIL",
+        description: {
+          en: "Escalation email is compliant: cites stop rule, separates known vs unknown, requests next-step authorization, and preserves an audit trail (PI + IRB/Compliance).",
+          es: "Correo de escalamiento conforme: cita regla de paro, separa conocido vs desconocido, solicita autorización del siguiente paso y preserva pista (PI + CEI/Cumplimiento).",
+        },
+        points: 10,
+        mapsToDimensions: ["R", "O"],
+        failCondition: {
+          en: "Fail if escalation avoids the issue (“FYI only”) or omits compliance recipient when required.",
+          es: "Falla si evita el tema (“solo FYI”) u omite a Cumplimiento/CEI cuando se requiere.",
+        },
+      },
+      {
+        criterionId: "M1.C6_SPONSOR_MESSAGE",
+        description: {
+          en: "Sponsor/monitor message is truthful and concise: states corrective next step; does not minimize; does not claim compliance without evidence.",
+          es: "Mensaje a patrocinador/monitor veraz y conciso: declara siguiente paso correctivo; no minimiza; no afirma cumplimiento sin evidencia.",
+        },
+        points: 10,
+        mapsToDimensions: ["R", "Q"],
+        failCondition: {
+          en: "Fail if message claims compliance without evidence or suggests retroactive fixes (back-dating, rewriting source).",
+          es: "Falla si afirma cumplimiento sin evidencia o sugiere arreglos retroactivos (retrofechar, reescribir fuente).",
+        },
+      },
+      {
+        criterionId: "M1.C7_PREVENTION",
+        description: {
+          en: "Prevention theme changes workflow (version segregation/checklist/escalation routing), not “retraining only”.",
+          es: "Tema preventivo cambia el flujo (segregación/checklist/ruta de escalamiento), no “solo reentrenar”.",
+        },
+        points: 10,
+        mapsToDimensions: ["O", "Q"],
+        failCondition: {
+          en: "Fail if prevention is only “remind staff” with no workflow control.",
+          es: "Falla si la prevención es solo “recordar al personal” sin control del flujo.",
+        },
+      },
+      {
+        criterionId: "M1.C8_INTERPRETER_CAPACITY",
+        description: {
+          en: "If language/capacity is implicated, learner requires qualified interpreter support and documents teach-back/interpreter presence.",
+          es: "Si idioma/capacidad aplica, exige intérprete calificado y documenta teach-back/presencia del intérprete.",
+        },
+        points: 5,
+        mapsToDimensions: ["C", "R"],
+        failCondition: {
+          en: "Fail if learner endorses ad hoc interpreter when comprehension is uncertain.",
+          es: "Falla si avala intérprete improvisado cuando la comprensión es incierta.",
+        },
+      },
+      {
+        criterionId: "M1.C9_NO_FACT_INVENTION",
+        description: {
+          en: "Integrity: separates known vs unknown; does not invent facts to align dates/signatures/procedures.",
+          es: "Integridad: separa conocido vs desconocido; no inventa hechos para alinear fechas/firmas/procedimientos.",
+        },
+        points: 5,
+        mapsToDimensions: ["Q", "R"],
+        failCondition: {
+          en: "Critical fail if learner proposes back-dating, rewriting source, or undocumented “verbal consent” to cover gaps.",
+          es: "Falla crítica si propone retrofechar, reescribir fuente o “consentimiento verbal” sin documentación para cubrir brechas.",
         },
       },
     ],
   },
+
   scorecardContribution: [
-    {
-      dimension: "R",
-      weight: 0.4,
-      aggregationKey: "human_subjects_regs_irb_consent_effectiveness",
-    },
-    {
-      dimension: "Q",
-      weight: 0.35,
-      aggregationKey: "hipaa_phi_documentation_and_breach_prevention",
-    },
-    {
-      dimension: "C",
-      weight: 0.25,
-      aggregationKey: "respect_autonomy_vulnerable_subjects_therapeutic_misconception",
-    },
+    { dimension: "R", weight: 0.4, aggregationKey: "human_subjects_regs_irb_consent_effectiveness" },
+    { dimension: "Q", weight: 0.35, aggregationKey: "hipaa_phi_documentation_and_breach_prevention" },
+    { dimension: "C", weight: 0.25, aggregationKey: "respect_autonomy_vulnerable_subjects_therapeutic_misconception" },
   ],
+
   capstoneConnection: {
     summary: {
-      en: "OSCE.S2 (ICD version / consent execution under defects) and OSCE.S5 (source/ALCOA + audit-trail honesty) mirror consent integrity and privacy discipline taught here.",
-      es: "OSCE.S2 (versión ICD / ejecución de consentimiento con defectos) y OSCE.S5 (fuente/ALCOA + honestidad de audit trail) reflejan integridad de consentimiento y disciplina de privacidad de este módulo.",
+      en: "Consent/version stop-rules and PHI channel control here are re-tested under pressure in OSCE stations (especially OSCE.S5: source + ALCOA+ repair honesty).",
+      es: "Las reglas de paro de consentimiento/versión y el control de canales PHI aquí se re-evalúan bajo presión en estaciones OSCE (especialmente OSCE.S5: fuente + honestidad en reparación ALCOA+).",
     },
     stationIds: ["OSCE.S2", "OSCE.S5"],
   },
+
   tags: ["regulatory", "documentation", "clinical_judgment", "audit_readiness", "bilingual", "flagship", "safety"],
   bilingualNotes: {
-    en: "Regulatory citations (45 CFR 46, 21 CFR 50, HIPAA) stay in English; expand acronyms once in ES if needed for learners.",
-    es: "Citas regulatorias (45 CFR 46, 21 CFR 50, HIPAA) permanecen en inglés; expandir siglas una vez en ES si el perfil del grupo lo requiere.",
+    en: "Keep regulatory tokens in EN (IRB, ICF, PHI, HIPAA, 45 CFR 46, 21 CFR 50). Spanish should translate operational meaning, not the tokens.",
+    es: "Mantener tokens regulatorios en inglés (IRB, ICF, PHI, HIPAA, 45 CFR 46, 21 CFR 50). El español traduce el significado operativo, no los tokens.",
   },
 };

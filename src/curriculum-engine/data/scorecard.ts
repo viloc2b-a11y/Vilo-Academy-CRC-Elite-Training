@@ -19,7 +19,7 @@ export const DIMENSION_PASS_THRESHOLD: Readonly<Record<CompetencyDimension, numb
 export const CAPSTONE_MIN_NORMALIZED = 0.78;
 
 /** Catalog flagship set (includes M16); module rubric pass enforced for GRADED_PRE_CAPSTONE_MODULE_IDS only. */
-export const FLAGSHIP_MODULE_IDS = ["M1", "M2", "M3", "M4", "M5", "M6", "M7", "M8", "M9", "M16"] as const;
+export const FLAGSHIP_MODULE_IDS = ["M1", "M2", "M3", "M4", "M5", "M6", "M7", "M8", "M9", "M16", "M17"] as const;
 
 /**
  * Pre-capstone blend weights — must sum to 1.0 exactly (verify after any edit).

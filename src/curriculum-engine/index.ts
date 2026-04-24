@@ -47,6 +47,7 @@ export { MODULE_M13 } from "./data/modules/m13";
 export { MODULE_M14 } from "./data/modules/m14";
 export { MODULE_M15 } from "./data/modules/m15";
 export { MODULE_M16 } from "./data/modules/m16";
+export { MODULE_M17 } from "./data/modules/m17";
 
 export * from "./utils/scoring";
 
