@@ -17,10 +17,15 @@ function pathWithoutLocale(pathname: string) {
 export async function middleware(request: NextRequest) {
   const response = intlMiddleware(request);
 
-  const supabase = createMiddlewareClient({ req: request, res: response });
-  const {
-    data: { session },
-  } = await supabase.auth.getSession();
+  let session = null;
+  if (
+    process.env.NEXT_PUBLIC_SUPABASE_URL &&
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+  ) {
+    const supabase = createMiddlewareClient({ req: request, res: response });
+    const auth = await supabase.auth.getSession();
+    session = auth.data.session;
+  }
 
   const pathname = request.nextUrl.pathname;
   const bare = pathWithoutLocale(pathname);

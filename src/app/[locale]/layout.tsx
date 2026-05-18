@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
 import { getTranslations } from "next-intl/server";
 import { getMessages, setRequestLocale } from "next-intl/server";
@@ -8,12 +7,6 @@ import type { ReactNode } from "react";
 import { routing } from "@/i18n/routing";
 import { AppShell } from "@/components/layout/AppShell";
 import "../globals.css";
-
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-geist-sans",
-  display: "swap",
-});
 
 type Props = {
   children: ReactNode;
@@ -53,7 +46,7 @@ export default async function LocaleLayout({ children, params }: Props) {
   const messages = await getMessages();
 
   return (
-    <html lang={locale} className={inter.variable}>
+    <html lang={locale}>
       <body className="min-h-screen font-sans">
         <NextIntlClientProvider messages={messages}>
           <AppShell locale={locale}>{children}</AppShell>

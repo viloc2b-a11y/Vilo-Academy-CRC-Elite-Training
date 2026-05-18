@@ -23,8 +23,7 @@ export interface ModuleItem {
 
 function buildModules(locale: string): ModuleItem[] {
   // Demo dashboard: statuses are placeholders (no persistence yet).
-  return CRC_ELITE_MODULE_REGISTRY.filter((m) => m.category !== "capstone").map(
-    (m, idx): ModuleItem => {
+  return CRC_ELITE_MODULE_REGISTRY.map((m, idx): ModuleItem => {
       const moduleNumber = idx + 1;
       const status: ModuleStatus =
         moduleNumber === 1 ? "completed" : moduleNumber === 2 ? "current" : "locked";
@@ -35,8 +34,7 @@ function buildModules(locale: string): ModuleItem[] {
         status,
         version_sop: `SOP-${String(moduleNumber).padStart(2, "0")}-2026`,
       };
-    },
-  );
+  });
 }
 
 export function StudentDashboard() {
@@ -121,9 +119,14 @@ export function StudentDashboard() {
       <main className="flex-1 overflow-y-auto p-5 sm:p-8">
         <header className="mb-8 flex flex-col gap-6 border-b border-slate-200/80 pb-8 sm:flex-row sm:items-start sm:justify-between">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.15em] text-emerald-accent">
-              {t("kicker")}
-            </p>
+            <div className="flex flex-wrap items-center gap-2">
+              <p className="text-xs font-semibold uppercase tracking-[0.15em] text-emerald-accent">
+                {t("kicker")}
+              </p>
+              <span className="rounded-full border border-amber-300 bg-amber-50 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-amber-700">
+                {t("demoDataLabel")}
+              </span>
+            </div>
             <h1 className="mt-2 font-serif text-3xl font-bold tracking-tight text-navy md:text-4xl">
               {t("title")}
             </h1>

@@ -23,7 +23,7 @@ Open `http://localhost:3000/en` or `http://localhost:3000/es`.
 ## Curriculum (high level)
 
 - **Pre-capstone modules** (M1–M15): ethics, GCP, logs, feasibility, consent, recruitment, visits, IP, safety, source/EDC, monitoring, budget, and related operations.
-- **Capstone**: M16 (OSCE stations) and **M17** (crisis / cross-station integration under inspection pressure).
+- **Capstone / integration**: M16 (OSCE stations) and **M17** (crisis / cross-station integration under inspection pressure).
 - **Source of truth in code**: `src/curriculum-engine/data/modules/*.ts`, registry in `src/curriculum-engine/data/course.ts`, capstone in `src/curriculum-engine/data/capstone.ts`, scorecard in `src/curriculum-engine/data/scorecard.ts`.
 
 ## Project layout
@@ -34,6 +34,11 @@ Open `http://localhost:3000/en` or `http://localhost:3000/es`.
 | `src/app/[locale]/` | Localized routes and layouts |
 | `messages/en.json`, `messages/es.json` | UI strings |
 | `docs/compliance/` | Sponsor/FDA-citable compliance mapping (see below) |
+| `docs/premium-academy-operating-model.md` | VILO OS premium academy operating model |
+
+## VILO OS module
+
+The academy is structured as a VILO OS module: **CRC Elite Operating Academy**. The premium layer adds role pathways, the `VILO-ONC-301` longitudinal oncology simulation, operational artifacts, certification levels, and structured templates for key site documents. Sources of truth: `src/curriculum-engine/data/premium.ts` and `src/curriculum-engine/data/artifactTemplates.ts`.
 
 ## Quality checks
 

@@ -235,6 +235,17 @@ export const CRC_ELITE_MODULE_REGISTRY: readonly ModuleRegistryItem[] = [
     mappedDimensions: [...MODULE_M16.mappedDimensions],
     sortOrder: 16,
   },
+  {
+    id: "M17",
+    slug: MODULE_M17.slug,
+    title: MODULE_M17.title,
+    category: "capstone",
+    status: "published",
+    isOptional: false,
+    isFlagship: true,
+    mappedDimensions: [...MODULE_M17.mappedDimensions],
+    sortOrder: 17,
+  },
 ];
 
 export const CRC_ELITE_MODULES_BY_ID: Readonly<Record<string, Module>> = {

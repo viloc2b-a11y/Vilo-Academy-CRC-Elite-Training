@@ -5,3 +5,4 @@ export * from "./content";
 export * from "./course";
 export * from "./capstone";
 export * from "./normalized";
+export * from "./premium";

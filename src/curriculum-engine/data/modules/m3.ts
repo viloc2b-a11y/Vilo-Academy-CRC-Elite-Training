@@ -4,6 +4,12 @@ import type { Module } from "../../types";
 
 /**
  * Module 3 — ICH-GCP E6(R3): roles, oversight & quality system for CRCs.
+ *
+ * PROMPT 1 — BASE OPERATIVO (Modules 1–10): eight ordered lesson sections (overview → core →
+ * three guided cases → practical exercise → scoring → answer framework → cross-links → failure impact).
+ *
+ * CRC Elite audit-grade: system vs individual failure, false compliance, inspector lens, structural CAPA
+ * with M4/M8/M9 linkage; rubric 100 = sum(criteria.points); passing 94; errorLibrary 3–5 entries.
  */
 export const MODULE_M3: Module = {
   id: "M3",
@@ -54,7 +60,7 @@ export const MODULE_M3: Module = {
       statements: [
         {
           en: "Detects false compliance (perfect DOA/training but staff cannot explain CtQ or AE flow); differentiates ‘PI doesn’t supervise’ from ‘site never designed supervision’.",
-          es: "Detecta cumplimiento ficticio (DOA/capacitación perfectos pero personal no explica CtQ o flujo AE); diferencia ‘PI no supervisa’ de ‘sitio nunca diseñó la supervisión’.",
+          es: "Detecta cumplimiento ficticio (DOA/capacitación perfectos pero personal no explica CtQ o flujo EA); diferencia ‘PI no supervisa’ de ‘sitio nunca diseñó la supervisión’.",
         },
         {
           en: "Proposes structural CAPA: written oversight plan, triggers, meeting templates, mandatory linkage from decisions to M4 logs, M8 visit-window and randomization discipline, sponsor AE timelines (OSCE.S3), M4 ALCOA+ documentation trail, and M9 IP custody—defensible in inspection interviews.",
@@ -65,224 +71,326 @@ export const MODULE_M3: Module = {
   ],
   lessons: [
     {
-      lessonId: "M3.L1",
-      title: { en: "Core concepts — E6(R3) quality system", es: "Conceptos núcleo — sistema de calidad E6(R3)" },
+      lessonId: "M3.S1",
+      title: { en: "1) Module overview", es: "1) Resumen del módulo" },
       lessonType: "reading",
+      durationMinutes: 12,
       objective: {
-        en: "Anchor GCP + QbD/RBQM, roles, individual vs system failure, false compliance, and cross-module dependencies.",
-        es: "Anclar GCP + QbD/RBQM, roles, falla individual vs sistema, cumplimiento ficticio y dependencias entre módulos.",
+        en: "Set the operational bar: GCP is lived through oversight systems, not binders; CRC is operator + sensor.",
+        es: "Establecer la barra operativa: GCP se vive con sistemas de supervisión, no carpetas; CRC es operador + sensor.",
       },
       keyPoints: [
         {
-          en: "E6(R3) adds QbD, RBQM, and fit-for-purpose systems—not rigid checklist-only compliance.",
-          es: "E6(R3) añade QbD, RBQM y sistemas adecuados al propósito—no solo cumplimiento por lista rígida.",
+          en: "Graded on whether you can reconstruct oversight (who decided what, when, with what evidence) and propose fixes that change workflows and logs—not slogans.",
+          es: "Se te califica si puedes reconstruir la supervisión (quién decidió qué, cuándo, con qué evidencia) y proponer arreglos que cambien flujos y logs—no eslóganes.",
         },
         {
-          en: "Investigator: qualified, resourced, may delegate tasks not responsibility; must supervise GCP. CRC: delegated execution of protocol, consent, AE, documentation, sponsor communication.",
-          es: "Investigador: calificado, con recursos, puede delegar tareas no responsabilidad; debe supervisar GCP. CRC: ejecución delegada de protocolo, consentimiento, EA, documentación, comunicación patrocinador.",
+          en: "Outputs: issue register + top-3 inspector priorities; system CAPA mapped to M4/M8/M9 (+ sponsor AE lane); one honest FDA-style defense for a major gap.",
+          es: "Salidas: registro de hallazgos + prioridades top-3 para inspector; CAPA sistémica mapeada a M4/M8/M9 (+ carril EA patrocinador); una defensa estilo FDA honesta para brecha mayor.",
         },
         {
-          en: "RBQM for CRCs: CtQ = eligibility, IC, primary endpoints, AE/SAE handling, ALCOA+ documentation.",
-          es: "RBQM para CRCs: CtQ = elegibilidad, CI, endpoints primarios, manejo AE/SAE, documentación ALCOA+.",
-        },
-        {
-          en: "Individual error: one person skips a step. System failure: no SOP, no cadence, no triggers—inspectors focus here.",
-          es: "Error individual: una persona omite un paso. Falla de sistema: sin SOP, sin cadencia, sin disparadores—inspectores se enfocan aquí.",
-        },
-        {
-          en: "False compliance: documents look perfect but staff cannot describe processes or CtQ risks; oversight not real.",
-          es: "Cumplimiento ficticio: documentos lucen perfectos pero personal no describe procesos o riesgos CtQ; supervisión no es real.",
-        },
-        {
-          en: "Links: delegation/oversight → DOA & logs (M4); visit/screening execution → M8; expedited AE → sponsor/OSCE.S3; ALCOA+ source culture → M4; IP pharmacy & cold chain → M9.",
-          es: "Vínculos: delegación/supervisión → DOA y logs (M4); ejecución visita/screening → M8; EA expedita → patrocinador/OSCE.S3; cultura ALCOA+ en fuente → M4; farmacia IP y cadena de frío → M9.",
+          en: "Technical tokens remain EN in both locales (ICH E6(R3), GCP, RBQM, CtQ, QbD, DOA, FDA, CRA, ALCOA+).",
+          es: "Tokens técnicos permanecen en inglés en ambos idiomas (ICH E6(R3), GCP, RBQM, CtQ, QbD, DOA, FDA, CRA, ALCOA+).",
         },
       ],
     },
     {
-      lessonId: "M3.L2",
-      title: { en: "Real-world workflow — site quality system", es: "Flujo real — sistema de calidad del sitio" },
+      lessonId: "M3.S2",
+      title: { en: "2) Core concepts, workflow & error-prone areas", es: "2) Conceptos, flujo y zonas propensas a error" },
       lessonType: "reading",
+      durationMinutes: 28,
       objective: {
-        en: "Follow SOP setup, operational oversight cadence, monitor/inspector stress-tests, and CRC as system sensor.",
-        es: "Seguir configuración SOP, cadencia operativa de supervisión, pruebas de estrés monitor/inspector y CRC como sensor del sistema.",
+        en: "Anchor E6(R3) quality system, real site workflow, and recurring inspection themes in one layer.",
+        es: "Anclar sistema de calidad E6(R3), flujo real del sitio y temas recurrentes de inspección en una capa.",
       },
       keyPoints: [
         {
-          en: "PI + institution: SOPs for delegation, AE management, monitoring follow-up, documentation; CRC aligns processes, DOA, logs, training with SOPs and E6(R3).",
-          es: "PI + institución: SOPs para delegación, gestión EA, seguimiento monitoría, documentación; CRC alinea procesos, DOA, logs, capacitación con SOPs y E6(R3).",
+          en: "E6(R3) adds QbD, RBQM, and fit-for-purpose systems—not checklist-only compliance; proportionate oversight must be demonstrable.",
+          es: "E6(R3) añade QbD, RBQM y sistemas adecuados al propósito—no solo cumplimiento por lista; supervisión proporcional debe ser demostrable.",
         },
         {
-          en: "Cadence: regular PI–CRC meetings on new enrolments/eligibility, key AEs/SAEs, primary endpoints, major deviations—feeding DOA updates, Deviation/AE logs, PI decision notes in source.",
-          es: "Cadencia: reuniones PI–CRC regulares sobre nuevas inclusiones/elegibilidad, EA/SAE clave, endpoints primarios, desviaciones mayores—alimentando actualizaciones DOA, logs desviación/EA, notas de decisión PI en fuente.",
+          en: "Investigator: qualified, resourced; may delegate tasks not responsibility; must supervise GCP. CRC: delegated execution—protocol, consent, AE, documentation, sponsor comms—with boundaries.",
+          es: "Investigador: calificado, con recursos; puede delegar tareas no responsabilidad; debe supervisar GCP. CRC: ejecución delegada—protocolo, consentimiento, EA, documentación, comunicación patrocinador—con límites.",
         },
         {
-          en: "Monitors test individual performance and system robustness; repeat findings suggest system design gaps.",
-          es: "Monitores prueban desempeño individual y robustez del sistema; hallazgos repetidos sugieren brechas de diseño.",
+          en: "RBQM for sites: CtQ = eligibility, IC, primary endpoints, AE/SAE handling, ALCOA+ documentation; triggers and trend review beat vague ‘we supervise’ statements.",
+          es: "RBQM en sitio: CtQ = elegibilidad, CI, endpoints primarios, AE/SAE, ALCOA+; disparadores y revisión de tendencias vencen frases vagas de ‘supervisamos’.",
         },
         {
-          en: "Inspectors seek proof the quality system works in practice, not certificates alone.",
-          es: "Inspectores buscan prueba de que el sistema de calidad funciona en la práctica, no solo certificados.",
+          en: "Individual error: one person skips a step. System failure: no SOP cadence, no triggers, DOA ≠ reality—inspectors concentrate here.",
+          es: "Error individual: alguien omite un paso. Falla de sistema: sin cadencia SOP, sin disparadores, DOA ≠ realidad—inspectores se concentran aquí.",
         },
         {
-          en: "CRC: operator + sensor—flags process failures, patterns, proposes structural CAPA (checklists, cadence, triggers).",
-          es: "CRC: operador + sensor—señala fallas de proceso, patrones, propone CAPA estructural (checklists, cadencia, disparadores).",
+          en: "False compliance: perfect files but interviews fail; bulk signatures substitute for ongoing review; CRA expected to be the quality system.",
+          es: "Cumplimiento ficticio: archivos perfectos pero entrevistas fallan; firmas masivas sustituyen revisión continua; se espera que el CRA sea el sistema de calidad.",
+        },
+        {
+          en: "Real-world workflow — PI + institution: SOPs for delegation, AE management, monitoring follow-up; CRC aligns DOA, logs, training with SOPs and E6(R3).",
+          es: "Flujo real — PI + institución: SOPs para delegación, gestión EA, seguimiento monitoría; CRC alinea DOA, logs, capacitación con SOPs y E6(R3).",
+        },
+        {
+          en: "Real-world workflow — Cadence: PI–CRC meetings on enrollments/eligibility, key AEs/SAEs, primary endpoints, major deviations—outputs to DOA updates, logs, PI notes in source.",
+          es: "Flujo real — Cadencia: reuniones PI–CRC sobre inclusiones/elegibilidad, EA/SAE clave, endpoints primarios, desviaciones mayores—salidas a actualizaciones DOA, logs, notas PI en fuente.",
+        },
+        {
+          en: "Real-world workflow — Sponsor/monitor: tests staff and system; repeat findings signal design gaps, not ‘bad luck’.",
+          es: "Flujo real — Patrocinador/monitor: prueba personal y sistema; hallazgos repetidos señalan brechas de diseño, no ‘mala suerte’.",
+        },
+        {
+          en: "Real-world workflow — Inspector: asks for proof the quality system runs in practice (notes, decisions, actions), not certificates alone.",
+          es: "Flujo real — Inspector: pide prueba de que el sistema corre en práctica (notas, decisiones, acciones), no solo certificados.",
+        },
+        {
+          en: "Error-prone 1 — Inadequate PI oversight (episodic bulk sign, no CtQ review cadence).",
+          es: "Propensa 1 — Supervisión PI inadecuada (firma masiva episódica, sin cadencia de revisión CtQ).",
+        },
+        {
+          en: "Error-prone 2 — DOA misaligned with tasks actually performed (false delegation).",
+          es: "Propensa 2 — DOA desalineada con tareas realmente ejecutadas (delegación ficticia).",
+        },
+        {
+          en: "Error-prone 3 — Checkbox GCP training without demonstrated competency in interviews.",
+          es: "Propensa 3 — Capacitación GCP de casilla sin competencia demostrada en entrevistas.",
+        },
+        {
+          en: "Error-prone 4 — RBQM/CtQ not operationalized—vague plans, no triggers, no monitoring-trend review.",
+          es: "Propensa 4 — RBQM/CtQ no operativizado—planes vagos, sin disparadores, sin revisión de tendencias de monitoría.",
+        },
+        {
+          en: "Error-prone 5 — No traceable record of quality/safety decisions (informal hallway decisions).",
+          es: "Propensa 5 — Sin registro trazable de decisiones de calidad/seguridad (decisiones informales en pasillo).",
+        },
+        {
+          en: "Links: DOA/logs ALCOA+ (M4); visit/screening & windows (M8); investigator AE decisions & timelines (OSCE.S3); IP custody (M9); protocol binding (M2); consent/privacy stops (M1).",
+          es: "Vínculos: DOA/logs ALCOA+ (M4); visita/screening y ventanas (M8); decisiones EA investigador y plazos (OSCE.S3); custodia IP (M9); protocolo vinculante (M2); paros consentimiento/privacidad (M1).",
         },
       ],
     },
     {
-      lessonId: "M3.L3",
-      title: { en: "Common findings — GCP inspections & QA", es: "Hallazgos frecuentes — inspecciones GCP y QA" },
-      lessonType: "reading",
-      objective: {
-        en: "Recognize recurring GCP/E6(R3) inspection themes tied to oversight and documentation.",
-        es: "Reconocer temas recurrentes de inspección GCP/E6(R3) ligados a supervisión y documentación.",
-      },
-      keyPoints: [
-        {
-          en: "Inadequate PI oversight and supervision (ongoing, not bulk signature days).",
-          es: "Supervisión del PI inadecuada (continua, no solo días de firma masiva).",
-        },
-        {
-          en: "DOA misaligned with actual tasks performed (false delegation).",
-          es: "DOA desalineada con tareas reales ejecutadas (delegación ficticia).",
-        },
-        {
-          en: "Checkbox GCP training without demonstrated competency in interviews.",
-          es: "Capacitación GCP de casilla sin competencia demostrada en entrevistas.",
-        },
-        {
-          en: "RBQM/CtQ not operationalized at site—vague plans, no triggers, no trend review of monitoring findings.",
-          es: "RBQM/CtQ no operativizado en sitio—planes vagos, sin disparadores, sin revisión de tendencias de hallazgos de monitoría.",
-        },
-        {
-          en: "No traceable record of how quality and safety decisions were made.",
-          es: "Sin registro trazable de cómo se tomaron decisiones de calidad y seguridad.",
-        },
-      ],
-    },
-    {
-      lessonId: "M3.GP1",
-      title: { en: "Guided practice — GP-3.1: delegation must match tasks", es: "Práctica guiada — GP-3.1: delegación acorde a tareas" },
+      lessonId: "M3.S3.GP1",
+      title: { en: "3) Guided practice — Scenario 1 (clear)", es: "3) Práctica guiada — Escenario 1 (claro)" },
       lessonType: "case",
+      durationMinutes: 14,
       objective: {
         en: "PI wants untrained medical assistant to enter EDC and call subjects about AEs; DOA lists them only as ‘Clinic Assistant – vitals only’.",
         es: "PI quiere asistente médico sin capacitar para ingresar EDC y llamar sujetos sobre EA; DOA solo los lista como ‘Asistente clínico – solo signos’.",
       },
       keyPoints: [
         {
-          en: "E6(R3) + SOP: qualified, trained staff; delegation must document scope.",
-          es: "E6(R3) + SOP: personal calificado y capacitado; delegación debe documentar alcance.",
+          en: "What CRC sees: scope mismatch; higher-risk tasks than DOA; no documented training.",
+          es: "Qué ve el CRC: desajuste de alcance; tareas de mayor riesgo que DOA; sin capacitación documentada.",
         },
         {
-          en: "Separate clinical judgment (AE assessment, eligibility) from mechanical tasks; check GCP + protocol + system training.",
-          es: "Separar juicio clínico (valoración EA, elegibilidad) de tareas mecánicas; verificar capacitación GCP + protocolo + sistemas.",
+          en: "How to think: E6(R3) + SOP require qualified, trained staff; separate clinical judgment from mechanical tasks.",
+          es: "Cómo pensar: E6(R3) + SOP exigen personal calificado y capacitado; separar juicio clínico de tareas mecánicas.",
         },
         {
-          en: "Decision: block new tasks until trained; PI updates signed DOA with explicit roles; document onboarding checklist.",
-          es: "Decisión: bloquear nuevas tareas hasta capacitar; PI actualiza DOA firmado con roles explícitos; documentar checklist de incorporación.",
+          en: "Decision: block new tasks until trained; PI updates signed DOA with explicit roles; onboarding checklist documented.",
+          es: "Decisión: bloquear nuevas tareas hasta capacitar; PI actualiza DOA firmado con roles explícitos; checklist de incorporación documentada.",
         },
         {
-          en: "Why it matters: patient safety on AE calls; EDC error risk; inadequate delegation = common inspection finding.",
-          es: "Por qué importa: seguridad en llamadas EA; riesgo errores EDC; delegación inadecuada = hallazgo frecuente en inspección.",
+          en: "Why it matters: patient safety on AE calls; EDC integrity; inadequate delegation = common inspection finding.",
+          es: "Por qué importa: seguridad en llamadas EA; integridad EDC; delegación inadecuada = hallazgo frecuente en inspección.",
         },
       ],
     },
     {
-      lessonId: "M3.GP2",
-      title: {
-        en: "Guided practice — GP-3.2: ‘sign everything before the monitor’ (incorrect)",
-        es: "Práctica guiada — GP-3.2: ‘firmar todo antes del monitor’ (incorrecto)",
-      },
+      lessonId: "M3.S3.GP2",
+      title: { en: "3) Guided practice — Scenario 2 (incorrect)", es: "3) Práctica guiada — Escenario 2 (incorrecto)" },
       lessonType: "case",
+      durationMinutes: 14,
       objective: {
         en: "PI bulk-signs CRFs day before monitoring; no routine eligibility/AE/deviation review; ‘CRA will flag errors.’",
         es: "PI firma en bloque CRFs el día antes de monitoría; sin revisión rutinaria de elegibilidad/EA/desviaciones; ‘el CRA señalará errores’.",
       },
       keyPoints: [
         {
-          en: "GCP expects ongoing PI supervision of CtQ—not episodic signatures delegated to monitors.",
-          es: "GCP espera supervisión PI continua de CtQ—no firmas episódicas delegadas en monitores.",
+          en: "What CRC sees: episodic signatures; monitoring approaching; no evidence of ongoing CtQ supervision.",
+          es: "Qué ve el CRC: firmas episódicas; monitoría próxima; sin evidencia de supervisión CtQ continua.",
         },
         {
-          en: "Repeat monitoring findings + bulk sign-off pattern signals inadequate oversight.",
-          es: "Hallazgos repetidos de monitoría + firma masiva señalan supervisión inadecuada.",
+          en: "Incorrect move: treat CRA as substitute PI oversight; continue bulk sign without cadence or source notes.",
+          es: "Movimiento incorrecto: tratar al CRA como sustituto de supervisión PI; continuar firma masiva sin cadencia ni notas en fuente.",
         },
         {
-          en: "Decision: structured cadence (e.g., weekly 30 min: new enrolments, AEs/SAEs, major PDs); PI oversight note in ISF/source; bulk sign only final verification.",
-          es: "Decisión: cadencia estructurada (p. ej., 30 min semanal: nuevas inclusiones, EA/SAE, PD mayores); nota de supervisión PI en ISF/fuente; firma masiva solo verificación final.",
+          en: "Correct move: structured cadence (e.g., weekly: new enrolments, AEs/SAEs, major PDs); PI oversight note in ISF/source; bulk sign only as final verification after review.",
+          es: "Movimiento correcto: cadencia estructurada (p. ej., semanal: inclusiones, EA/SAE, PD mayores); nota de supervisión PI en ISF/fuente; firma masiva solo como verificación final tras revisión.",
         },
         {
           en: "Why mistakes happen: time pressure, culture of outsourcing oversight to CRA.",
           es: "Por qué ocurre: presión temporal, cultura de externalizar supervisión al CRA.",
         },
+        {
+          en: "Why it matters: GCP expects ongoing PI supervision; repeat findings + bulk pattern = inadequate oversight signal.",
+          es: "Por qué importa: GCP espera supervisión PI continua; hallazgos repetidos + patrón masivo = señal de supervisión inadecuada.",
+        },
       ],
     },
     {
-      lessonId: "M3.GP3",
-      title: {
-        en: "Guided practice — GP-3.3: ambiguous oversight design",
-        es: "Práctica guiada — GP-3.3: diseño ambiguo de supervisión",
-      },
+      lessonId: "M3.S3.GP3",
+      title: { en: "3) Guided practice — Scenario 3 (ambiguous)", es: "3) Práctica guiada — Escenario 3 (ambiguo)" },
       lessonType: "case",
+      durationMinutes: 16,
       objective: {
         en: "No written plan for PI data-review frequency or topics; meetings ad hoc; GCP/DOA technically complete.",
         es: "Sin plan escrito de frecuencia o temas de revisión de datos por PI; reuniones ad hoc; GCP/DOA técnicamente completos.",
       },
       keyPoints: [
         {
-          en: "E6(R3) expects proportionate, risk-based oversight—absence of defined system is system-level failure despite good intent.",
-          es: "E6(R3) espera supervisión proporcional basada en riesgo—ausencia de sistema definido es falla sistémica pese a buena intención.",
+          en: "What CRC sees: polite chaos—good intent, no reconstructable system; inspectors will ask ‘show me the plan’.",
+          es: "Qué ve el CRC: caos educado—buena intención, sistema no reconstruible; inspectores pedirán ‘muéstrame el plan’.",
         },
         {
-          en: "Ask: what would you show an inspector proving oversight adequacy? Define triggers (e.g., SAE spike, deviation threshold).",
-          es: "Pregunta: ¿qué mostraría a un inspector probando adecuación de supervisión? Definir disparadores (p. ej., pico SAE, umbral desviaciones).",
+          en: "How to think: E6(R3) expects proportionate, risk-based oversight; absence of defined system is system-level failure.",
+          es: "Cómo pensar: E6(R3) espera supervisión proporcional basada en riesgo; ausencia de sistema definido es falla sistémica.",
         },
         {
-          en: "Decision: simple signed site oversight plan—fixed monthly + ad hoc; agenda: eligibility, AEs, deviations, endpoints; document in memo/SOP addendum.",
-          es: "Decisión: plan simple firmado de supervisión—mensual fijo + ad hoc; agenda: elegibilidad, EA, desviaciones, endpoints; documentar en memo/anexo SOP.",
+          en: "Decision: simple signed site oversight plan—fixed monthly + ad hoc triggers (SAE spike, deviation threshold); agenda: eligibility, AEs, deviations, endpoints; memo/SOP addendum.",
+          es: "Decisión: plan simple firmado—mensual fijo + disparadores ad hoc (pico SAE, umbral desviaciones); agenda: elegibilidad, EA, desviaciones, endpoints; memo/anexo SOP.",
+        },
+        {
+          en: "Why it matters: without triggers and documentation, RBQM cannot be defended; CRC cannot prove PI supervision existed.",
+          es: "Por qué importa: sin disparadores y documentación, RBQM no se defiende; CRC no prueba que existió supervisión PI.",
         },
       ],
     },
     {
-      lessonId: "M3.L4",
-      title: { en: "Audit / inspection perspective", es: "Perspectiva de auditoría / inspección" },
-      lessonType: "reading",
+      lessonId: "M3.S4",
+      title: { en: "4) Practical exercise (time pressure + real outputs)", es: "4) Ejercicio práctico (presión + salidas reales)" },
+      lessonType: "worksheet",
+      durationMinutes: 30,
       objective: {
-        en: "Anticipate inspector focus: real oversight evidence, DOA vs reality, functional quality system, CAPA redesign not only apologies.",
-        es: "Anticipar foco del inspector: evidencia real de supervisión, DOA vs realidad, sistema de calidad funcional, rediseño CAPA no solo disculpas.",
+        en: "Run the Oversight Lab once under the 30-minute time box and produce all deliverables.",
+        es: "Ejecutar el Laboratorio de supervisión una vez bajo 30 minutos y producir todas las salidas.",
       },
       keyPoints: [
         {
-          en: "Inspectors seek: meeting notes, decisions, actions—not just SOP binders.",
-          es: "Inspectores buscan: notas de reunión, decisiones, acciones—no solo carpetas SOP.",
+          en: "Time box: 30 minutes. Missing severity/impact or M4/M8/M9 linkage in CAPA = incomplete.",
+          es: "Límite: 30 minutos. CAPA sin severidad/impacto o sin vínculo M4/M8/M9 = incompleto.",
+        },
+        {
+          en: "Deliverables: issue register + top-3; system CAPA map; FDA defense memo—no concealment or blame-shifting.",
+          es: "Entregables: registro + top-3; mapa CAPA sistémica; memo defensa FDA—sin ocultamiento ni culpar a terceros.",
+        },
+      ],
+    },
+    {
+      lessonId: "M3.S5",
+      title: { en: "5) Scoring matrix & audit/inspection perspective", es: "5) Matriz de puntuación y perspectiva auditoría/inspección" },
+      lessonType: "reading",
+      durationMinutes: 12,
+      objective: {
+        en: "Make pass/fail transparent; anticipate inspector stress-tests.",
+        es: "Hacer transparente aprobado/reprobado; anticipar pruebas de estrés del inspector.",
+      },
+      keyPoints: [
+        {
+          en: "Binary grading: criteria met/not met; critical integrity failures override partial narratives.",
+          es: "Calificación binaria: criterio cumplido/no; fallas críticas de integridad anulan narrativa parcial.",
+        },
+        {
+          en: "Inspector prompts: ‘Walk me from SAE receipt to PI medical assessment.’ ‘Show DOA vs actual tasks last 90 days.’ ‘How do monitoring findings change your SOPs?’",
+          es: "Prompts inspector: ‘Recorrido desde recepción SAE a valoración médica PI.’ ‘Muestre DOA vs tareas reales últimos 90 días.’ ‘¿Cómo cambian sus SOPs los hallazgos de monitoría?’",
         },
         {
           en: "Typical findings: inadequate PI oversight; unqualified delegated staff; ineffective training; quality system deficiencies with repeat issues.",
-          es: "Hallazgos típicos: supervisión PI inadecuada; personal delegado no calificado; capacitación ineficaz; deficiencias del sistema de calidad con problemas repetidos.",
+          es: "Hallazgos típicos: supervisión PI inadecuada; personal delegado no calificado; capacitación ineficaz; deficiencias del sistema de calidad con repetición.",
         },
         {
-          en: "CAPA must redesign oversight and quality system per E6(R3) and institutional SOP—not only retrain one person.",
-          es: "CAPA debe rediseñar supervisión y sistema de calidad según E6(R3) y SOP institucional—no solo reentrenar a una persona.",
+          en: "CAPA bar: redesign oversight + documentation links (same-day log updates, templates)—not apologies-only.",
+          es: "Barra CAPA: rediseñar supervisión + vínculos documentales (actualización de logs mismo día, plantillas)—no solo disculpas.",
         },
       ],
     },
     {
-      lessonId: "M3.L5",
-      title: { en: "Answer framework & fail conditions", es: "Marco de respuesta y condiciones de fallo" },
+      lessonId: "M3.S6",
+      title: { en: "6) Answer framework & fail conditions", es: "6) Marco de respuesta y condiciones de fallo" },
       lessonType: "recap",
+      durationMinutes: 12,
       objective: {
-        en: "Consolidate system-level diagnosis, false-compliance exposure, structural CAPA, and M4/M8/M9 integration—logs & ALCOA+, visits/randomization, IP accountability (plus sponsor safety/OSCE.S3 for AE).",
-        es: "Consolidar diagnóstico sistémico, exposición de cumplimiento ficticio, CAPA estructural e integración M4/M8/M9—logs y ALCOA+, visitas/randomización, contabilidad IP (más seguridad patrocinador/OSCE.S3 para EA).",
+        en: "Consolidate system diagnosis, false-compliance exposure, structural CAPA, and cross-module integration.",
+        es: "Consolidar diagnóstico sistémico, exposición de cumplimiento ficticio, CAPA estructural e integración entre módulos.",
       },
       keyPoints: [
         {
-          en: "Strong learners: blame system design gaps; propose written cadence, CtQ/RBQM plan, templates, log/source linkage.",
-          es: "Aprendices sólidos: atribuyen brechas al diseño del sistema; proponen cadencia escrita, plan CtQ/RBQM, plantillas, vínculo log/fuente.",
+          en: "Elite format: (1) System vs individual diagnosis, (2) Top risks with severity/impact, (3) Structural CAPA + explicit M4/M8/M9 (+ AE) hooks + what remains for leadership/sponsor.",
+          es: "Formato élite: (1) Diagnóstico sistema vs individual, (2) Riesgos top con severidad/impacto, (3) CAPA estructural + ganchos M4/M8/M9 (+ EA) + qué queda para dirección/patrocinador.",
         },
         {
-          en: "Fail if: only ‘train PI/CRC more’; accept vague oversight plans at face value; cannot name at least one fix improving M4 (logs/ALCOA+), M8 (visits/randomization), or M9 (IP).",
-          es: "Fallo si: solo ‘capacitar más al PI/CRC’; acepta planes vagos de supervisión sin crítica; no nombra al menos un arreglo que mejore M4 (logs/ALCOA+), M8 (visitas/randomización) o M9 (IP).",
+          en: "Strong learners: blame system design gaps; propose written cadence, CtQ register, templates, log/source linkage.",
+          es: "Aprendices sólidos: atribuyen brechas al diseño; proponen cadencia escrita, registro CtQ, plantillas, vínculo log/fuente.",
+        },
+        {
+          en: "Fail if: only ‘train more’; accept vague oversight plans; cannot name fixes improving M4, M8, or M9; advise hiding SAE handling gaps.",
+          es: "Fallo si: solo ‘capacitar más’; acepta planes vagos; no nombra arreglos que mejoren M4, M8 o M9; aconseja ocultar brechas SAE.",
+        },
+      ],
+    },
+    {
+      lessonId: "M3.S7",
+      title: { en: "7) Cross-module links", es: "7) Enlaces entre módulos" },
+      lessonType: "reading",
+      durationMinutes: 10,
+      objective: {
+        en: "Tie GCP oversight to protocol, consent, documentation, visits, safety, and IP.",
+        es: "Vincular supervisión GCP a protocolo, consentimiento, documentación, visitas, seguridad e IP.",
+      },
+      keyPoints: [
+        {
+          en: "M1 (Ethics/HIPAA): consent and PHI controls require investigator accountability—not CRC improvisation.",
+          es: "M1 (Ética/HIPAA): consentimiento y PHI exigen responsabilidad del investigador—no improvisación CRC.",
+        },
+        {
+          en: "M2 (Protocol): binding rules and amendment discipline feed what PI must supervise.",
+          es: "M2 (Protocolo): reglas vinculantes y disciplina de enmienda alimentan lo que el PI debe supervisar.",
+        },
+        {
+          en: "M4 (ALCOA+): oversight decisions must land in attributable, contemporaneous logs and source.",
+          es: "M4 (ALCOA+): decisiones de supervisión deben caer en logs y fuente atribuibles y contemporáneos.",
+        },
+        {
+          en: "M8 (Visits): window and screening execution are CtQ—supervision proves they were managed, not just documented late.",
+          es: "M8 (Visitas): ventanas y screening son CtQ—la supervisión prueba que se gestionaron, no solo documentaron tarde.",
+        },
+        {
+          en: "OSCE.S3 / sponsor AE: investigator assessment and timelines—DOA and cadence must match reality.",
+          es: "OSCE.S3 / EA patrocinador: valoración investigador y plazas—DOA y cadencia deben coincidir con la realidad.",
+        },
+        {
+          en: "M9 (IP): custody and accountability require supervised delegation aligned to protocol.",
+          es: "M9 (IP): custodia y contabilidad requieren delegación supervisada alineada al protocolo.",
+        },
+        {
+          en: "Capstone: OSCE.S2 consent/visit documentation under oversight; OSCE.S3 AE/SAE escalation.",
+          es: "Capstone: OSCE.S2 documentación consentimiento/visita bajo supervisión; OSCE.S3 escalamiento AE/SAE.",
+        },
+      ],
+    },
+    {
+      lessonId: "M3.S8",
+      title: { en: "8) Failure impact", es: "8) Impacto de fallas" },
+      lessonType: "reading",
+      durationMinutes: 10,
+      objective: {
+        en: "Make consequences explicit: safety, data, compliance, inspection outcomes.",
+        es: "Hacer explícitas consecuencias: seguridad, datos, cumplimiento, resultados de inspección.",
+      },
+      keyPoints: [
+        {
+          en: "Patient safety: missed or misclassified SAEs; eligibility errors; inadequate follow-up when oversight is theatrical.",
+          es: "Seguridad del paciente: SAE omitidas o mal clasificadas; errores de elegibilidad; seguimiento inadecuado cuando la supervisión es teatral.",
+        },
+        {
+          en: "Data integrity: CRF sign-off without review; uncorrected systemic deviations; unusable evidence for benefit-risk.",
+          es: "Integridad de datos: firma CRF sin revisión; desviaciones sistémicas sin corregir; evidencia inútil para beneficio-riesgo.",
+        },
+        {
+          en: "Compliance: FDA 483 / EMA inspection findings on supervision, delegation, training effectiveness; for-cause escalation risk.",
+          es: "Cumplimiento: hallazgos FDA 483 / inspección EMA por supervisión, delegación, eficacia de capacitación; riesgo de escalamiento for-cause.",
+        },
+        {
+          en: "Site viability: sponsor distrust, enrollment holds, contract termination when quality system is not credible.",
+          es: "Viabilidad del sitio: desconfianza patrocinador, holds de inclusión, terminación contractual cuando el sistema de calidad no es creíble.",
         },
       ],
     },
@@ -343,8 +451,8 @@ export const MODULE_M3: Module = {
         es: "PI y CRC discuten EA informalmente pero logs EA van atrasados; log de desviaciones no se actualiza cuando supervisión halla problemas; fuente sin decisiones/justificación PI.",
       },
       risk: {
-        en: "Oversight leaves no audit trail; M4/M8/M9 all appear weak because quality engine is disconnected from documentation (visit/screening records, logs, and IP chain).",
-        es: "Supervisión no deja rastro de auditoría; M4/M8/M9 lucen débiles porque motor de calidad está desconectado de la documentación (registros visita/screening, logs y cadena IP).",
+        en: "Oversight leaves no audit trail; M4/M8/M9 appear weak because the quality engine is disconnected from documentation.",
+        es: "Supervisión no deja rastro de auditoría; M4/M8/M9 lucen débiles porque motor de calidad está desconectado de la documentación.",
       },
       expectedLearnerResponse: {
         en: "Mandate same-day log updates after oversight; template linking meeting minutes to log entries and source notes; QA spot-check.",
@@ -377,8 +485,8 @@ export const MODULE_M3: Module = {
         es: "Laboratorio de supervisión GCP y sistema de calidad — prueba de estrés de inspección",
       },
       scenario: {
-        en: "30 minutes before simulated FDA inspection debrief. Inputs: latest monitoring report with repeat AE and consent findings; DOA and training records; institutional investigator-oversight SOP referencing GCP/E6; 2-page ‘quality plan’ that is polished but vague (‘PI reviews data regularly’); two recent SAE cases handled mostly by CRC with minimal PI documentation. Assume inspection mindset—missed issues will be challenged.",
-        es: "30 minutos antes de debrief simulado FDA. Insumos: último informe de monitoría con hallazgos repetidos en EA y consentimiento; DOA y registros de capacitación; SOP institucional de responsabilidades del investigador citando GCP/E6; ‘plan de calidad’ de 2 páginas vago pero pulido (‘PI revisa datos regularmente’); dos SAE recientes manejadas sobre todo por CRC con mínima documentación PI. Mentalidad de inspección—lo omitido será cuestionado.",
+        en: "30 minutes before simulated FDA inspection debrief. Inputs conflict by design: monitoring report cites repeat AE documentation and consent process findings; DOA and training records look complete; institutional oversight SOP references GCP/E6(R3); a polished 2-page ‘quality plan’ says only ‘PI reviews data regularly’ with no triggers; SAE case files show CRC-authored narratives with PI e-sign timestamps minutes later on busy clinic days; meeting calendar shows few formal oversight slots. Inspection mindset—omissions will be challenged.",
+        es: "30 minutos antes de debrief simulado FDA. Insumos chocan a propósito: informe de monitoría cita hallazgos repetidos en documentación EA y proceso de consentimiento; DOA y capacitación lucen completos; SOP institucional cita GCP/E6(R3); ‘plan de calidad’ de 2 páginas solo dice ‘PI revisa datos regularmente’ sin disparadores; expedientes SAE muestran narrativas del CRC con e-firma PI minutos después en días de clínica ocupada; calendario muestra pocos espacios formales de supervisión. Mentalidad de inspección—las omisiones serán cuestionadas.",
       },
       inputs: [
         { inputId: "M3.IN1", label: { en: "Monitoring report + follow-up letter", es: "Informe de monitoría + carta de seguimiento" }, inputKind: "pdf" },
@@ -387,8 +495,8 @@ export const MODULE_M3: Module = {
         { inputId: "M3.IN4", label: { en: "Site quality plan + SAE case files", es: "Plan de calidad del sitio + expedientes SAE" }, inputKind: "bundle" },
       ],
       learnerTask: {
-        en: "List issues: system design (oversight cadence, RBQM, CtQ), individual behavior (PI/CRC boundaries), false compliance. Pick top 3 for an inspector; minor/major/critical + patient/data/compliance. For each, propose system-level CAPA (schedule, CtQ plan, documented PI case review, mandatory linkage to M4 logs, M8 visit/randomization discipline, investigator-level AE decisions via sponsor/OSCE.S3, M4 ALCOA+ discipline, M9 IP custody). Draft FDA defense for one major system gap: honest prior state, specific changes, alignment with E6(R3) and institutional RBQM expectations.",
-        es: "Listar problemas: diseño del sistema (cadencia RBQM, CtQ), conducta individual (límites PI/CRC), cumplimiento ficticio. Elegir 3 principales para inspector; menor/mayor/crítico + paciente/datos/cumplimiento. Para cada uno, CAPA a nivel sistema (calendario, plan CtQ, revisión documentada de casos por PI, vínculo obligatorio a logs M4, disciplina M8 visita/randomización, decisiones EA nivel investigador vía patrocinador/OSCE.S3, disciplina ALCOA+ M4, custodia IP M9). Redactar defensa FDA para una brecha sistémica mayor: estado previo honesto, cambios específicos, alineación con E6(R3) y expectativas RBQM institucionales.",
+        en: "List issues: system design (oversight cadence, RBQM, CtQ), individual behavior (PI/CRC boundaries), false compliance (documents vs interviews). Pick top 3 for an inspector; classify minor/major/critical and impact (patient/data/compliance). For each, propose system-level CAPA (schedule, CtQ register, documented PI case review, mandatory same-day linkage to M4 logs, M8 visit/randomization discipline, investigator-level AE assessment per sponsor/OSCE.S3, M4 ALCOA+ discipline, M9 IP custody)—corrective + preventive, not retraining-only. Draft FDA defense for one major system gap: honest prior state, specific implemented changes, known vs unknown, alignment with E6(R3) and institutional RBQM—no concealment or e-signature workarounds.",
+        es: "Listar problemas: diseño del sistema (cadencia RBQM, CtQ), conducta individual (límites PI/CRC), cumplimiento ficticio (documentos vs entrevistas). Elegir 3 principales para inspector; clasificar menor/mayor/crítico e impacto (paciente/datos/cumplimiento). Para cada uno, CAPA sistémica (calendario, registro CtQ, revisión documentada de casos por PI, vínculo obligatorio mismo día a logs M4, disciplina M8 visita/randomización, valoración EA a nivel investigador según patrocinador/OSCE.S3, disciplina ALCOA+ M4, custodia IP M9)—correctiva + preventiva, no solo reentrenar. Redactar defensa FDA para brecha sistémica mayor: estado previo honesto, cambios específicos implementados, conocido vs desconocido, alineación con E6(R3) y RBQM institucional—sin ocultamiento ni atajos de e-firma.",
       },
       deliverables: [
         { deliverableId: "M3.D1", label: { en: "Issue register + top-3 matrix", es: "Registro de hallazgos + matriz top-3" }, formatHint: "table" },
@@ -400,7 +508,7 @@ export const MODULE_M3: Module = {
   assessmentRubric: {
     rubricId: "M3.RUB1",
     totalPoints: 100,
-    passingPoints: 78,
+    passingPoints: 94,
     criteria: [
       {
         criterionId: "M3.C1",
@@ -411,8 +519,8 @@ export const MODULE_M3: Module = {
         points: 35,
         mapsToDimensions: ["R", "Q"],
         failCondition: {
-          en: "Frames problems only as ‘need more training’ with no system redesign, or accepts vague quality plan without critique.",
-          es: "Enmarca problemas solo como ‘más capacitación’ sin rediseño de sistema, o acepta plan de calidad vago sin crítica.",
+          en: "Critical fail if frames problems only as ‘need more training’ with no system redesign, or accepts vague quality plan without critique of triggers, cadence, or DOA-reality match.",
+          es: "Falla crítica si enmarca solo como ‘más capacitación’ sin rediseño de sistema, o acepta plan de calidad vago sin crítica de disparadores, cadencia o ajuste DOA–realidad.",
         },
       },
       {
@@ -424,8 +532,8 @@ export const MODULE_M3: Module = {
         points: 25,
         mapsToDimensions: ["O", "C"],
         failCondition: {
-          en: "No high-risk issue identified from the packet, or labels inadequate PI oversight on SAEs as minor without justification.",
-          es: "No identifica hallazgo de alto riesgo del paquete, o etiqueta supervisión PI inadecuada en SAE como menor sin justificación.",
+          en: "Critical fail if no high-risk issue identified from the packet, or labels inadequate PI oversight on SAE handling as minor without justification.",
+          es: "Falla crítica si no identifica hallazgo de alto riesgo del paquete, o etiqueta supervisión PI inadecuada en manejo SAE como menor sin justificación.",
         },
       },
       {
@@ -437,8 +545,8 @@ export const MODULE_M3: Module = {
         points: 25,
         mapsToDimensions: ["O", "R"],
         failCondition: {
-          en: "CAPA is only slide deck or one-off meeting with no SOP/process change or log linkage.",
-          es: "CAPA es solo diapositivas o reunión puntual sin cambio de SOP/proceso o vínculo a logs.",
+          en: "Fail if CAPA is only slide deck or one-off meeting with no SOP/process change, log linkage, or accountable triggers.",
+          es: "Falla si CAPA es solo diapositivas o reunión puntual sin cambio de SOP/proceso, vínculo a logs o disparadores con responsable.",
         },
       },
       {
@@ -450,8 +558,8 @@ export const MODULE_M3: Module = {
         points: 15,
         mapsToDimensions: ["R", "C"],
         failCondition: {
-          en: "Advises continuing PI e-signature workaround or hiding SAE handling gaps from inspectors.",
-          es: "Aconseja continuar atajo de e-firma PI u ocultar brechas de manejo SAE a inspectores.",
+          en: "Critical fail if advises continuing PI e-signature workaround, hiding SAE handling gaps from inspectors, or falsifying attestations.",
+          es: "Falla crítica si aconseja continuar atajo de e-firma PI, ocultar brechas de manejo SAE a inspectores o falsificar atestaciones.",
         },
       },
     ],

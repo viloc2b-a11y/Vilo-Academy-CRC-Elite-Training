@@ -1,13 +1,24 @@
 import { getTranslations } from "next-intl/server";
+import { ArtifactWorkspace } from "@/components/dashboard/ArtifactWorkspace";
+import { CertificationEvidencePacket } from "@/components/dashboard/CertificationEvidencePacket";
+import { PremiumAcademyPanel } from "@/components/dashboard/PremiumAcademyPanel";
 import { DigitalSignaturePanel } from "@/components/signature/DigitalSignaturePanel";
 import { StudentDashboard } from "@/components/dashboard/StudentDashboard";
 
-export default async function DashboardPage() {
+export default async function DashboardPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
   const t = await getTranslations("dashboard");
 
   return (
     <div className="space-y-10">
       <StudentDashboard />
+      <PremiumAcademyPanel locale={locale} />
+      <CertificationEvidencePacket locale={locale} />
+      <ArtifactWorkspace locale={locale} />
 
       <section className="grid gap-6 lg:grid-cols-2">
         <DigitalSignaturePanel />

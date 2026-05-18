@@ -5,6 +5,7 @@ import { useTranslations } from "next-intl";
 import { useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { Link, useRouter } from "@/i18n/routing";
+import { safeInternalRedirectPath } from "@/lib/navigation/safeRedirect";
 
 export function LoginForm() {
   const t = useTranslations("login");
@@ -38,8 +39,8 @@ export function LoginForm() {
       return;
     }
 
-    const next = searchParams.get("next");
-    if (next?.startsWith("/")) {
+    const next = safeInternalRedirectPath(searchParams.get("next"));
+    if (next) {
       window.location.assign(next);
       return;
     }

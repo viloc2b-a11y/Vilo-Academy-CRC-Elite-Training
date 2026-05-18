@@ -16,6 +16,7 @@ type Body = {
   phrase?: string;
   kind?: string;
   moduloId?: string | null;
+  moduleSlug?: string | null;
 };
 
 const KINDS = [
@@ -27,6 +28,9 @@ const KINDS = [
 ] as const;
 
 type FirmaKind = (typeof KINDS)[number];
+
+const UUID_RE =
+  /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 
 function parseKind(value: unknown): FirmaKind {
   if (typeof value === "string" && (KINDS as readonly string[]).includes(value)) {
@@ -82,12 +86,44 @@ export async function POST(request: Request) {
 
   const phraseHash = createHash("sha256").update(phrase, "utf8").digest("hex");
   const kind = parseKind(json.kind);
+  let moduloId: string | null = null;
+
+  if (json.moduloId) {
+    if (!UUID_RE.test(json.moduloId)) {
+      return NextResponse.json(
+        { error: "moduloId must be a Supabase module UUID; use moduleSlug for curriculum slugs" },
+        { status: 400 },
+      );
+    }
+    moduloId = json.moduloId;
+  } else if (json.moduleSlug) {
+    const slug = json.moduleSlug.trim();
+    if (!slug || slug.length > 160) {
+      return NextResponse.json({ error: "invalid moduleSlug" }, { status: 400 });
+    }
+
+    const { data: mod, error: moduleError } = await supabase
+      .from("modulos")
+      .select("id")
+      .eq("slug", slug)
+      .maybeSingle();
+
+    if (moduleError) {
+      return NextResponse.json({ error: moduleError.message }, { status: 500 });
+    }
+
+    if (!mod?.id) {
+      return NextResponse.json({ error: "moduleSlug not found" }, { status: 400 });
+    }
+
+    moduloId = mod.id as string;
+  }
 
   const { data: firma, error: insertError } = await supabase
     .from("firmas_digitales")
     .insert({
       user_id: user.id,
-      modulo_id: json.moduloId ?? null,
+      modulo_id: moduloId,
       kind,
       signer_printed_name: printedName,
       signer_title: title,
