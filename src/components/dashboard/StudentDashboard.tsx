@@ -175,7 +175,7 @@ export function StudentDashboard() {
             <span>{t("navCourses")}</span>
           </Link>
           <Link
-            href="/certificates"
+            href="/academy/certifications"
             className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-slate-300 transition hover:bg-white/5 hover:text-white"
           >
             <Award size={20} strokeWidth={1.75} aria-hidden />
@@ -209,7 +209,7 @@ export function StudentDashboard() {
           {t("navCourses")}
         </Link>
         <Link
-          href="/certificates"
+          href="/academy/certifications"
           className="flex flex-1 items-center justify-center gap-2 rounded-lg py-2 text-xs font-medium text-slate-300"
         >
           <Award size={16} aria-hidden />
@@ -335,7 +335,10 @@ export function StudentDashboard() {
               </p>
             )}
           </div>
-          <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+          <a
+            href="/academy/certifications"
+            className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm hover:border-emerald-accent/30 transition-colors block"
+          >
             <h3 className="text-sm font-medium text-slate-500">
               {t("cardCerts")}
             </h3>
@@ -347,10 +350,10 @@ export function StudentDashboard() {
                 aria-hidden
               />
               <span className="font-serif text-2xl font-bold text-navy">
-                {connection === "connected" ? "—" : "1"}
+                {connection === "connected" ? assessmentSummary.totalPassed : "1"}
               </span>
             </div>
-          </div>
+          </a>
         </section>
 
         {/* Module list */}
