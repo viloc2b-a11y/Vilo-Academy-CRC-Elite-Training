@@ -34,14 +34,17 @@ export async function LandingPage() {
             <p className="max-w-xl text-lg text-slate-300">{t("heroSubtitle")}</p>
             <div className="flex flex-wrap gap-4">
               <Link
-                href="/login"
+                href="/pricing"
                 className="inline-flex items-center justify-center rounded-xl bg-emerald-accent px-6 py-3 text-sm font-semibold text-navy shadow-lg transition hover:brightness-110"
+              >
+                {t("ctaPrimary")}
+              </Link>
+              <Link
+                href="/login"
+                className="inline-flex items-center justify-center rounded-xl border border-white/25 px-6 py-3 text-sm font-medium text-white transition hover:bg-white/10"
               >
                 {t("ctaSecondary")}
               </Link>
-              <span className="inline-flex items-center justify-center rounded-xl border border-white/25 px-6 py-3 text-sm font-medium text-white">
-                {t("ctaPrimary")}
-              </span>
             </div>
             <div className="grid grid-cols-3 gap-3 pt-4 text-center sm:max-w-md sm:gap-4 sm:text-left">
               <div>

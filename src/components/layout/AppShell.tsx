@@ -14,10 +14,9 @@ export async function AppShell({ children, locale }: Props) {
 
   const links = [
     { href: "/", label: t("home") },
+    { href: "/pricing", label: t("pricing") },
     { href: "/dashboard", label: t("dashboard") },
-    { href: "/modules", label: t("modules") },
-    { href: "/documents", label: t("documents") },
-    { href: "/certificates", label: t("certificates") },
+    { href: "/academy/certifications", label: t("certificates") },
   ] as const;
 
   return (
