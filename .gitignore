@@ -28,6 +28,9 @@ dev-server.*.log
 .env
 .env*.local
 
+# vercel
+.vercel
+
 # typescript
 *.tsbuildinfo
 
