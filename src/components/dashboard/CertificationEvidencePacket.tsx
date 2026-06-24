@@ -82,8 +82,14 @@ export function CertificationEvidencePacket({ locale }: Props) {
               value={manifest.reviewedArtifacts}
             />
             <PacketMetric
-              label={lang === "es" ? "Generado" : "Generated"}
-              value={manifest.generatedAtIso === "pending" ? "..." : "Now"}
+              label={lang === "es" ? "Estado" : "Status"}
+              value={
+                manifest.generatedAtIso === "pending"
+                  ? "..."
+                  : lang === "es"
+                    ? "En vivo"
+                    : "Live"
+              }
             />
           </div>
         ) : null}

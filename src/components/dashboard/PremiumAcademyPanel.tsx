@@ -21,7 +21,7 @@ export function PremiumAcademyPanel({ locale }: Props) {
     <section className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
       <div className="border-b border-slate-100 bg-navy px-6 py-5 text-white">
         <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-emerald-accent">
-          VILO OS Module
+          {lang === "es" ? "Módulo VILO OS" : "VILO OS module"}
         </p>
         <h2 className="mt-2 font-serif text-2xl font-bold">
           {resolveBilingual(VILO_OS_CRC_ACADEMY_MODULE.productName, lang)}
@@ -59,7 +59,8 @@ export function PremiumAcademyPanel({ locale }: Props) {
                       </p>
                     </div>
                     <span className="shrink-0 rounded-full bg-emerald-accent/10 px-2.5 py-1 text-xs font-semibold text-emerald-700">
-                      {pathway.modules.length} modules
+                      {pathway.modules.length}{" "}
+                      {lang === "es" ? "módulos" : "modules"}
                     </span>
                   </div>
                 </article>
@@ -96,7 +97,8 @@ export function PremiumAcademyPanel({ locale }: Props) {
                   {resolveBilingual(level.title, lang)}
                 </p>
                 <p className="mt-1 text-xs text-slate-500">
-                  {level.minimumSignals.artifactCount ?? 0}+ artifacts
+                  {level.minimumSignals.artifactCount ?? 0}+{" "}
+                  {lang === "es" ? "artefactos" : "artifacts"}
                   {level.minimumSignals.capstoneNormalized
                     ? ` • OSCE ${Math.round(level.minimumSignals.capstoneNormalized * 100)}%`
                     : ""}

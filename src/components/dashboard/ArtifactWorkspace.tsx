@@ -11,6 +11,12 @@ type Props = {
   locale: string;
 };
 
+type PersistedSubmission = {
+  fieldValues: Record<string, string>;
+  checklistState: Record<string, boolean>;
+  status: string;
+};
+
 export function ArtifactWorkspace({ locale }: Props) {
   const lang = locale === "es" ? "es" : "en";
   const [selectedTemplateId, setSelectedTemplateId] = useState(
@@ -18,12 +24,15 @@ export function ArtifactWorkspace({ locale }: Props) {
   );
   const [checked, setChecked] = useState<Record<string, boolean>>({});
   const [fieldValues, setFieldValues] = useState<Record<string, string>>({});
-  const [savedByTemplate, setSavedByTemplate] = useState<
-    Record<string, { fieldValues: Record<string, string>; checklistState: Record<string, boolean>; status: string }>
-  >({});
+  const [savedByTemplate, setSavedByTemplate] = useState<Record<string, PersistedSubmission>>(
+    {},
+  );
   const [saveState, setSaveState] = useState<"idle" | "loading" | "saved" | "error">(
     "idle",
   );
+  const [persistenceStatus, setPersistenceStatus] = useState<
+    "checking" | "available" | "unavailable"
+  >("checking");
   const [message, setMessage] = useState<string | null>(null);
 
   const selectedTemplate = useMemo(
@@ -43,7 +52,10 @@ export function ArtifactWorkspace({ locale }: Props) {
     async function loadSubmissions() {
       try {
         const res = await fetch("/api/artifact-submissions");
-        if (!res.ok) return;
+        if (!res.ok) {
+          if (!canceled) setPersistenceStatus("unavailable");
+          return;
+        }
         const data = (await res.json()) as {
           submissions?: Array<{
             template_id: string;
@@ -62,7 +74,9 @@ export function ArtifactWorkspace({ locale }: Props) {
           };
         }
         setSavedByTemplate(next);
+        setPersistenceStatus("available");
       } catch {
+        if (!canceled) setPersistenceStatus("unavailable");
         /* Workspace still works as an unsaved local draft. */
       }
     }
@@ -91,6 +105,16 @@ export function ArtifactWorkspace({ locale }: Props) {
   ).length;
 
   async function saveSubmission(status: "draft" | "submitted") {
+    if (persistenceStatus !== "available") {
+      setSaveState("error");
+      setMessage(
+        lang === "es"
+          ? "Activa Supabase e inicia sesión para guardar evidencia en VILO OS."
+          : "Connect Supabase and sign in to save evidence in VILO OS.",
+      );
+      return;
+    }
+
     setSaveState("loading");
     setMessage(null);
 
@@ -133,11 +157,7 @@ export function ArtifactWorkspace({ locale }: Props) {
     } catch (error) {
       setSaveState("error");
       setMessage(
-        error instanceof Error
-          ? error.message
-          : lang === "es"
-            ? "No se pudo guardar."
-            : "Could not save.",
+        readableSaveError(error, lang),
       );
     }
   }
@@ -168,7 +188,7 @@ export function ArtifactWorkspace({ locale }: Props) {
           >
             {OPERATIONAL_ARTIFACT_TEMPLATES.map((template) => (
               <option key={template.templateId} value={template.templateId}>
-                {resolveBilingual(template.title, lang)}
+                {template.artifactId} - {resolveBilingual(template.title, lang)}
               </option>
             ))}
           </select>
@@ -239,11 +259,18 @@ export function ArtifactWorkspace({ locale }: Props) {
                   {message}
                 </p>
               ) : null}
+              {persistenceStatus === "unavailable" ? (
+                <p className="mt-2 rounded-lg border border-amber-200 bg-amber-50 px-3 py-2 text-xs leading-5 text-amber-800">
+                  {lang === "es"
+                    ? "Modo práctica local: puedes trabajar la plantilla, pero el guardado se habilita al conectar sesión y base de datos."
+                    : "Local practice mode: you can work through the template, and saving unlocks once session and database are connected."}
+                </p>
+              ) : null}
             </div>
             <div className="flex gap-2">
               <button
                 type="button"
-                disabled={saveState === "loading"}
+                disabled={saveState === "loading" || persistenceStatus !== "available"}
                 onClick={() => saveSubmission("draft")}
                 className="rounded-xl border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-navy shadow-sm transition hover:bg-slate-50 disabled:opacity-60"
               >
@@ -251,7 +278,7 @@ export function ArtifactWorkspace({ locale }: Props) {
               </button>
               <button
                 type="button"
-                disabled={saveState === "loading"}
+                disabled={saveState === "loading" || persistenceStatus !== "available"}
                 onClick={() => saveSubmission("submitted")}
                 className="rounded-xl bg-emerald-accent px-4 py-2 text-sm font-semibold text-navy shadow-sm transition hover:brightness-110 disabled:opacity-60"
               >
@@ -293,14 +320,15 @@ export function ArtifactWorkspace({ locale }: Props) {
                         </p>
                         {field.required ? (
                           <span className="rounded-full bg-red-50 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-red-600">
-                            {lang === "es" ? "Req" : "Req"}
+                            {lang === "es" ? "Requerido" : "Required"}
                           </span>
                         ) : null}
                       </div>
                       <p className="mt-1 text-xs uppercase tracking-wide text-slate-400">
-                        {field.fieldType.replace("_", " ")}
+                        {fieldTypeLabel(field.fieldType, lang)}
                       </p>
                       <TemplateInput
+                        lang={lang}
                         fieldType={field.fieldType}
                         value={fieldValues[field.fieldId] ?? ""}
                         options={field.options?.map((option) => resolveBilingual(option, lang))}
@@ -362,13 +390,46 @@ function checklistKey(templateId: string, idx: number) {
   return `${templateId}.${idx}`;
 }
 
+function readableSaveError(error: unknown, lang: "en" | "es") {
+  const raw = error instanceof Error ? error.message.toLowerCase() : "";
+
+  if (
+    raw.includes("supabase") ||
+    raw.includes("unauthorized") ||
+    raw.includes("configured")
+  ) {
+    return lang === "es"
+      ? "No hay una sesión activa o Supabase no está configurado para guardar evidencia."
+      : "There is no active session or Supabase is not configured for evidence saving.";
+  }
+
+  return lang === "es" ? "No se pudo guardar la evidencia." : "Could not save evidence.";
+}
+
+function fieldTypeLabel(fieldType: string, lang: "en" | "es") {
+  const labels: Record<string, { en: string; es: string }> = {
+    checkbox: { en: "Confirmation", es: "Confirmación" },
+    date: { en: "Date", es: "Fecha" },
+    datetime: { en: "Date and time", es: "Fecha y hora" },
+    long_text: { en: "Long response", es: "Respuesta larga" },
+    number: { en: "Number", es: "Número" },
+    select: { en: "Selection", es: "Selección" },
+    table: { en: "Structured table", es: "Tabla estructurada" },
+    text: { en: "Short response", es: "Respuesta corta" },
+  };
+
+  return labels[fieldType]?.[lang] ?? fieldType.replace(/_/g, " ");
+}
+
 function TemplateInput({
+  lang,
   fieldType,
   value,
   options,
   placeholder,
   onChange,
 }: {
+  lang: "en" | "es";
   fieldType: string;
   value: string;
   options?: string[];
@@ -396,7 +457,7 @@ function TemplateInput({
         value={value}
         onChange={(event) => onChange(event.target.value)}
       >
-        <option value="">Select...</option>
+        <option value="">{lang === "es" ? "Seleccionar..." : "Select..."}</option>
         {(options ?? []).map((option) => (
           <option key={option} value={option}>
             {option}
@@ -414,7 +475,7 @@ function TemplateInput({
           checked={value === "true"}
           onChange={(event) => onChange(String(event.target.checked))}
         />
-        <span>Confirmed</span>
+        <span>{lang === "es" ? "Confirmado" : "Confirmed"}</span>
       </label>
     );
   }
