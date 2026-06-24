@@ -155,5 +155,31 @@
     "documentsBody": "Tracker for all 52 essential documents — wire to progreso_documentos_ich and documentos_esenciales.",
     "certificatesTitle": "Certificates",
     "certificatesBody": "Issuance history and downloads — connect to firmas_digitales and your PDF generator."
+  },
+  "auth": {
+    "registerTitle": "Create your account",
+    "registerSubtitle": "Start your CRC Elite Training journey.",
+    "nameLabel": "Full name",
+    "emailLabel": "Email",
+    "passwordLabel": "Password",
+    "confirmLabel": "Confirm password",
+    "submitRegister": "Create account",
+    "haveAccount": "Already have an account?",
+    "signIn": "Sign in",
+    "registerSuccess": "Account created! Check your email to confirm.",
+    "forgotTitle": "Reset your password",
+    "forgotSubtitle": "Enter your email and we'll send you a reset link.",
+    "forgotSent": "Check your email for the reset link.",
+    "submitReset": "Send reset link",
+    "newPasswordTitle": "Set new password",
+    "newPasswordSubtitle": "Choose a new password for your account.",
+    "submitNewPassword": "Update password",
+    "passwordUpdated": "Password updated successfully.",
+    "backToLogin": "Back to sign in",
+    "nameRequired": "Full name is required",
+    "emailRequired": "Email is required",
+    "passwordRequired": "Password is required",
+    "passwordMin": "Password must be at least 6 characters",
+    "passwordsDontMatch": "Passwords do not match"
   }
 }

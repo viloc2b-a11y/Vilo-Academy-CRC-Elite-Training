@@ -155,5 +155,31 @@
     "documentsBody": "Seguimiento de los 52 documentos esenciales — conecta con progreso_documentos_ich y documentos_esenciales.",
     "certificatesTitle": "Certificados",
     "certificatesBody": "Historial de emisión y descargas — enlaza con firmas_digitales y tu generador de PDF."
+  },
+  "auth": {
+    "registerTitle": "Crea tu cuenta",
+    "registerSubtitle": "Comienza tu formación CRC Elite.",
+    "nameLabel": "Nombre completo",
+    "emailLabel": "Correo electrónico",
+    "passwordLabel": "Contraseña",
+    "confirmLabel": "Confirmar contraseña",
+    "submitRegister": "Crear cuenta",
+    "haveAccount": "¿Ya tienes una cuenta?",
+    "signIn": "Iniciar sesión",
+    "registerSuccess": "¡Cuenta creada! Revisa tu correo para confirmar.",
+    "forgotTitle": "Restablecer tu contraseña",
+    "forgotSubtitle": "Ingresa tu correo y te enviaremos un enlace de restablecimiento.",
+    "forgotSent": "Revisa tu correo para el enlace de restablecimiento.",
+    "submitReset": "Enviar enlace",
+    "newPasswordTitle": "Establecer nueva contraseña",
+    "newPasswordSubtitle": "Elige una nueva contraseña para tu cuenta.",
+    "submitNewPassword": "Actualizar contraseña",
+    "passwordUpdated": "Contraseña actualizada correctamente.",
+    "backToLogin": "Volver a iniciar sesión",
+    "nameRequired": "El nombre completo es obligatorio",
+    "emailRequired": "El correo es obligatorio",
+    "passwordRequired": "La contraseña es obligatoria",
+    "passwordMin": "La contraseña debe tener al menos 6 caracteres",
+    "passwordsDontMatch": "Las contraseñas no coinciden"
   }
 }

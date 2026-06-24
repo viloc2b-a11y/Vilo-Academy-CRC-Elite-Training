@@ -35,13 +35,17 @@ export async function middleware(request: NextRequest) {
     ? segments[0]
     : routing.defaultLocale;
 
-  const protectedPrefixes = ["/dashboard", "/modules", "/documents", "/certificates"];
+  const protectedPrefixes = ["/dashboard", "/modules", "/documents", "/certificates", "/academy", "/pricing"];
+  const publicAuthPrefixes = ["/login", "/register", "/forgot-password", "/reset-password", "/certification"];
   const isProtected = protectedPrefixes.some(
+    (p) => bare === p || bare.startsWith(`${p}/`),
+  );
+  const isPublicAuth = publicAuthPrefixes.some(
     (p) => bare === p || bare.startsWith(`${p}/`),
   );
   const isLogin = bare === "/login";
 
-  if (isProtected && !session) {
+  if (isProtected && !isPublicAuth && !session) {
     const url = request.nextUrl.clone();
     url.pathname = `/${locale}/login`;
     url.searchParams.set("next", pathname);

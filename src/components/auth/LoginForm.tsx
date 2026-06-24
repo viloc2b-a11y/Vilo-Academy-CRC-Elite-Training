@@ -1,7 +1,7 @@
 "use client";
 
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { Link, useRouter } from "@/i18n/routing";
@@ -9,6 +9,8 @@ import { safeInternalRedirectPath } from "@/lib/navigation/safeRedirect";
 
 export function LoginForm() {
   const t = useTranslations("login");
+  const auth = useTranslations("auth");
+  const locale = useLocale();
   const router = useRouter();
   const searchParams = useSearchParams();
   const supabase = createClientComponentClient();
@@ -112,6 +114,18 @@ export function LoginForm() {
       >
         {loading ? "…" : t("submit")}
       </button>
+
+      <div className="flex flex-col items-center gap-2 text-xs text-slate-400">
+        <Link href="/forgot-password" className="text-emerald-accent hover:underline">
+          {t("forgot")}
+        </Link>
+        <span>
+          {locale === "es" ? "¿No tienes cuenta?" : "Don't have an account?"}{" "}
+          <Link href="/register" className="text-emerald-accent hover:underline font-medium">
+            {locale === "es" ? "Registrarse" : "Sign up"}
+          </Link>
+        </span>
+      </div>
 
       <p className="text-center text-xs text-slate-400">
         <Link href="/" className="text-emerald-accent hover:underline">
