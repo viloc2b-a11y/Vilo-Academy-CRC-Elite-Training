@@ -2,7 +2,6 @@ import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
 import {
   CRC_ELITE_COURSE,
-  resolveBilingual,
 } from "@/curriculum-engine";
 import type { LocaleCode } from "@/curriculum-engine/types/common";
 import { ModuleHeader } from "@/components/academy/ModuleHeader";
@@ -11,6 +10,7 @@ import { LessonContent } from "@/components/academy/LessonContent";
 import { Exercises } from "@/components/academy/Exercises";
 import { AssessmentPreview } from "@/components/academy/AssessmentPreview";
 import { NextModule } from "@/components/academy/NextModule";
+import { ModuleProgressBar } from "@/components/academy/ModuleProgressBar";
 
 type Props = {
   params: Promise<{ locale: string; id: string }>;
@@ -39,6 +39,8 @@ export default async function AcademyModulePage({ params }: Props) {
 
   return (
     <div className="mx-auto min-h-screen max-w-4xl px-4 py-8 sm:px-6 lg:px-8">
+      <ModuleProgressBar moduleId={id} locale={locale} />
+
       <ModuleHeader
         mod={mod}
         registryItem={registryItem}
