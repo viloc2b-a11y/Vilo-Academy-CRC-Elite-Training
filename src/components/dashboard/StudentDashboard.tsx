@@ -24,6 +24,14 @@ type DashboardData = {
   moduleStatuses: Record<string, ProgressStatus>;
 };
 
+type AssessmentSummaryData = {
+  totalAttempted: number;
+  totalPassed: number;
+  totalFailed: number;
+  averagePercentage: number;
+  attemptsPerModule: Record<string, { latestScore: number; passed: boolean; percentage: number }>;
+};
+
 type ConnectionState = "loading" | "connected" | "demo";
 
 const EMPTY_SUMMARY: DashboardData = {
@@ -36,12 +44,22 @@ const EMPTY_SUMMARY: DashboardData = {
   moduleStatuses: {},
 };
 
+const EMPTY_ASSESSMENT_SUMMARY: AssessmentSummaryData = {
+  totalAttempted: 0,
+  totalPassed: 0,
+  totalFailed: 0,
+  averagePercentage: 0,
+  attemptsPerModule: {},
+};
+
 export function StudentDashboard() {
   const locale = useLocale();
   const t = useTranslations("studentDashboard");
   const lang = locale === "es" ? "es" : "en";
 
   const [summary, setSummary] = useState<DashboardData>(EMPTY_SUMMARY);
+  const [assessmentSummary, setAssessmentSummary] =
+    useState<AssessmentSummaryData>(EMPTY_ASSESSMENT_SUMMARY);
   const [connection, setConnection] = useState<ConnectionState>("loading");
 
   useEffect(() => {
@@ -49,19 +67,30 @@ export function StudentDashboard() {
 
     async function load() {
       try {
-        const res = await fetch("/api/progress");
-        const data = (await res.json()) as {
+        const [progressRes, assessmentRes] = await Promise.all([
+          fetch("/api/progress"),
+          fetch("/api/assessments?summary=true"),
+        ]);
+
+        if (canceled) return;
+
+        const progressData = (await progressRes.json()) as {
           summary?: DashboardData;
           authenticated?: boolean;
         };
 
-        if (canceled) return;
+        const assessmentData = (await assessmentRes.json()) as {
+          summary?: AssessmentSummaryData;
+          authenticated?: boolean;
+        };
 
-        if (data.authenticated && data.summary) {
-          setSummary(data.summary);
+        if (progressData.authenticated && progressData.summary) {
+          setSummary(progressData.summary);
+          if (assessmentData.summary) {
+            setAssessmentSummary(assessmentData.summary);
+          }
           setConnection("connected");
         } else {
-          // Demo mode — still show all modules as not_started
           setSummary(EMPTY_SUMMARY);
           setConnection("demo");
         }
@@ -239,7 +268,7 @@ export function StudentDashboard() {
         </header>
 
         {/* Stats cards */}
-        <section className="mb-8 grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-6">
+        <section className="mb-8 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4 md:gap-6">
           <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
             <h3 className="text-sm font-medium text-slate-500">
               {t("cardProgress")}
@@ -277,6 +306,34 @@ export function StudentDashboard() {
                   ? "Todos los módulos completados"
                   : "All modules completed"}
             </p>
+          </div>
+          <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+            <h3 className="text-sm font-medium text-slate-500">
+              {lang === "es" ? "Evaluaciones" : "Assessments"}
+            </h3>
+            <div className="mt-2 flex items-center gap-2">
+              <Award
+                className={assessmentSummary.totalPassed > 0 ? "text-emerald-500" : "text-slate-300"}
+                size={26}
+                strokeWidth={1.75}
+                aria-hidden
+              />
+              <span className="font-serif text-2xl font-bold text-navy">
+                {assessmentSummary.totalPassed}/{assessmentSummary.totalAttempted}
+              </span>
+            </div>
+            {assessmentSummary.totalAttempted > 0 && (
+              <p className="mt-2 text-xs text-slate-500">
+                {lang === "es"
+                  ? `${assessmentSummary.averagePercentage}% promedio`
+                  : `${assessmentSummary.averagePercentage}% average`}
+              </p>
+            )}
+            {connection === "demo" && (
+              <p className="mt-2 text-xs text-slate-400">
+                {lang === "es" ? "—" : "—"}
+              </p>
+            )}
           </div>
           <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
             <h3 className="text-sm font-medium text-slate-500">

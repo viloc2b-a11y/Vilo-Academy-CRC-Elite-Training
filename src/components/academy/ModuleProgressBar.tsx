@@ -14,34 +14,56 @@ type ModuleProgress = {
   completed_at: string | null;
 };
 
+type LatestAssessment = {
+  score: number;
+  max_score: number;
+  percentage: number;
+  passed: boolean;
+  submitted_at: string;
+} | null;
+
 export function ModuleProgressBar({ moduleId, locale }: Props) {
   const lang = locale === "es" ? "es" : "en";
   const [progress, setProgress] = useState<ModuleProgress | null>(null);
-  const [authState, setAuthState] = useState<"loading" | "authenticated" | "guest">(
-    "loading",
-  );
+  const [latestAssessment, setLatestAssessment] =
+    useState<LatestAssessment>(null);
+  const [authState, setAuthState] = useState<
+    "loading" | "authenticated" | "guest"
+  >("loading");
   const [submitting, setSubmitting] = useState(false);
 
-  // Fetch current progress + auto-mark as started
+  // Fetch progress + assessment + auto-mark as started
   useEffect(() => {
     let canceled = false;
 
     async function init() {
       try {
-        // Fetch current progress
-        const res = await fetch(`/api/progress?moduleId=${moduleId}`);
-        const data = (await res.json()) as {
+        const [progressRes, assessmentRes] = await Promise.all([
+          fetch(`/api/progress?moduleId=${moduleId}`),
+          fetch(`/api/assessments?moduleId=${moduleId}`),
+        ]);
+
+        if (canceled) return;
+
+        const progressData = (await progressRes.json()) as {
           progress?: ModuleProgress | null;
           authenticated?: boolean;
         };
 
-        if (canceled) return;
+        const assessmentData = (await assessmentRes.json()) as {
+          latest?: LatestAssessment;
+          authenticated?: boolean;
+        };
 
-        if (data.authenticated) {
+        if (progressData.authenticated) {
           setAuthState("authenticated");
 
-          if (data.progress) {
-            setProgress(data.progress);
+          if (assessmentData.latest) {
+            setLatestAssessment(assessmentData.latest);
+          }
+
+          if (progressData.progress) {
+            setProgress(progressData.progress);
           } else {
             // Auto-mark as started
             const startRes = await fetch("/api/progress", {
@@ -126,7 +148,7 @@ export function ModuleProgressBar({ moduleId, locale }: Props) {
     );
   }
 
-  // Authenticated — show progress
+  // Authenticated
   const status = progress?.status ?? "not_started";
 
   return (
@@ -172,6 +194,20 @@ export function ModuleProgressBar({ moduleId, locale }: Props) {
             </span>
           )}
 
+          {/* Latest assessment score */}
+          {latestAssessment && (
+            <span
+              className={`inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-semibold ${
+                latestAssessment.passed
+                  ? "bg-emerald-100 text-emerald-700"
+                  : "bg-red-100 text-red-700"
+              }`}
+            >
+              {lang === "es" ? "Evaluación" : "Assessment"}:{" "}
+              {latestAssessment.percentage}%
+            </span>
+          )}
+
           {/* Completion date */}
           {progress?.completed_at && (
             <span className="text-xs text-slate-400">
@@ -185,22 +221,39 @@ export function ModuleProgressBar({ moduleId, locale }: Props) {
         </div>
 
         {/* Actions */}
-        {status !== "completed" && (
-          <button
-            type="button"
-            disabled={submitting}
-            onClick={handleMarkComplete}
-            className="rounded-xl bg-emerald-accent px-5 py-2 text-sm font-bold text-navy shadow-sm transition hover:brightness-110 disabled:opacity-50"
+        <div className="flex flex-wrap items-center gap-2">
+          {/* Take assessment link */}
+          <a
+            href={`/${locale}/academy/module/${moduleId}/assessment`}
+            className="rounded-xl border border-emerald-accent/30 bg-emerald-accent/10 px-4 py-2 text-sm font-bold text-navy shadow-sm transition hover:bg-emerald-accent/20"
           >
-            {submitting
+            {latestAssessment
               ? lang === "es"
-                ? "Guardando..."
-                : "Saving..."
+                ? "Reintentar evaluación"
+                : "Retake assessment"
               : lang === "es"
-                ? "Marcar como completado"
-                : "Mark as complete"}
-          </button>
-        )}
+                ? "Tomar evaluación"
+                : "Take assessment"}
+          </a>
+
+          {/* Mark complete */}
+          {status !== "completed" && (
+            <button
+              type="button"
+              disabled={submitting}
+              onClick={handleMarkComplete}
+              className="rounded-xl bg-emerald-accent px-4 py-2 text-sm font-bold text-navy shadow-sm transition hover:brightness-110 disabled:opacity-50"
+            >
+              {submitting
+                ? lang === "es"
+                  ? "Guardando..."
+                  : "Saving..."
+                : lang === "es"
+                  ? "Marcar completado"
+                  : "Mark complete"}
+            </button>
+          )}
+        </div>
       </div>
     </div>
   );
