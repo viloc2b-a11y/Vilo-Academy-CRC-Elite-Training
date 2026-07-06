@@ -1,3 +1,4 @@
+import { setRequestLocale } from "next-intl/server";
 import { StudentDashboard } from "@/components/dashboard/StudentDashboard";
 
 export default async function DashboardPage({
@@ -6,6 +7,7 @@ export default async function DashboardPage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
+  setRequestLocale(locale);
 
   return <StudentDashboard />;
 }

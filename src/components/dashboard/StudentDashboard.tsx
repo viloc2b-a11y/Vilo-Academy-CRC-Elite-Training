@@ -421,7 +421,7 @@ export function StudentDashboard() {
                   </div>
                 </div>
                 <Link
-                  href={`/${locale}/academy/module/${nextModule.id}`}
+                  href={`/academy/module/${nextModule.id}`}
                   className="mt-6 inline-flex items-center gap-2 rounded-xl bg-navy px-5 py-2.5 text-sm font-bold text-white shadow-sm transition hover:bg-navy/90"
                 >
                   {nextModule.status === "in_progress" ? "Continue" : "Start"} module
@@ -491,7 +491,7 @@ export function StudentDashboard() {
                             <CategoryBadge category={mod.category} />
                           </div>
                           <Link
-                            href={`/${locale}/academy/module/${mod.id}`}
+                            href={`/academy/module/${mod.id}`}
                             className={`mt-1 block font-medium leading-snug transition-colors hover:text-emerald-700 ${
                               isComplete ? "text-slate-500" :
                               isActive ? "text-navy" :
@@ -504,7 +504,7 @@ export function StudentDashboard() {
 
                         {/* CTA button */}
                         <Link
-                          href={`/${locale}/academy/module/${mod.id}`}
+                          href={`/academy/module/${mod.id}`}
                           className={`shrink-0 rounded-xl px-4 py-2 text-center text-sm font-bold transition ${
                             isComplete
                               ? "border border-emerald-accent/30 bg-emerald-accent/10 text-navy hover:bg-emerald-accent/20"
@@ -532,7 +532,7 @@ export function StudentDashboard() {
         <section className="mb-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
           {nextModule && !allComplete && (
             <Link
-              href={`/${locale}/academy/module/${nextModule.id}`}
+              href={`/academy/module/${nextModule.id}`}
               className="group flex items-center gap-4 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:border-emerald-accent/40 hover:shadow-md"
             >
               <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-emerald-50">
@@ -582,7 +582,7 @@ export function StudentDashboard() {
                 : "Dashboard preview. Sign in to save your progress."}
             </p>
             <Link
-              href={`/${locale}/login`}
+              href="/login"
               className="mt-3 inline-block rounded-xl bg-amber-600 px-5 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-amber-700"
             >
               {lang === "es" ? "Iniciar sesión" : "Sign in"}
