@@ -124,18 +124,18 @@ export function PricingPage({ locale }: Props) {
   }, [authState, lang, locale]);
 
   return (
-    <div className="mx-auto min-h-screen max-w-6xl px-4 py-12 sm:px-6">
+    <div className="mx-auto min-h-screen max-w-4xl px-4 py-8 sm:px-6">
       {/* Header */}
-      <div className="mb-12 text-center">
+      <div className="mb-10">
         <p className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-accent">
           {lang === "es" ? "Planes" : "Plans"}
         </p>
-        <h1 className="mt-3 font-serif text-4xl font-bold tracking-tight text-navy">
+        <h1 className="mt-2 font-serif text-3xl font-bold tracking-tight text-navy">
           {lang === "es"
             ? "Invierte en tu carrera como CRC"
             : "Invest in your CRC career"}
         </h1>
-        <p className="mx-auto mt-4 max-w-xl text-slate-600">
+        <p className="mt-3 max-w-xl text-slate-600">
           {lang === "es"
             ? "Formación bilingüe basada en competencias con certificación verificable."
             : "Bilingual competency-based training with verifiable certification."}
