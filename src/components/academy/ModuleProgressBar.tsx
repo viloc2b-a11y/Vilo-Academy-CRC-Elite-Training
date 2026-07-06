@@ -210,7 +210,7 @@ export function ModuleProgressBar({ moduleId, locale }: Props) {
 
           {/* Completion date */}
           {progress?.completed_at && (
-            <span className="text-xs text-slate-400">
+            <span className="text-xs text-slate-400" suppressHydrationWarning>
               {lang === "es" ? "Completado" : "Completed"}{" "}
               {new Date(progress.completed_at).toLocaleDateString(
                 locale === "es" ? "es-AR" : "en-US",

@@ -23,6 +23,20 @@ function copyResponseCookies(from: NextResponse, to: NextResponse) {
 export async function middleware(request: NextRequest) {
   let response = intlMiddleware(request);
 
+  // Compute path info early (needed for both auth and AppShell)
+  const pathname = request.nextUrl.pathname;
+  const bare = pathWithoutLocale(pathname);
+  const segments = pathname.split("/").filter(Boolean);
+  const locale =
+    segments[0] &&
+    routing.locales.includes(segments[0] as (typeof routing.locales)[number])
+      ? segments[0]
+      : routing.defaultLocale;
+
+  // Inject locale-stripped path for AppShell nav variant detection
+  response.headers.set("x-pathname", bare);
+
+  // Supabase session
   let session = null;
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const anon = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
@@ -33,7 +47,9 @@ export async function middleware(request: NextRequest) {
         getAll() {
           return request.cookies.getAll();
         },
-        setAll(cookiesToSet: { name: string; value: string; options: CookieOptions }[]) {
+        setAll(
+          cookiesToSet: { name: string; value: string; options: CookieOptions }[],
+        ) {
           cookiesToSet.forEach(({ name, value, options }) =>
             response.cookies.set(name, value, options),
           );
@@ -45,16 +61,21 @@ export async function middleware(request: NextRequest) {
     session = data.session;
   }
 
-  const pathname = request.nextUrl.pathname;
-  const bare = pathWithoutLocale(pathname);
-  const segments = pathname.split("/").filter(Boolean);
-  const locale = segments[0] &&
-    routing.locales.includes(segments[0] as (typeof routing.locales)[number])
-    ? segments[0]
-    : routing.defaultLocale;
-
-  const protectedPrefixes = ["/dashboard", "/modules", "/documents", "/certificates", "/academy", "/pricing"];
-  const publicAuthPrefixes = ["/login", "/register", "/forgot-password", "/reset-password", "/certification"];
+  const protectedPrefixes = [
+    "/dashboard",
+    "/modules",
+    "/documents",
+    "/certificates",
+    "/academy",
+    "/pricing",
+  ];
+  const publicAuthPrefixes = [
+    "/login",
+    "/register",
+    "/forgot-password",
+    "/reset-password",
+    "/certification",
+  ];
   const isProtected = protectedPrefixes.some(
     (p) => bare === p || bare.startsWith(`${p}/`),
   );
@@ -81,6 +102,8 @@ export async function middleware(request: NextRequest) {
     return redirectResponse;
   }
 
+  // Always set pathname header on final response
+  response.headers.set("x-pathname", bare);
   return response;
 }
 

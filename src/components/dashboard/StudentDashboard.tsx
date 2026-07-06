@@ -259,54 +259,7 @@ export function StudentDashboard() {
   return (
     <div className="min-h-screen bg-slate-50">
 
-      {/* Top nav */}
-      <nav className="sticky top-0 z-30 border-b border-slate-200 bg-white/95 backdrop-blur-sm">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6">
-          <div className="flex items-center gap-8">
-            <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-emerald-accent">
-              Vilo Academy
-            </span>
-            <div className="hidden items-center gap-1 sm:flex">
-              {[
-                { href: "/dashboard", label: "Dashboard" },
-                { href: "/modules", label: "Modules" },
-                { href: "/academy/certifications", label: "Certifications" },
-                { href: "/pricing", label: "Pricing" },
-              ].map(({ href, label }) => (
-                <Link
-                  key={href}
-                  href={href as Parameters<typeof Link>[0]["href"]}
-                  className="rounded-md px-3 py-1.5 text-sm font-medium text-slate-600 transition hover:bg-slate-100 hover:text-navy"
-                >
-                  {label}
-                </Link>
-              ))}
-            </div>
-          </div>
-          <div className="flex items-center gap-3">
-            {/* Connection indicator */}
-            <div className="flex items-center gap-1.5">
-              <span
-                className={`h-2 w-2 rounded-full ${
-                  connection === "connected" ? "bg-emerald-accent animate-none" :
-                  connection === "loading" ? "bg-amber-400 animate-pulse" :
-                  "bg-amber-400"
-                }`}
-              />
-              <span className="text-[11px] font-medium text-slate-500">
-                {connection === "connected" ? "Live" : connection === "loading" ? "Connecting…" : "Preview"}
-              </span>
-            </div>
-            {/* Avatar */}
-            <div
-              className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-emerald-accent to-emerald-600 text-xs font-bold text-navy ring-2 ring-white shadow-sm"
-              aria-hidden
-            >
-              {connection === "connected" ? "VL" : "?"}
-            </div>
-          </div>
-        </div>
-      </nav>
+      {/* App nav is now provided by AppShell — no duplicate header here */}
 
       <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
 

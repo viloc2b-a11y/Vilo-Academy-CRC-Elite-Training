@@ -4,9 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 import {
   Award,
   CheckCircle2,
-  XCircle,
   ExternalLink,
-  ChevronRight,
   AlertTriangle,
 } from "lucide-react";
 import { CRC_CERTIFICATION_LEVELS, resolveBilingual } from "@/curriculum-engine";
@@ -32,9 +30,18 @@ export function CertificationCenter({ locale }: Props) {
 
   useEffect(() => {
     fetch("/api/certifications?center=true")
-      .then((r) => r.json())
-      .then((d) => setData(d))
-      .catch(() => setError("Failed to load"))
+      .then((r) => {
+        if (!r.ok) throw new Error(`HTTP ${r.status}`);
+        return r.json();
+      })
+      .then((d) => {
+        if (d.error) {
+          setError(d.error);
+          return;
+        }
+        setData(d);
+      })
+      .catch((err) => setError(err?.message ?? "Failed to load"))
       .finally(() => setLoading(false));
   }, []);
 
@@ -51,7 +58,6 @@ export function CertificationCenter({ locale }: Props) {
       if (!res.ok) {
         setError(result.error ?? "Failed to issue");
       } else {
-        // Refresh
         const d = await fetch("/api/certifications?center=true").then((r) => r.json());
         setData(d);
       }
@@ -80,6 +86,14 @@ export function CertificationCenter({ locale }: Props) {
       <div className="mx-auto max-w-4xl px-4 py-8">
         <div className="rounded-xl border border-red-200 bg-red-50 p-6 text-center">
           <p className="text-red-700">{error ?? "Could not load certification data"}</p>
+          {error && (
+            <a
+              href={`/${locale}/dashboard`}
+              className="mt-3 inline-block rounded-xl bg-red-600 px-5 py-2 text-sm font-semibold text-white"
+            >
+              {lang === "es" ? "Volver al dashboard" : "Back to dashboard"}
+            </a>
+          )}
         </div>
       </div>
     );
@@ -175,7 +189,6 @@ export function CertificationCenter({ locale }: Props) {
                       </span>
                     </div>
 
-                    {/* Reasons (if not eligible) */}
                     {!level.eligible && !isIssued && level.reasons.length > 0 && (
                       <div className="mt-3 space-y-1">
                         {level.reasons.map((r, i) => (
@@ -187,10 +200,9 @@ export function CertificationCenter({ locale }: Props) {
                       </div>
                     )}
 
-                    {/* Issued certification info */}
                     {isIssued && issued && (
                       <div className="mt-3 space-y-1">
-                        <p className="flex items-center gap-2 text-sm text-emerald-600">
+                        <p className="flex items-center gap-2 text-sm text-emerald-600" suppressHydrationWarning>
                           <CheckCircle2 size={14} />
                           {lang === "es" ? "Emitido" : "Issued"}:{" "}
                           {new Date(issued.issued_at ?? issued.created_at).toLocaleDateString(
@@ -213,7 +225,6 @@ export function CertificationCenter({ locale }: Props) {
                   </div>
                 </div>
 
-                {/* Action */}
                 <div className="shrink-0">
                   {isIssued ? (
                     <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-100 px-3 py-1 text-xs font-semibold text-emerald-700">
@@ -243,7 +254,6 @@ export function CertificationCenter({ locale }: Props) {
         })}
       </section>
 
-      {/* Error */}
       {error && (
         <div className="mt-6 rounded-xl border border-red-200 bg-red-50 p-4">
           <p className="text-sm text-red-700">{error}</p>
