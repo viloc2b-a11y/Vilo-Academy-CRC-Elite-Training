@@ -269,7 +269,7 @@ export function StudentDashboard() {
             <div className="hidden items-center gap-1 sm:flex">
               {[
                 { href: "/dashboard", label: "Dashboard" },
-                { href: "/academy", label: "Academy" },
+                { href: "/modules", label: "Modules" },
                 { href: "/academy/certifications", label: "Certifications" },
                 { href: "/pricing", label: "Pricing" },
               ].map(({ href, label }) => (
