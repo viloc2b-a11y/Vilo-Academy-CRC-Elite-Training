@@ -1,12 +1,13 @@
 "use client";
 
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { useState } from "react";
 import { Link } from "@/i18n/routing";
 
 export function ForgotPasswordForm() {
   const t = useTranslations("auth");
+  const locale = useLocale();
   const supabase = createClientComponentClient();
 
   const [email, setEmail] = useState("");
@@ -22,7 +23,7 @@ export function ForgotPasswordForm() {
     const { error: resetError } = await supabase.auth.resetPasswordForEmail(
       email.trim(),
       {
-        redirectTo: `${window.location.origin}/en/reset-password`,
+        redirectTo: `${window.location.origin}/${locale}/reset-password`,
       },
     );
 

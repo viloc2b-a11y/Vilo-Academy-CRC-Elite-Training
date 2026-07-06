@@ -1,13 +1,14 @@
 "use client";
 
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { useState } from "react";
 import { Link, useRouter } from "@/i18n/routing";
 
 export function RegisterForm() {
   const t = useTranslations("auth");
   const router = useRouter();
+  const locale = useLocale();
   const supabase = createClientComponentClient();
 
   const [name, setName] = useState("");
@@ -50,7 +51,7 @@ export function RegisterForm() {
       password,
       options: {
         data: { full_name: name.trim() },
-        emailRedirectTo: `${window.location.origin}/en/login`,
+        emailRedirectTo: `${window.location.origin}/${locale}/login`,
       },
     });
 
