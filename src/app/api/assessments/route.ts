@@ -11,6 +11,7 @@ import {
   buildAssessmentSummary,
   type SelfEvaluationMap,
 } from "@/lib/assessments/helpers";
+import { checkRateLimit, rateLimitKey, setRateLimitHeaders } from "@/lib/rate-limit";
 
 // ---------------------------------------------------------------------------
 // GET /api/assessments?moduleId=M1
@@ -70,6 +71,13 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Authentication required" }, { status: 401 });
   }
 
+  // Rate limit: 20 req / 60s per user (assessments are expensive — scoring engine)
+  const rlKey = rateLimitKey(request, user.id);
+  const rlResult = checkRateLimit(rlKey, { maxRequests: 20, windowMs: 60_000 });
+  if (!rlResult.allowed) {
+    return NextResponse.json({ error: "Too many requests" }, { status: 429 });
+  }
+
   let body: {
     moduleId?: string;
     responses?: Record<string, string>;
@@ -113,8 +121,10 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  return NextResponse.json({
+  const res = NextResponse.json({
     attempt: result.attempt,
     authenticated: true,
   });
+  setRateLimitHeaders(res, rlResult);
+  return res;
 }

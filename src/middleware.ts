@@ -1,4 +1,4 @@
-import { createMiddlewareClient } from "@supabase/auth-helpers-nextjs";
+import { createServerClient, type CookieOptions } from "@supabase/ssr";
 import { type NextRequest, NextResponse } from "next/server";
 import createIntlMiddleware from "next-intl/middleware";
 import { routing } from "./i18n/routing";
@@ -14,17 +14,35 @@ function pathWithoutLocale(pathname: string) {
   return pathname || "/";
 }
 
+function copyResponseCookies(from: NextResponse, to: NextResponse) {
+  from.cookies.getAll().forEach((cookie) => {
+    to.cookies.set(cookie.name, cookie.value);
+  });
+}
+
 export async function middleware(request: NextRequest) {
-  const response = intlMiddleware(request);
+  let response = intlMiddleware(request);
 
   let session = null;
-  if (
-    process.env.NEXT_PUBLIC_SUPABASE_URL &&
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
-  ) {
-    const supabase = createMiddlewareClient({ req: request, res: response });
-    const auth = await supabase.auth.getSession();
-    session = auth.data.session;
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const anon = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+  if (url && anon) {
+    const supabase = createServerClient(url, anon, {
+      cookies: {
+        getAll() {
+          return request.cookies.getAll();
+        },
+        setAll(cookiesToSet: { name: string; value: string; options: CookieOptions }[]) {
+          cookiesToSet.forEach(({ name, value, options }) =>
+            response.cookies.set(name, value, options),
+          );
+        },
+      },
+    });
+
+    const { data } = await supabase.auth.getSession();
+    session = data.session;
   }
 
   const pathname = request.nextUrl.pathname;
@@ -46,17 +64,21 @@ export async function middleware(request: NextRequest) {
   const isLogin = bare === "/login";
 
   if (isProtected && !isPublicAuth && !session) {
-    const url = request.nextUrl.clone();
-    url.pathname = `/${locale}/login`;
-    url.searchParams.set("next", pathname);
-    return NextResponse.redirect(url);
+    const redirectUrl = request.nextUrl.clone();
+    redirectUrl.pathname = `/${locale}/login`;
+    redirectUrl.searchParams.set("next", pathname);
+    const redirectResponse = NextResponse.redirect(redirectUrl);
+    copyResponseCookies(response, redirectResponse);
+    return redirectResponse;
   }
 
   if (isLogin && session) {
-    const url = request.nextUrl.clone();
-    url.pathname = `/${locale}/dashboard`;
-    url.search = "";
-    return NextResponse.redirect(url);
+    const redirectUrl = request.nextUrl.clone();
+    redirectUrl.pathname = `/${locale}/dashboard`;
+    redirectUrl.search = "";
+    const redirectResponse = NextResponse.redirect(redirectUrl);
+    copyResponseCookies(response, redirectResponse);
+    return redirectResponse;
   }
 
   return response;

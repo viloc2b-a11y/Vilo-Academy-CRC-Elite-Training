@@ -6,6 +6,7 @@ import {
   getUserCertifications,
   buildCertificationCenterData,
 } from "@/lib/certifications/helpers";
+import { checkRateLimit, rateLimitKey, setRateLimitHeaders } from "@/lib/rate-limit";
 
 // ---------------------------------------------------------------------------
 // GET /api/certifications
@@ -52,6 +53,13 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Authentication required" }, { status: 401 });
   }
 
+  // Rate limit: 10 req / 60s per user (cert issuance is expensive)
+  const rlKey = rateLimitKey(request, user.id);
+  const rlResult = checkRateLimit(rlKey, { maxRequests: 10, windowMs: 60_000 });
+  if (!rlResult.allowed) {
+    return NextResponse.json({ error: "Too many requests" }, { status: 429 });
+  }
+
   let body: { action?: string; levelId?: string };
   try {
     body = (await request.json()) as { action?: string; levelId?: string };
@@ -91,7 +99,9 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: result.error }, { status: 500 });
     }
 
-    return NextResponse.json({ certification: result.certification });
+    const res = NextResponse.json({ certification: result.certification });
+    setRateLimitHeaders(res, rlResult);
+    return res;
   }
 
   return NextResponse.json({ error: "Unknown action" }, { status: 400 });

@@ -8,10 +8,10 @@
     "start": "next start",
     "test": "vitest run",
     "typecheck": "node -e \"const fs=require('node:fs');fs.rmSync('.next/types',{recursive:true,force:true});fs.mkdirSync('.next/types',{recursive:true});fs.rmSync('tsconfig.tsbuildinfo',{force:true});\" && tsc -p tsconfig.json --noEmit",
-    "lint": "next lint"
+    "lint": "next lint",
+    "prepare": "husky"
   },
   "dependencies": {
-    "@supabase/auth-helpers-nextjs": "^0.10.0",
     "@supabase/ssr": "^0.6.1",
     "@supabase/supabase-js": "^2.49.4",
     "lucide-react": "^1.8.0",
@@ -27,9 +27,14 @@
     "autoprefixer": "^10.4.20",
     "eslint": "^8.57.1",
     "eslint-config-next": "^14.2.28",
+    "husky": "^9.1.7",
+    "lint-staged": "^17.0.8",
     "postcss": "^8.4.49",
     "tailwindcss": "^3.4.17",
     "typescript": "^5.7.3",
     "vitest": "^4.1.6"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": ["eslint --fix --max-warnings 0"]
   }
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+import { createBrowserSupabaseClient } from "@/lib/supabase/client";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { Link, useRouter } from "@/i18n/routing";
@@ -8,7 +8,7 @@ import { Link, useRouter } from "@/i18n/routing";
 export function RegisterForm() {
   const t = useTranslations("auth");
   const router = useRouter();
-  const supabase = createClientComponentClient();
+  const supabase = createBrowserSupabaseClient();
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");

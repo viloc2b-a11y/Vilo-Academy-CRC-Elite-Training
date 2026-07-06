@@ -1,13 +1,13 @@
 "use client";
 
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+import { createBrowserSupabaseClient } from "@/lib/supabase/client";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { Link } from "@/i18n/routing";
 
 export function ForgotPasswordForm() {
   const t = useTranslations("auth");
-  const supabase = createClientComponentClient();
+  const supabase = createBrowserSupabaseClient();
 
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);

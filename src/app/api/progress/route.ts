@@ -8,6 +8,7 @@ import {
   buildDashboardSummary,
   isValidModuleId,
 } from "@/lib/progress/helpers";
+import { checkRateLimit, rateLimitKey, setRateLimitHeaders } from "@/lib/rate-limit";
 
 // ---------------------------------------------------------------------------
 // GET /api/progress
@@ -48,6 +49,16 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(
       { error: "Authentication required" },
       { status: 401 },
+    );
+  }
+
+  // Rate limit: 60 req / 60s per authenticated user
+  const rlKey = rateLimitKey(request, user.id);
+  const rlResult = checkRateLimit(rlKey, { maxRequests: 60, windowMs: 60_000 });
+  if (!rlResult.allowed) {
+    return NextResponse.json(
+      { error: "Too many requests" },
+      { status: 429 },
     );
   }
 
@@ -96,7 +107,9 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  // Return updated progress
+  // Return updated progress with rate-limit headers
   const progress = await getProgressForModule(user.id, moduleId);
-  return NextResponse.json({ progress, authenticated: true });
+  const res = NextResponse.json({ progress, authenticated: true });
+  setRateLimitHeaders(res, rlResult);
+  return res;
 }
