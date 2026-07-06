@@ -12,6 +12,7 @@
     "prepare": "husky"
   },
   "dependencies": {
+    "@supabase/auth-helpers-nextjs": "^0.10.0",
     "@supabase/ssr": "^0.6.1",
     "@supabase/supabase-js": "^2.49.4",
     "lucide-react": "^1.8.0",
@@ -35,6 +36,8 @@
     "vitest": "^4.1.6"
   },
   "lint-staged": {
-    "*.{ts,tsx}": ["eslint --fix --max-warnings 0"]
+    "*.{ts,tsx}": [
+      "eslint --fix --max-warnings 0"
+    ]
   }
 }

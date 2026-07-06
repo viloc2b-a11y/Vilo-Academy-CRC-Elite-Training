@@ -1,6 +1,6 @@
 "use client";
 
-import { createBrowserSupabaseClient } from "@/lib/supabase/client";
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { useTranslations, useLocale } from "next-intl";
 import { useSearchParams } from "next/navigation";
 import { useState } from "react";
@@ -13,7 +13,7 @@ export function LoginForm() {
   const locale = useLocale();
   const router = useRouter();
   const searchParams = useSearchParams();
-  const supabase = createBrowserSupabaseClient();
+  const supabase = createClientComponentClient();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
